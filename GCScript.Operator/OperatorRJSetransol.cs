@@ -1,25 +1,20 @@
-﻿using System.Data;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GCScript.Operator;
 
-public class OperatorRJRiocard
+public class OperatorRJSetransol
 {
-    public string GenerateOrder(string cnpj, string clipboardData)
+    public string GenerateOrder(string clipboardData)
     {
         if (string.IsNullOrEmpty(clipboardData) || string.IsNullOrWhiteSpace(clipboardData)) { throw new Exception("Clipboard data is empty"); }
         var matrix = OperatorTools.CreateMatrixFromClipboard(clipboardData);
         if (matrix is null) { throw new Exception("Matrix is null"); }
 
-        cnpj = Regex.Replace(cnpj, "[^0-9]", "").PadLeft(14, '0');
-
         StringBuilder sb = new();
-        int count = 1;
-        decimal total = 0;
 
         #region FIRST LINE
-        sb.AppendLine($"{count.ToString().PadLeft(5, '0')}01PEDIDO01.00{cnpj}");
+        sb.AppendLine("REC|1");
         #endregion
 
         foreach (var row in matrix)
@@ -30,27 +25,17 @@ public class OperatorRJRiocard
                 || string.IsNullOrWhiteSpace(row.Last()?.Trim()))
             { continue; }
 
-            var matricula = row.First().Trim();
+            var cpf = Regex.Replace(row.First().Trim(), "[^0-9]", "").PadLeft(11, '0');
             string valorTratado = row.Last().Replace("R$", "").Replace("$", "").Trim();
             decimal valor = valorTratado == "-" ? 0 : decimal.Parse(valorTratado);
+            if (valor == 0) { continue; }
+            string valorFinal = valor.ToString("0.00").Replace(".", "").Replace(",", "");
 
             #region BODY
-            if (valor == 0) { continue; }
-            count++;
-            sb.AppendLine($"{count.ToString().PadLeft(5, '0')}02{matricula.PadRight(15, ' ')}{valor.ToString("0.00").Replace(".", "").Replace(",", "").PadLeft(8, '0')}");
-            total += valor;
+            sb.AppendLine($"{cpf}|1|{valorFinal}||");
             #endregion
 
         }
-        #region PENULTIMATE LINE
-        count++;
-        sb.AppendLine(count.ToString().PadLeft(5, '0') + "03" + DateTime.Now.ToString("ddMMyyyy") + "A7777");
-        #endregion
-
-        #region LAST LINE
-        count++;
-        sb.AppendLine(count.ToString().PadLeft(5, '0') + "99" + total.ToString("0.00").Replace(".", "").Replace(",", "").PadLeft(10, '0'));
-        #endregion
         return sb.ToString();
     }
 }

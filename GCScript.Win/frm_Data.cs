@@ -469,29 +469,48 @@ public partial class frm_Data : XtraForm
     {
         try
         {
-            if (CurrentOperator.Id.ToString() == "64ce595375654feaabb9f81d" || CurrentOperator.Id.ToString() == "64d8ff515f6a7bc64a513f55")
+            Tools.RemoveOrderFiles();
+            string id = CurrentOperator.Id.ToString();
+
+            if (id == "64ce595375654feaabb9f81d") // RJ - RIOCARD
             {
-                Tools.RemoveOrderFiles();
+                if (XtraMessageBox.Show(
+                    "Selecione e Copie as colunas na ORDEM abaixo:\nMat (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
+                    "GCScript Benefits",
+                    System.Windows.Forms.MessageBoxButtons.YesNo,
+                    System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                if (XtraMessageBox.Show("Selecione e Copie as colunas na ORDEM abaixo:\nMat (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.CNPJ, Clipboard.GetText());
+                File.WriteAllText(Settings.TxtOrderFilePath, go);
+            }
+            else if (id == "64d8ff515f6a7bc64a513f55") // RIOCARD - PRA VOCE
+            {
+                if (XtraMessageBox.Show(
+                    "Selecione e Copie as colunas na ORDEM abaixo:\nMat (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
+                    "GCScript Benefits",
+                    System.Windows.Forms.MessageBoxButtons.YesNo,
+                    System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                OperatorRJRiocard opRJRiocard = new();
-                var generateOrder = opRJRiocard.GenerateOrder(CurrentUnit.CNPJ, Clipboard.GetText());
-                if (generateOrder.Success)
-                {
-                    File.WriteAllText(Settings.TxtOrderFilePath, generateOrder.Result);
-                    XtraMessageBox.Show("Pedido gerado com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-                }
-                else
-                {
-                    throw new Exception(generateOrder.Message);
-                }
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.CNPJ, Clipboard.GetText());
+                File.WriteAllText(Settings.TxtOrderFilePath, go);
+            }
+            else if (id == "64ce595375654feaabb9f81e") // RJ - SETRANSOL
+            {
+                if (XtraMessageBox.Show(
+                    "Selecione e Copie as colunas na ORDEM abaixo:\nCPF (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
+                    "GCScript Benefits",
+                    System.Windows.Forms.MessageBoxButtons.YesNo,
+                    System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
+
+                var go = new OperatorRJSetransol().GenerateOrder(Clipboard.GetText());
+                File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
             else
             {
                 throw new Exception("Operadora não suportada!");
             }
 
+            XtraMessageBox.Show("Pedido gerado com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
         }
         catch (Exception ex)
         {
@@ -602,5 +621,9 @@ public partial class frm_Data : XtraForm
     private void cmb_Search_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
     {
         if (e.KeyChar == (char)13) { btn_Search_Click(sender, e); }
+    }
+
+    private void btn_T1_Click(object sender, EventArgs e)
+    {
     }
 }
