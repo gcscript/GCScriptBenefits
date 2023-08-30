@@ -1,5 +1,7 @@
-﻿using DevExpress.XtraEditors;
+﻿using DevExpress.CodeParser.VB;
+using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using GCScript.Shared;
 using GCScript.Shared.Models.Management;
 using System;
 using System.Collections.Generic;
@@ -27,8 +29,10 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
         frm_ManagementWizard frm = new();
         frm.ShowDialog();
 
-        return;
-        var text = await File.ReadAllTextAsync("C:\\Users\\GCScript\\Desktop\\_PurchaseFile_2023-08-24_22-20-07.json");
+        var mw = Settings.ManagementWizardSettings;
+        if (mw is null) { return; }
+
+        var text = await File.ReadAllTextAsync(mw.PurchaseFilePath);
         var json = JsonSerializer.Deserialize<List<MImportData>>(text);
 
         DataSourceData = new();
@@ -37,9 +41,27 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
         {
             MDataSourceData data = new();
             data.ArquivoDeCompra = item.ArquivoDeCompra;
-            data.CNPJ = item.CNPJ;
-            data.UF = item.UF;
-            data.Operadora = item.Operadora;
+
+            if (string.IsNullOrEmpty(mw.CNPJForAll) || string.IsNullOrWhiteSpace(mw.CNPJForAll))
+            {
+                data.CNPJ = item.CNPJ;
+            }
+            else
+            {
+                data.CNPJ = mw.CNPJForAll;
+            }
+
+            if (string.IsNullOrEmpty(mw.OperatorForAll) || string.IsNullOrWhiteSpace(mw.OperatorForAll))
+            {
+                data.UF = item.UF;
+                data.Operadora = item.Operadora;
+            }
+            else
+            {
+                data.UF = mw.OperatorForAll[..2];
+                data.Operadora = mw.OperatorForAll[5..];
+            }
+
             data.Empresa = item.Empresa;
             data.Unidade = item.Unidade;
             data.Departamento = item.Departamento;
@@ -66,24 +88,48 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
                                        .ThenBy(x => x.Departamento)
                                        .ThenBy(x => x.Nome)
                                        .ToList();
-        //DataSourceData = DataSourceData.OrderBy(x => x.Nome).ToList();
 
         gv_Main.BeginDataUpdate();
         gc_Main.DataSource = DataSourceData;
         gv_Main.EndDataUpdate();
+
+        DataSourceBalance = ImportBalances(mw.BalanceFilesPath);
+        gc_Balance.DataSource = DataSourceBalance;
     }
 
-    private async void simpleButton1_Click(object sender, EventArgs e)
+    private List<MDataSourceBalance> ImportBalances(List<string> filesPath)
     {
+        try
+        {
+            if (filesPath is null) { return null; }
 
+            var list = new List<MDataSourceBalance>();
 
+            foreach (string filePath in filesPath)
+            {
+                var text = File.ReadAllText(filePath);
+                if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text)) { continue; }
+
+                var content = JsonSerializer.Deserialize<List<MDataSourceBalance>>(text);
+                list.AddRange(content);
+            }
+
+            list = list.OrderBy(x => x.UF)
+                       .ThenBy(x => x.Operadora)
+                       .ThenBy(x => x.Empresa)
+                       .ThenBy(x => x.Unidade)
+                       .ThenBy(x => x.Nome)
+                       .ToList();
+
+            return list;
+
+        }
+        catch
+        {
+            return null;
+        }
     }
 
-    private void simpleButton2_Click(object sender, EventArgs e)
-    {
-
-
-    }
 
     private void SomaseTotal()
     {
@@ -244,15 +290,15 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
 
         List<MDataSourceBalanceSAT> dataList = new();
 
-        var lines = text.Split( new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries); // Divide o texto em linhas
+        var lines = text.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries); // Divide o texto em linhas
         foreach (var line in lines)
         {
             var columns = line.Split(','); // Divide a linha em colunas
             string numeroDoCartao = Regex.Replace(columns[1], "[^0-9]", "");
             numeroDoCartao = numeroDoCartao.PadLeft(13, '0');
             numeroDoCartao = Regex.Replace(numeroDoCartao, @"(\d{2})(\d{2})(\d{8})(\d{1})", "$1.$2.$3-$4");
-            decimal saldo = decimal.TryParse(columns[3].Replace(".",","), out saldo) ? saldo : 0;
-            decimal recargaPendente = decimal.TryParse(columns[5].Replace(".",","), out recargaPendente) ? recargaPendente : 0;
+            decimal saldo = decimal.TryParse(columns[3].Replace(".", ","), out saldo) ? saldo : 0;
+            decimal recargaPendente = decimal.TryParse(columns[5].Replace(".", ","), out recargaPendente) ? recargaPendente : 0;
 
             MDataSourceBalanceSAT data = new();
             data.NumeroDoCartao = numeroDoCartao;
@@ -272,7 +318,8 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
                 gv_Balance.SetRowCellValue(i, gcol_Balance_Saldo, data.Saldo);
                 gv_Balance.SetRowCellValue(i, gcol_Balance_RecargaPendente, data.RecargaPendente);
             }
-            else{
+            else
+            {
                 gv_Balance.SetRowCellValue(i, gcol_Balance_Saldo, 0);
                 gv_Balance.SetRowCellValue(i, gcol_Balance_RecargaPendente, 0);
             }

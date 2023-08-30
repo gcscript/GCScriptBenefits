@@ -57,17 +57,15 @@
             txt_ImportData_FilePath = new DevExpress.XtraEditors.TextEdit();
             btn_ImportData_SelectFile = new DevExpress.XtraEditors.SimpleButton();
             tbp_ImportBalance = new DevExpress.XtraTab.XtraTabPage();
+            tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
+            lst_ImportBalance_Files = new DevExpress.XtraEditors.ListBoxControl();
             tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
-            tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
-            btn_ImportBalance_Next = new DevExpress.XtraEditors.SimpleButton();
+            btn_ImportBalance_Finish = new DevExpress.XtraEditors.SimpleButton();
             btn_ImportBalance_Back = new DevExpress.XtraEditors.SimpleButton();
             labelControl2 = new DevExpress.XtraEditors.LabelControl();
             labelControl3 = new DevExpress.XtraEditors.LabelControl();
-            txt_ImportBalance_FilePath = new DevExpress.XtraEditors.TextEdit();
-            btn_ImportBalance_SelectFile = new DevExpress.XtraEditors.SimpleButton();
-            labelControl4 = new DevExpress.XtraEditors.LabelControl();
-            txt_ImportBalance_FileSATPath = new DevExpress.XtraEditors.TextEdit();
-            btn_ImportBalance_SelectFileSAT = new DevExpress.XtraEditors.SimpleButton();
+            btn_ImportBalance_AddFile = new DevExpress.XtraEditors.SimpleButton();
+            btn_ImportBalance_ClearList = new DevExpress.XtraEditors.SimpleButton();
             ssm_Main = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(pi_Loading), true, true);
             ((System.ComponentModel.ISupportInitialize)tbc_Main).BeginInit();
             tbc_Main.SuspendLayout();
@@ -94,12 +92,11 @@
             tlp_ImportData_Footer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txt_ImportData_FilePath.Properties).BeginInit();
             tbp_ImportBalance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tablePanel2).BeginInit();
+            tablePanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)lst_ImportBalance_Files).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tablePanel3).BeginInit();
             tablePanel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tablePanel4).BeginInit();
-            tablePanel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)txt_ImportBalance_FilePath.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)txt_ImportBalance_FileSATPath.Properties).BeginInit();
             SuspendLayout();
             // 
             // tbc_Main
@@ -327,7 +324,7 @@
             tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tablePanel1.Location = new System.Drawing.Point(0, 0);
             tablePanel1.Name = "tablePanel1";
-            tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 20F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
+            tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 10F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
             tablePanel1.Size = new System.Drawing.Size(496, 316);
             tablePanel1.TabIndex = 2;
             // 
@@ -336,7 +333,8 @@
             tablePanel1.SetColumn(txt_ImportData_CNPJForAll, 0);
             tablePanel1.SetColumnSpan(txt_ImportData_CNPJForAll, 4);
             txt_ImportData_CNPJForAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_ImportData_CNPJForAll.Location = new System.Drawing.Point(3, 116);
+            txt_ImportData_CNPJForAll.Enabled = false;
+            txt_ImportData_CNPJForAll.Location = new System.Drawing.Point(3, 106);
             txt_ImportData_CNPJForAll.Name = "txt_ImportData_CNPJForAll";
             tablePanel1.SetRow(txt_ImportData_CNPJForAll, 5);
             txt_ImportData_CNPJForAll.Size = new System.Drawing.Size(193, 20);
@@ -347,7 +345,8 @@
             tablePanel1.SetColumn(cmb_ImportData_OperatorForAll, 4);
             tablePanel1.SetColumnSpan(cmb_ImportData_OperatorForAll, 6);
             cmb_ImportData_OperatorForAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            cmb_ImportData_OperatorForAll.Location = new System.Drawing.Point(201, 116);
+            cmb_ImportData_OperatorForAll.Enabled = false;
+            cmb_ImportData_OperatorForAll.Location = new System.Drawing.Point(201, 106);
             cmb_ImportData_OperatorForAll.Name = "cmb_ImportData_OperatorForAll";
             cmb_ImportData_OperatorForAll.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
             cmb_ImportData_OperatorForAll.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
@@ -360,7 +359,7 @@
             tablePanel1.SetColumn(chk_ImportData_OperatorForAll, 4);
             tablePanel1.SetColumnSpan(chk_ImportData_OperatorForAll, 3);
             chk_ImportData_OperatorForAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            chk_ImportData_OperatorForAll.Location = new System.Drawing.Point(201, 95);
+            chk_ImportData_OperatorForAll.Location = new System.Drawing.Point(201, 85);
             chk_ImportData_OperatorForAll.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             chk_ImportData_OperatorForAll.Name = "chk_ImportData_OperatorForAll";
             chk_ImportData_OperatorForAll.Properties.Caption = "Operadora para todos";
@@ -374,7 +373,7 @@
             tablePanel1.SetColumn(chk_ImportData_CNPJForAll, 0);
             tablePanel1.SetColumnSpan(chk_ImportData_CNPJForAll, 3);
             chk_ImportData_CNPJForAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            chk_ImportData_CNPJForAll.Location = new System.Drawing.Point(3, 95);
+            chk_ImportData_CNPJForAll.Location = new System.Drawing.Point(3, 85);
             chk_ImportData_CNPJForAll.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             chk_ImportData_CNPJForAll.Name = "chk_ImportData_CNPJForAll";
             chk_ImportData_CNPJForAll.Properties.Caption = "CNPJ para todos";
@@ -446,7 +445,7 @@
             tablePanel1.SetColumn(labelControl1, 0);
             tablePanel1.SetColumnSpan(labelControl1, 3);
             labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl1.Location = new System.Drawing.Point(3, 53);
+            labelControl1.Location = new System.Drawing.Point(3, 43);
             labelControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl1.Name = "labelControl1";
             tablePanel1.SetRow(labelControl1, 2);
@@ -459,7 +458,7 @@
             tablePanel1.SetColumn(txt_ImportData_FilePath, 0);
             tablePanel1.SetColumnSpan(txt_ImportData_FilePath, 8);
             txt_ImportData_FilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_ImportData_FilePath.Location = new System.Drawing.Point(3, 69);
+            txt_ImportData_FilePath.Location = new System.Drawing.Point(3, 59);
             txt_ImportData_FilePath.Name = "txt_ImportData_FilePath";
             txt_ImportData_FilePath.Properties.ReadOnly = true;
             tablePanel1.SetRow(txt_ImportData_FilePath, 3);
@@ -472,7 +471,7 @@
             tablePanel1.SetColumn(btn_ImportData_SelectFile, 8);
             tablePanel1.SetColumnSpan(btn_ImportData_SelectFile, 2);
             btn_ImportData_SelectFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_ImportData_SelectFile.Location = new System.Drawing.Point(400, 69);
+            btn_ImportData_SelectFile.Location = new System.Drawing.Point(400, 59);
             btn_ImportData_SelectFile.Name = "btn_ImportData_SelectFile";
             tablePanel1.SetRow(btn_ImportData_SelectFile, 3);
             btn_ImportData_SelectFile.Size = new System.Drawing.Size(93, 20);
@@ -482,156 +481,134 @@
             // 
             // tbp_ImportBalance
             // 
-            tbp_ImportBalance.Controls.Add(tablePanel3);
+            tbp_ImportBalance.Controls.Add(tablePanel2);
             tbp_ImportBalance.Name = "tbp_ImportBalance";
             tbp_ImportBalance.Size = new System.Drawing.Size(496, 316);
             tbp_ImportBalance.Text = "xtraTabPage2";
             // 
+            // tablePanel2
+            // 
+            tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 10F) });
+            tablePanel2.Controls.Add(lst_ImportBalance_Files);
+            tablePanel2.Controls.Add(tablePanel3);
+            tablePanel2.Controls.Add(labelControl2);
+            tablePanel2.Controls.Add(labelControl3);
+            tablePanel2.Controls.Add(btn_ImportBalance_AddFile);
+            tablePanel2.Controls.Add(btn_ImportBalance_ClearList);
+            tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tablePanel2.Location = new System.Drawing.Point(0, 0);
+            tablePanel2.Name = "tablePanel2";
+            tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 10F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
+            tablePanel2.Size = new System.Drawing.Size(496, 316);
+            tablePanel2.TabIndex = 3;
+            // 
+            // lst_ImportBalance_Files
+            // 
+            tablePanel2.SetColumn(lst_ImportBalance_Files, 0);
+            tablePanel2.SetColumnSpan(lst_ImportBalance_Files, 10);
+            lst_ImportBalance_Files.Dock = System.Windows.Forms.DockStyle.Fill;
+            lst_ImportBalance_Files.Location = new System.Drawing.Point(3, 59);
+            lst_ImportBalance_Files.Name = "lst_ImportBalance_Files";
+            tablePanel2.SetRow(lst_ImportBalance_Files, 3);
+            tablePanel2.SetRowSpan(lst_ImportBalance_Files, 5);
+            lst_ImportBalance_Files.Size = new System.Drawing.Size(490, 188);
+            lst_ImportBalance_Files.TabIndex = 5;
+            // 
             // tablePanel3
             // 
-            tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F) });
-            tablePanel3.Controls.Add(tablePanel4);
-            tablePanel3.Controls.Add(labelControl2);
-            tablePanel3.Controls.Add(labelControl3);
-            tablePanel3.Controls.Add(txt_ImportBalance_FilePath);
-            tablePanel3.Controls.Add(btn_ImportBalance_SelectFile);
-            tablePanel3.Controls.Add(labelControl4);
-            tablePanel3.Controls.Add(txt_ImportBalance_FileSATPath);
-            tablePanel3.Controls.Add(btn_ImportBalance_SelectFileSAT);
+            tablePanel2.SetColumn(tablePanel3, 0);
+            tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F) });
+            tablePanel2.SetColumnSpan(tablePanel3, 10);
+            tablePanel3.Controls.Add(btn_ImportBalance_Finish);
+            tablePanel3.Controls.Add(btn_ImportBalance_Back);
             tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel3.Location = new System.Drawing.Point(0, 0);
+            tablePanel3.Location = new System.Drawing.Point(0, 276);
+            tablePanel3.Margin = new System.Windows.Forms.Padding(0);
             tablePanel3.Name = "tablePanel3";
-            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 20F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
-            tablePanel3.Size = new System.Drawing.Size(496, 316);
-            tablePanel3.TabIndex = 3;
+            tablePanel2.SetRow(tablePanel3, 9);
+            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
+            tablePanel3.Size = new System.Drawing.Size(496, 40);
+            tablePanel3.TabIndex = 4;
             // 
-            // tablePanel4
+            // btn_ImportBalance_Finish
             // 
-            tablePanel3.SetColumn(tablePanel4, 0);
-            tablePanel4.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 100F) });
-            tablePanel3.SetColumnSpan(tablePanel4, 2);
-            tablePanel4.Controls.Add(btn_ImportBalance_Next);
-            tablePanel4.Controls.Add(btn_ImportBalance_Back);
-            tablePanel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel4.Location = new System.Drawing.Point(0, 276);
-            tablePanel4.Margin = new System.Windows.Forms.Padding(0);
-            tablePanel4.Name = "tablePanel4";
-            tablePanel3.SetRow(tablePanel4, 7);
-            tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
-            tablePanel4.Size = new System.Drawing.Size(496, 40);
-            tablePanel4.TabIndex = 4;
-            // 
-            // btn_ImportBalance_Next
-            // 
-            tablePanel4.SetColumn(btn_ImportBalance_Next, 3);
-            btn_ImportBalance_Next.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_ImportBalance_Next.Enabled = false;
-            btn_ImportBalance_Next.Location = new System.Drawing.Point(401, 5);
-            btn_ImportBalance_Next.Margin = new System.Windows.Forms.Padding(5);
-            btn_ImportBalance_Next.Name = "btn_ImportBalance_Next";
-            tablePanel4.SetRow(btn_ImportBalance_Next, 0);
-            btn_ImportBalance_Next.Size = new System.Drawing.Size(90, 30);
-            btn_ImportBalance_Next.TabIndex = 1;
-            btn_ImportBalance_Next.Text = "Next >";
+            tablePanel3.SetColumn(btn_ImportBalance_Finish, 3);
+            btn_ImportBalance_Finish.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_ImportBalance_Finish.Location = new System.Drawing.Point(401, 5);
+            btn_ImportBalance_Finish.Margin = new System.Windows.Forms.Padding(5);
+            btn_ImportBalance_Finish.Name = "btn_ImportBalance_Finish";
+            tablePanel3.SetRow(btn_ImportBalance_Finish, 0);
+            btn_ImportBalance_Finish.Size = new System.Drawing.Size(90, 30);
+            btn_ImportBalance_Finish.TabIndex = 1;
+            btn_ImportBalance_Finish.Text = "Finish";
+            btn_ImportBalance_Finish.Click += btn_ImportBalance_Finish_Click;
             // 
             // btn_ImportBalance_Back
             // 
-            tablePanel4.SetColumn(btn_ImportBalance_Back, 2);
+            tablePanel3.SetColumn(btn_ImportBalance_Back, 2);
             btn_ImportBalance_Back.Dock = System.Windows.Forms.DockStyle.Fill;
             btn_ImportBalance_Back.Location = new System.Drawing.Point(301, 5);
             btn_ImportBalance_Back.Margin = new System.Windows.Forms.Padding(5);
             btn_ImportBalance_Back.Name = "btn_ImportBalance_Back";
-            tablePanel4.SetRow(btn_ImportBalance_Back, 0);
+            tablePanel3.SetRow(btn_ImportBalance_Back, 0);
             btn_ImportBalance_Back.Size = new System.Drawing.Size(90, 30);
             btn_ImportBalance_Back.TabIndex = 1;
             btn_ImportBalance_Back.Text = "< Back";
-            btn_ImportBalance_Back.Click += btn_ImportBalance_Back_Click;
+            btn_ImportBalance_Back.Click += btn_ImportBalance_Back_Click_1;
             // 
             // labelControl2
             // 
             labelControl2.Appearance.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             labelControl2.Appearance.Options.UseFont = true;
-            tablePanel3.SetColumn(labelControl2, 0);
-            tablePanel3.SetColumnSpan(labelControl2, 2);
+            tablePanel2.SetColumn(labelControl2, 0);
+            tablePanel2.SetColumnSpan(labelControl2, 4);
             labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
             labelControl2.Location = new System.Drawing.Point(15, 3);
             labelControl2.Margin = new System.Windows.Forms.Padding(15, 3, 3, 3);
             labelControl2.Name = "labelControl2";
-            tablePanel3.SetRow(labelControl2, 0);
-            labelControl2.Size = new System.Drawing.Size(478, 24);
+            tablePanel2.SetRow(labelControl2, 0);
+            labelControl2.Size = new System.Drawing.Size(181, 24);
             labelControl2.TabIndex = 3;
             labelControl2.Text = "Importar Saldos";
             // 
             // labelControl3
             // 
-            tablePanel3.SetColumn(labelControl3, 0);
+            tablePanel2.SetColumn(labelControl3, 0);
+            tablePanel2.SetColumnSpan(labelControl3, 3);
             labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl3.Location = new System.Drawing.Point(5, 55);
-            labelControl3.Margin = new System.Windows.Forms.Padding(5, 5, 1, 1);
+            labelControl3.Location = new System.Drawing.Point(3, 43);
+            labelControl3.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl3.Name = "labelControl3";
-            tablePanel3.SetRow(labelControl3, 2);
-            labelControl3.Size = new System.Drawing.Size(390, 14);
+            tablePanel2.SetRow(labelControl3, 2);
+            labelControl3.Size = new System.Drawing.Size(143, 13);
             labelControl3.TabIndex = 2;
-            labelControl3.Text = "Arquivo";
+            labelControl3.Text = "Arquivos de saldo";
             // 
-            // txt_ImportBalance_FilePath
+            // btn_ImportBalance_AddFile
             // 
-            tablePanel3.SetColumn(txt_ImportBalance_FilePath, 0);
-            txt_ImportBalance_FilePath.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_ImportBalance_FilePath.Location = new System.Drawing.Point(3, 73);
-            txt_ImportBalance_FilePath.Name = "txt_ImportBalance_FilePath";
-            txt_ImportBalance_FilePath.Properties.ReadOnly = true;
-            tablePanel3.SetRow(txt_ImportBalance_FilePath, 3);
-            txt_ImportBalance_FilePath.Size = new System.Drawing.Size(390, 20);
-            txt_ImportBalance_FilePath.TabIndex = 0;
-            txt_ImportBalance_FilePath.EditValueChanged += txt_ImportBalance_FilePath_EditValueChanged;
+            tablePanel2.SetColumn(btn_ImportBalance_AddFile, 0);
+            tablePanel2.SetColumnSpan(btn_ImportBalance_AddFile, 2);
+            btn_ImportBalance_AddFile.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_ImportBalance_AddFile.Location = new System.Drawing.Point(3, 253);
+            btn_ImportBalance_AddFile.Name = "btn_ImportBalance_AddFile";
+            tablePanel2.SetRow(btn_ImportBalance_AddFile, 8);
+            btn_ImportBalance_AddFile.Size = new System.Drawing.Size(94, 20);
+            btn_ImportBalance_AddFile.TabIndex = 1;
+            btn_ImportBalance_AddFile.Text = "Adicionar";
+            btn_ImportBalance_AddFile.Click += btn_ImportBalance_AddFile_Click;
             // 
-            // btn_ImportBalance_SelectFile
+            // btn_ImportBalance_ClearList
             // 
-            tablePanel3.SetColumn(btn_ImportBalance_SelectFile, 1);
-            btn_ImportBalance_SelectFile.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_ImportBalance_SelectFile.Location = new System.Drawing.Point(399, 73);
-            btn_ImportBalance_SelectFile.Name = "btn_ImportBalance_SelectFile";
-            tablePanel3.SetRow(btn_ImportBalance_SelectFile, 3);
-            btn_ImportBalance_SelectFile.Size = new System.Drawing.Size(94, 14);
-            btn_ImportBalance_SelectFile.TabIndex = 1;
-            btn_ImportBalance_SelectFile.Text = "Selecionar";
-            btn_ImportBalance_SelectFile.Click += btn_ImportBalance_SelectFile_Click;
-            // 
-            // labelControl4
-            // 
-            tablePanel3.SetColumn(labelControl4, 0);
-            labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl4.Location = new System.Drawing.Point(5, 95);
-            labelControl4.Margin = new System.Windows.Forms.Padding(5, 5, 1, 1);
-            labelControl4.Name = "labelControl4";
-            tablePanel3.SetRow(labelControl4, 4);
-            labelControl4.Size = new System.Drawing.Size(390, 14);
-            labelControl4.TabIndex = 2;
-            labelControl4.Text = "Arquivo SAT (Temporário)";
-            // 
-            // txt_ImportBalance_FileSATPath
-            // 
-            tablePanel3.SetColumn(txt_ImportBalance_FileSATPath, 0);
-            txt_ImportBalance_FileSATPath.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_ImportBalance_FileSATPath.Location = new System.Drawing.Point(3, 113);
-            txt_ImportBalance_FileSATPath.Name = "txt_ImportBalance_FileSATPath";
-            txt_ImportBalance_FileSATPath.Properties.ReadOnly = true;
-            tablePanel3.SetRow(txt_ImportBalance_FileSATPath, 5);
-            txt_ImportBalance_FileSATPath.Size = new System.Drawing.Size(390, 20);
-            txt_ImportBalance_FileSATPath.TabIndex = 0;
-            // 
-            // btn_ImportBalance_SelectFileSAT
-            // 
-            tablePanel3.SetColumn(btn_ImportBalance_SelectFileSAT, 1);
-            btn_ImportBalance_SelectFileSAT.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_ImportBalance_SelectFileSAT.Location = new System.Drawing.Point(399, 113);
-            btn_ImportBalance_SelectFileSAT.Name = "btn_ImportBalance_SelectFileSAT";
-            tablePanel3.SetRow(btn_ImportBalance_SelectFileSAT, 5);
-            btn_ImportBalance_SelectFileSAT.Size = new System.Drawing.Size(94, 14);
-            btn_ImportBalance_SelectFileSAT.TabIndex = 1;
-            btn_ImportBalance_SelectFileSAT.Text = "Selecionar";
-            btn_ImportBalance_SelectFileSAT.Click += btn_ImportBalance_SelectFileSAT_Click;
+            tablePanel2.SetColumn(btn_ImportBalance_ClearList, 2);
+            tablePanel2.SetColumnSpan(btn_ImportBalance_ClearList, 2);
+            btn_ImportBalance_ClearList.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_ImportBalance_ClearList.Location = new System.Drawing.Point(102, 253);
+            btn_ImportBalance_ClearList.Name = "btn_ImportBalance_ClearList";
+            tablePanel2.SetRow(btn_ImportBalance_ClearList, 8);
+            btn_ImportBalance_ClearList.Size = new System.Drawing.Size(94, 20);
+            btn_ImportBalance_ClearList.TabIndex = 1;
+            btn_ImportBalance_ClearList.Text = "Limpar";
+            btn_ImportBalance_ClearList.Click += btn_ImportBalance_ClearList_Click;
             // 
             // ssm_Main
             // 
@@ -644,7 +621,6 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(498, 318);
             Controls.Add(tbc_Main);
-            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -680,13 +656,12 @@
             tlp_ImportData_Footer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)txt_ImportData_FilePath.Properties).EndInit();
             tbp_ImportBalance.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)tablePanel2).EndInit();
+            tablePanel2.ResumeLayout(false);
+            tablePanel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)lst_ImportBalance_Files).EndInit();
             ((System.ComponentModel.ISupportInitialize)tablePanel3).EndInit();
             tablePanel3.ResumeLayout(false);
-            tablePanel3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)tablePanel4).EndInit();
-            tablePanel4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)txt_ImportBalance_FilePath.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)txt_ImportBalance_FileSATPath.Properties).EndInit();
             ResumeLayout(false);
         }
 
@@ -702,17 +677,6 @@
         private DevExpress.XtraEditors.LabelControl lbl_ImportData_Title;
         private DevExpress.XtraEditors.LabelControl labelControl1;
         private DevExpress.XtraEditors.SimpleButton btn_ImportData_Next;
-        private DevExpress.Utils.Layout.TablePanel tablePanel3;
-        private DevExpress.Utils.Layout.TablePanel tablePanel4;
-        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_Next;
-        private DevExpress.XtraEditors.LabelControl labelControl2;
-        private DevExpress.XtraEditors.LabelControl labelControl3;
-        private DevExpress.XtraEditors.TextEdit txt_ImportBalance_FilePath;
-        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_SelectFile;
-        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_Back;
-        private DevExpress.XtraEditors.LabelControl labelControl4;
-        private DevExpress.XtraEditors.TextEdit txt_ImportBalance_FileSATPath;
-        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_SelectFileSAT;
         private DevExpress.XtraTab.XtraTabPage tbp_Home;
         private DevExpress.Utils.Layout.TablePanel tablePanel5;
         private DevExpress.XtraEditors.ComboBoxEdit cmb_Home_Company;
@@ -736,5 +700,14 @@
         private DevExpress.XtraEditors.ComboBoxEdit cmb_ImportData_OperatorForAll;
         private DevExpress.XtraEditors.CheckEdit chk_ImportData_OperatorForAll;
         private DevExpress.XtraEditors.TextEdit txt_ImportData_CNPJForAll;
+        private DevExpress.Utils.Layout.TablePanel tablePanel2;
+        private DevExpress.Utils.Layout.TablePanel tablePanel3;
+        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_Finish;
+        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_Back;
+        private DevExpress.XtraEditors.LabelControl labelControl2;
+        private DevExpress.XtraEditors.LabelControl labelControl3;
+        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_AddFile;
+        private DevExpress.XtraEditors.ListBoxControl lst_ImportBalance_Files;
+        private DevExpress.XtraEditors.SimpleButton btn_ImportBalance_ClearList;
     }
 }

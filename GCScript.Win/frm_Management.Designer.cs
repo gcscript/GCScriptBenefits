@@ -632,7 +632,7 @@
             gcol_Saldo.OptionsColumn.AllowEdit = false;
             gcol_Saldo.Summary.AddRange(new DevExpress.XtraGrid.GridSummaryItem[] { new DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "Saldo", "{0:n2}") });
             gcol_Saldo.UnboundDataType = typeof(decimal);
-            gcol_Saldo.UnboundExpression = "[RPVT] * [SVT]";
+            gcol_Saldo.UnboundExpression = "[RPVT] + [SVT]";
             gcol_Saldo.Visible = true;
             gcol_Saldo.VisibleIndex = 22;
             // 
@@ -750,7 +750,7 @@
             // 
             tbp_Balance.Controls.Add(gc_Balance);
             tbp_Balance.Name = "tbp_Balance";
-            tbp_Balance.Size = new System.Drawing.Size(1045, 522);
+            tbp_Balance.Size = new System.Drawing.Size(1045, 524);
             tbp_Balance.Text = "Saldos";
             // 
             // gc_Balance
@@ -760,7 +760,7 @@
             gc_Balance.MainView = gv_Balance;
             gc_Balance.MenuManager = ribbonControl1;
             gc_Balance.Name = "gc_Balance";
-            gc_Balance.Size = new System.Drawing.Size(1045, 522);
+            gc_Balance.Size = new System.Drawing.Size(1045, 524);
             gc_Balance.TabIndex = 0;
             gc_Balance.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gv_Balance });
             // 
@@ -778,8 +778,8 @@
             gcol_Balance_UF.Caption = "UF";
             gcol_Balance_UF.FieldName = "UF";
             gcol_Balance_UF.Name = "gcol_Balance_UF";
-            gcol_Balance_UF.Visible = true;
             gcol_Balance_UF.OptionsColumn.AllowEdit = false;
+            gcol_Balance_UF.Visible = true;
             gcol_Balance_UF.VisibleIndex = 0;
             // 
             // gcol_Balance_Operadora
@@ -787,8 +787,8 @@
             gcol_Balance_Operadora.Caption = "Operadora";
             gcol_Balance_Operadora.FieldName = "Operadora";
             gcol_Balance_Operadora.Name = "gcol_Balance_Operadora";
-            gcol_Balance_Operadora.Visible = true;
             gcol_Balance_Operadora.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Operadora.Visible = true;
             gcol_Balance_Operadora.VisibleIndex = 1;
             // 
             // gcol_Balance_Empresa
@@ -796,8 +796,8 @@
             gcol_Balance_Empresa.Caption = "Empresa";
             gcol_Balance_Empresa.FieldName = "Empresa";
             gcol_Balance_Empresa.Name = "gcol_Balance_Empresa";
-            gcol_Balance_Empresa.Visible = true;
             gcol_Balance_Empresa.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Empresa.Visible = true;
             gcol_Balance_Empresa.VisibleIndex = 2;
             // 
             // gcol_Balance_Unidade
@@ -805,8 +805,8 @@
             gcol_Balance_Unidade.Caption = "Unidade";
             gcol_Balance_Unidade.FieldName = "Unidade";
             gcol_Balance_Unidade.Name = "gcol_Balance_Unidade";
-            gcol_Balance_Unidade.Visible = true;
             gcol_Balance_Unidade.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Unidade.Visible = true;
             gcol_Balance_Unidade.VisibleIndex = 3;
             // 
             // gcol_Balance_Matricula
@@ -814,8 +814,8 @@
             gcol_Balance_Matricula.Caption = "Matricula";
             gcol_Balance_Matricula.FieldName = "Matricula";
             gcol_Balance_Matricula.Name = "gcol_Balance_Matricula";
-            gcol_Balance_Matricula.Visible = true;
             gcol_Balance_Matricula.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Matricula.Visible = true;
             gcol_Balance_Matricula.VisibleIndex = 4;
             // 
             // gcol_Balance_Nome
@@ -823,8 +823,8 @@
             gcol_Balance_Nome.Caption = "Nome";
             gcol_Balance_Nome.FieldName = "Nome";
             gcol_Balance_Nome.Name = "gcol_Balance_Nome";
-            gcol_Balance_Nome.Visible = true;
             gcol_Balance_Nome.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Nome.Visible = true;
             gcol_Balance_Nome.VisibleIndex = 5;
             // 
             // gcol_Balance_CPF
@@ -832,8 +832,8 @@
             gcol_Balance_CPF.Caption = "CPF";
             gcol_Balance_CPF.FieldName = "CPF";
             gcol_Balance_CPF.Name = "gcol_Balance_CPF";
-            gcol_Balance_CPF.Visible = true;
             gcol_Balance_CPF.OptionsColumn.AllowEdit = false;
+            gcol_Balance_CPF.Visible = true;
             gcol_Balance_CPF.VisibleIndex = 6;
             // 
             // gcol_Balance_NumeroDoCartao
@@ -841,19 +841,19 @@
             gcol_Balance_NumeroDoCartao.Caption = "Numero do Cartao";
             gcol_Balance_NumeroDoCartao.FieldName = "NumeroDoCartao";
             gcol_Balance_NumeroDoCartao.Name = "gcol_Balance_NumeroDoCartao";
-            gcol_Balance_NumeroDoCartao.Visible = true;
             gcol_Balance_NumeroDoCartao.OptionsColumn.AllowEdit = false;
+            gcol_Balance_NumeroDoCartao.Visible = true;
             gcol_Balance_NumeroDoCartao.VisibleIndex = 7;
             // 
             // gcol_Balance_Saldo
             // 
             gcol_Balance_Saldo.Caption = "Saldo";
-            gcol_Balance_Saldo.FieldName = "Saldo";
-            gcol_Balance_Saldo.Name = "gcol_Balance_Saldo";
-            gcol_Balance_Saldo.Visible = true;
-            gcol_Balance_Saldo.OptionsColumn.AllowEdit = false;
             gcol_Balance_Saldo.DisplayFormat.FormatString = "n2";
             gcol_Balance_Saldo.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            gcol_Balance_Saldo.FieldName = "Saldo";
+            gcol_Balance_Saldo.Name = "gcol_Balance_Saldo";
+            gcol_Balance_Saldo.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Saldo.Visible = true;
             gcol_Balance_Saldo.VisibleIndex = 8;
             // 
             // gcol_Balance_DataSaldo
@@ -861,19 +861,19 @@
             gcol_Balance_DataSaldo.Caption = "Data do Saldo";
             gcol_Balance_DataSaldo.FieldName = "DataSaldo";
             gcol_Balance_DataSaldo.Name = "gcol_Balance_DataSaldo";
-            gcol_Balance_DataSaldo.Visible = true;
             gcol_Balance_DataSaldo.OptionsColumn.AllowEdit = false;
+            gcol_Balance_DataSaldo.Visible = true;
             gcol_Balance_DataSaldo.VisibleIndex = 9;
             // 
             // gcol_Balance_RecargaPendente
             // 
             gcol_Balance_RecargaPendente.Caption = "Recarga Pendente";
-            gcol_Balance_RecargaPendente.FieldName = "RecargaPendente";
-            gcol_Balance_RecargaPendente.Name = "gcol_Balance_RecargaPendente";
-            gcol_Balance_RecargaPendente.Visible = true;
-            gcol_Balance_RecargaPendente.OptionsColumn.AllowEdit = false;
             gcol_Balance_RecargaPendente.DisplayFormat.FormatString = "n2";
             gcol_Balance_RecargaPendente.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            gcol_Balance_RecargaPendente.FieldName = "RecargaPendente";
+            gcol_Balance_RecargaPendente.Name = "gcol_Balance_RecargaPendente";
+            gcol_Balance_RecargaPendente.OptionsColumn.AllowEdit = false;
+            gcol_Balance_RecargaPendente.Visible = true;
             gcol_Balance_RecargaPendente.VisibleIndex = 10;
             // 
             // gcol_Balance_DataRecargaPendente
@@ -881,8 +881,8 @@
             gcol_Balance_DataRecargaPendente.Caption = "Data da Recarga Pendente";
             gcol_Balance_DataRecargaPendente.FieldName = "DataRecargaPendente";
             gcol_Balance_DataRecargaPendente.Name = "gcol_Balance_DataRecargaPendente";
-            gcol_Balance_DataRecargaPendente.Visible = true;
             gcol_Balance_DataRecargaPendente.OptionsColumn.AllowEdit = false;
+            gcol_Balance_DataRecargaPendente.Visible = true;
             gcol_Balance_DataRecargaPendente.VisibleIndex = 11;
             // 
             // gcol_Balance_Status
@@ -890,8 +890,8 @@
             gcol_Balance_Status.Caption = "Status";
             gcol_Balance_Status.FieldName = "Status";
             gcol_Balance_Status.Name = "gcol_Balance_Status";
-            gcol_Balance_Status.Visible = true;
             gcol_Balance_Status.OptionsColumn.AllowEdit = false;
+            gcol_Balance_Status.Visible = true;
             gcol_Balance_Status.VisibleIndex = 12;
             // 
             // gcol_Balance_StatusBU
@@ -899,8 +899,8 @@
             gcol_Balance_StatusBU.Caption = "Status BU";
             gcol_Balance_StatusBU.FieldName = "StatusBU";
             gcol_Balance_StatusBU.Name = "gcol_Balance_StatusBU";
-            gcol_Balance_StatusBU.Visible = true;
             gcol_Balance_StatusBU.OptionsColumn.AllowEdit = false;
+            gcol_Balance_StatusBU.Visible = true;
             gcol_Balance_StatusBU.VisibleIndex = 13;
             // 
             // gcol_Balance_CompraPIR
@@ -908,8 +908,8 @@
             gcol_Balance_CompraPIR.Caption = "Compra PIR";
             gcol_Balance_CompraPIR.FieldName = "CompraPIR";
             gcol_Balance_CompraPIR.Name = "gcol_Balance_CompraPIR";
-            gcol_Balance_CompraPIR.Visible = true;
             gcol_Balance_CompraPIR.OptionsColumn.AllowEdit = false;
+            gcol_Balance_CompraPIR.Visible = true;
             gcol_Balance_CompraPIR.VisibleIndex = 14;
             // 
             // frm_Management
@@ -920,7 +920,6 @@
             ClientSize = new System.Drawing.Size(1047, 693);
             Controls.Add(tablePanel1);
             Controls.Add(ribbonControl1);
-            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             Name = "frm_Management";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "frm_Management";

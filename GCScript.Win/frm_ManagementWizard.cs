@@ -1,6 +1,8 @@
 ﻿using GCScript.DataBase;
 using GCScript.DataBase.Controllers;
 using GCScript.DataBase.Models;
+using GCScript.Shared;
+using GCScript.Shared.Models.Management;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -44,35 +46,6 @@ public partial class frm_ManagementWizard : DevExpress.XtraEditors.XtraForm
     private void btn_ImportBalance_Back_Click(object sender, EventArgs e)
     {
         tbc_Main.SelectedTabPage = tbp_ImportData;
-    }
-
-    private void btn_ImportBalance_SelectFile_Click(object sender, EventArgs e)
-    {
-        OpenFileDialog fileDialog = new()
-        {
-            Filter = "Json files (*.json)|*.json",
-            Title = "Select a Json File"
-        };
-
-        if (fileDialog.ShowDialog() == DialogResult.OK) { txt_ImportBalance_FilePath.Text = fileDialog.FileName; }
-        fileDialog.Dispose();
-    }
-
-    private void btn_ImportBalance_SelectFileSAT_Click(object sender, EventArgs e)
-    {
-        OpenFileDialog fileDialog = new()
-        {
-            Filter = "CSV files (*.csv)|*.csv",
-            Title = "Select a CSV File"
-        };
-
-        if (fileDialog.ShowDialog() == DialogResult.OK) { txt_ImportBalance_FileSATPath.Text = fileDialog.FileName; }
-        fileDialog.Dispose();
-    }
-
-    private void txt_ImportBalance_FilePath_EditValueChanged(object sender, EventArgs e)
-    {
-        btn_ImportBalance_Next.Enabled = File.Exists(txt_ImportBalance_FilePath.Text);
     }
 
     private void btn_Home_Next_Click(object sender, EventArgs e)
@@ -186,6 +159,70 @@ public partial class frm_ManagementWizard : DevExpress.XtraEditors.XtraForm
         else
         {
             cmb_ImportData_OperatorForAll.Enabled = false;
+        }
+    }
+
+    private void btn_ImportBalance_Back_Click_1(object sender, EventArgs e)
+    {
+        tbc_Main.SelectedTabPage = tbp_ImportData;
+    }
+
+    private void btn_ImportBalance_ClearList_Click(object sender, EventArgs e)
+    {
+        lst_ImportBalance_Files.Items.Clear();
+    }
+
+    private void btn_ImportBalance_AddFile_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            OpenFileDialog fileDialog = new()
+            {
+                Filter = "Json files (*.json)|*.json",
+                Title = "Select a Json File",
+                Multiselect = true
+            };
+
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                foreach (var file in fileDialog.FileNames)
+                {
+                    if (!lst_ImportBalance_Files.Items.Contains(file) && Path.GetExtension(file).ToLower() == ".json")
+                    {
+                        lst_ImportBalance_Files.Items.Add(file);
+                    }
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            lst_ImportBalance_Files.Items.Clear();
+            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+    }
+
+    private void btn_ImportBalance_Finish_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            MManagementWizard model = new()
+            {
+                Company = cmb_Home_Company.Text,
+                PurchaseFilePath = txt_ImportData_FilePath.Text,
+                PurchaseStartPeriod = dte_Home_Start.DateTime,
+                PurchaseEndPeriod = dte_Home_End.DateTime,
+                BalanceFilesPath = lst_ImportBalance_Files.Items.Cast<string>().ToList(),
+                CNPJForAll = chk_ImportData_CNPJForAll.Checked ? txt_ImportData_CNPJForAll.Text : "",
+                OperatorForAll = chk_ImportData_OperatorForAll.Checked ? cmb_ImportData_OperatorForAll.Text : ""
+            };
+
+            Settings.ManagementWizardSettings = model;
+            Close();
+        }
+        catch (Exception ex)
+        {
+            Settings.ManagementWizardSettings = null;
+            DevExpress.XtraEditors.XtraMessageBox.Show(ex.Message, "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

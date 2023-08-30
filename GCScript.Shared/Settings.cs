@@ -1,4 +1,6 @@
-﻿namespace GCScript.Shared;
+﻿using GCScript.Shared.Models.Management;
+
+namespace GCScript.Shared;
 
 public static class Settings
 {
@@ -10,5 +12,5 @@ public static class Settings
     public static readonly string DadosSheetPath = Path.Combine(AppPath, "Sheets", "Dados.xlsx");
     public static readonly string EscalaSheetPath = Path.Combine(AppPath, "Sheets", "Escala.xlsx");
     public static readonly string SaldoSheetPath = Path.Combine(AppPath, "Sheets", "Saldo.xlsx");
+    public static MManagementWizard? ManagementWizardSettings;
 }
-
