@@ -23,6 +23,36 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
     {
         try
         {
+            if (string.IsNullOrEmpty(txt_Username.Text)
+                || string.IsNullOrWhiteSpace(txt_Username.Text))
+            {
+                XtraMessageBox.Show($"O Usuário não pode ser vazio!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Username.Select();
+                return;
+            }
+
+            if (string.IsNullOrEmpty(txt_Password.Text)
+                || string.IsNullOrWhiteSpace(txt_Password.Text))
+            {
+                XtraMessageBox.Show($"A Senha não pode ser vazia!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Password.Select();
+                return;
+            }
+
+            if (txt_Username.Text.Length < 3)
+            {
+                XtraMessageBox.Show($"O Usuário precisa ter 3 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Username.Select();
+                return;
+            }
+
+            if (txt_Password.Text.Length < 3)
+            {
+                XtraMessageBox.Show($"A Senha precisa ter 3 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Password.Select();
+                return;
+            }
+
             pnl_Login.Enabled = false;
             ssm_Main.ShowWaitForm();
             ssm_Main.SetWaitFormDescription("Autenticando...");
@@ -83,7 +113,6 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
 
     private void OpenSubForm(EForms form)
     {
-        //ssm_Main.ShowWaitForm();
         if (openForm is not null)
         {
             openForm.Close();
@@ -95,7 +124,7 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
                 openForm = new frm_Data(ssm_Main);
                 break;
             case EForms.Management:
-                //openForm = new frm_Data();
+                openForm = new frm_Management();
                 break;
             default:
                 MessageBox.Show("Erro");
@@ -122,5 +151,26 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
     private void acce_Data_Click(object sender, EventArgs e)
     {
         OpenSubForm(EForms.Data);
+    }
+
+    private void acce_Management_Click(object sender, EventArgs e)
+    {
+        OpenSubForm(EForms.Management);
+    }
+
+    private void txt_Username_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == (char)Keys.Enter) { btn_LogIn_Click(sender, e); }
+    }
+
+    private void txt_Password_KeyPress(object sender, KeyPressEventArgs e)
+    {
+        if (e.KeyChar == (char)Keys.Enter) { btn_LogIn_Click(sender, e); }
+    }
+
+    private void btn_Management_Click(object sender, EventArgs e)
+    {
+        frm_Management frm = new();
+        frm.ShowDialog();
     }
 }

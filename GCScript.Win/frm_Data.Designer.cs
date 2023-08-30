@@ -82,10 +82,15 @@
             btn_Search = new DevExpress.XtraEditors.SimpleButton();
             cmb_Search = new DevExpress.XtraEditors.ComboBoxEdit();
             rbbc_Main = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
-            ddbtn_Update = new DevExpress.XtraEditors.DropDownButton();
-            ddbtn_Create = new DevExpress.XtraEditors.DropDownButton();
-            ddbtn_Sheets = new DevExpress.XtraEditors.DropDownButton();
+            btn_Sheets_Dados = new DevExpress.XtraBars.BarButtonItem();
+            btn_Sheets_Escala = new DevExpress.XtraBars.BarButtonItem();
+            btn_Sheets_Saldo = new DevExpress.XtraBars.BarButtonItem();
+            btn_Create_Unit = new DevExpress.XtraBars.BarButtonItem();
+            btn_T1 = new DevExpress.XtraBars.BarButtonItem();
+            ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
+            ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             nvp_Details = new DevExpress.XtraBars.Navigation.NavigationPage();
             tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             tlp_OperatorCompany = new DevExpress.Utils.Layout.TablePanel();
@@ -100,7 +105,6 @@
             btn_Refresh = new DevExpress.XtraBars.BarButtonItem();
             btn_Return = new DevExpress.XtraBars.BarButtonItem();
             nvp_Tests = new DevExpress.XtraBars.Navigation.NavigationPage();
-            btn_T1 = new DevExpress.XtraEditors.SimpleButton();
             ((System.ComponentModel.ISupportInitialize)gc_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gv_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_LoadUnit).BeginInit();
@@ -125,8 +129,6 @@
             tablePanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmb_Search.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rbbc_Main).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)tablePanel3).BeginInit();
-            tablePanel3.SuspendLayout();
             nvp_Details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tablePanel4).BeginInit();
             tablePanel4.SuspendLayout();
@@ -219,7 +221,7 @@
             gc_Main.Name = "gc_Main";
             gc_Main.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { btn_LoadUnit });
             tablePanel2.SetRow(gc_Main, 1);
-            gc_Main.Size = new System.Drawing.Size(744, 392);
+            gc_Main.Size = new System.Drawing.Size(744, 296);
             gc_Main.TabIndex = 0;
             gc_Main.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gv_Main });
             // 
@@ -749,13 +751,12 @@
             // 
             tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F) });
             tablePanel2.Controls.Add(tablePanel5);
-            tablePanel2.Controls.Add(tablePanel3);
             tablePanel2.Controls.Add(gc_Main);
             tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel2.Location = new System.Drawing.Point(0, 26);
+            tablePanel2.Location = new System.Drawing.Point(0, 122);
             tablePanel2.Name = "tablePanel2";
             tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
-            tablePanel2.Size = new System.Drawing.Size(744, 418);
+            tablePanel2.Size = new System.Drawing.Size(744, 322);
             tablePanel2.TabIndex = 2;
             // 
             // tablePanel5
@@ -806,80 +807,85 @@
             // rbbc_Main
             // 
             rbbc_Main.ExpandCollapseItem.Id = 0;
-            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem });
+            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1 });
             rbbc_Main.Location = new System.Drawing.Point(0, 0);
-            rbbc_Main.MaxItemId = 1;
+            rbbc_Main.MaxItemId = 7;
             rbbc_Main.Name = "rbbc_Main";
             rbbc_Main.OptionsExpandCollapseMenu.EnableExpandCollapseMenu = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.OptionsExpandCollapseMenu.ShowQuickAccessToolbarItem = DevExpress.Utils.DefaultBoolean.False;
+            rbbc_Main.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1 });
             rbbc_Main.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.ShowToolbarCustomizeItem = false;
-            rbbc_Main.Size = new System.Drawing.Size(744, 26);
+            rbbc_Main.Size = new System.Drawing.Size(744, 122);
             rbbc_Main.Toolbar.ShowCustomizeItem = false;
             rbbc_Main.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
-            // tablePanel3
+            // btn_Sheets_Dados
             // 
-            tablePanel2.SetColumn(tablePanel3, 1);
-            tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F) });
-            tablePanel3.Controls.Add(btn_T1);
-            tablePanel3.Controls.Add(ddbtn_Update);
-            tablePanel3.Controls.Add(ddbtn_Create);
-            tablePanel3.Controls.Add(ddbtn_Sheets);
-            tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel3.Location = new System.Drawing.Point(372, 0);
-            tablePanel3.Margin = new System.Windows.Forms.Padding(0);
-            tablePanel3.Name = "tablePanel3";
-            tablePanel2.SetRow(tablePanel3, 0);
-            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
-            tablePanel3.Size = new System.Drawing.Size(372, 26);
-            tablePanel3.TabIndex = 1;
+            btn_Sheets_Dados.Caption = "Dados";
+            btn_Sheets_Dados.Id = 1;
+            btn_Sheets_Dados.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Sheets_Dados.ImageOptions.SvgImage");
+            btn_Sheets_Dados.Name = "btn_Sheets_Dados";
+            btn_Sheets_Dados.ItemClick += btn_Sheets_Dados_ItemClick;
             // 
-            // ddbtn_Update
+            // btn_Sheets_Escala
             // 
-            tablePanel3.SetColumn(ddbtn_Update, 2);
-            ddbtn_Update.Dock = System.Windows.Forms.DockStyle.Fill;
-            ddbtn_Update.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            ddbtn_Update.Enabled = false;
-            ddbtn_Update.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_Update.ImageOptions.SvgImage");
-            ddbtn_Update.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_Update.Location = new System.Drawing.Point(186, 3);
-            ddbtn_Update.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            ddbtn_Update.Name = "ddbtn_Update";
-            tablePanel3.SetRow(ddbtn_Update, 0);
-            ddbtn_Update.Size = new System.Drawing.Size(90, 20);
-            ddbtn_Update.TabIndex = 0;
-            ddbtn_Update.Text = "Editar";
+            btn_Sheets_Escala.Caption = "Escala";
+            btn_Sheets_Escala.Id = 2;
+            btn_Sheets_Escala.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Sheets_Escala.ImageOptions.SvgImage");
+            btn_Sheets_Escala.Name = "btn_Sheets_Escala";
+            btn_Sheets_Escala.ItemClick += btn_Sheets_Escala_ItemClick;
             // 
-            // ddbtn_Create
+            // btn_Sheets_Saldo
             // 
-            tablePanel3.SetColumn(ddbtn_Create, 1);
-            ddbtn_Create.Dock = System.Windows.Forms.DockStyle.Fill;
-            ddbtn_Create.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            ddbtn_Create.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_Create.ImageOptions.SvgImage");
-            ddbtn_Create.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_Create.Location = new System.Drawing.Point(93, 3);
-            ddbtn_Create.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            ddbtn_Create.Name = "ddbtn_Create";
-            tablePanel3.SetRow(ddbtn_Create, 0);
-            ddbtn_Create.Size = new System.Drawing.Size(90, 20);
-            ddbtn_Create.TabIndex = 0;
-            ddbtn_Create.Text = "Cadastrar";
+            btn_Sheets_Saldo.Caption = "Saldo";
+            btn_Sheets_Saldo.Id = 3;
+            btn_Sheets_Saldo.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Sheets_Saldo.ImageOptions.SvgImage");
+            btn_Sheets_Saldo.Name = "btn_Sheets_Saldo";
+            btn_Sheets_Saldo.ItemClick += btn_Sheets_Saldo_ItemClick;
             // 
-            // ddbtn_Sheets
+            // btn_Create_Unit
             // 
-            tablePanel3.SetColumn(ddbtn_Sheets, 3);
-            ddbtn_Sheets.Dock = System.Windows.Forms.DockStyle.Fill;
-            ddbtn_Sheets.DropDownArrowStyle = DevExpress.XtraEditors.DropDownArrowStyle.Show;
-            ddbtn_Sheets.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_Sheets.ImageOptions.SvgImage");
-            ddbtn_Sheets.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_Sheets.Location = new System.Drawing.Point(279, 3);
-            ddbtn_Sheets.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            ddbtn_Sheets.Name = "ddbtn_Sheets";
-            tablePanel3.SetRow(ddbtn_Sheets, 0);
-            ddbtn_Sheets.Size = new System.Drawing.Size(90, 20);
-            ddbtn_Sheets.TabIndex = 0;
-            ddbtn_Sheets.Text = "Planilhas";
+            btn_Create_Unit.Caption = "Unidade";
+            btn_Create_Unit.Id = 4;
+            btn_Create_Unit.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Unit.ImageOptions.SvgImage");
+            btn_Create_Unit.Name = "btn_Create_Unit";
+            btn_Create_Unit.ItemClick += btn_Create_Unit_ItemClick;
+            // 
+            // btn_T1
+            // 
+            btn_T1.Caption = "T1";
+            btn_T1.Id = 6;
+            btn_T1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_T1.ImageOptions.SvgImage");
+            btn_T1.Name = "btn_T1";
+            // 
+            // ribbonPage1
+            // 
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3 });
+            ribbonPage1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ribbonPage1.ImageOptions.SvgImage");
+            ribbonPage1.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
+            ribbonPage1.Name = "ribbonPage1";
+            ribbonPage1.Text = "Home";
+            // 
+            // ribbonPageGroup1
+            // 
+            ribbonPageGroup1.ItemLinks.Add(btn_Create_Unit);
+            ribbonPageGroup1.Name = "ribbonPageGroup1";
+            ribbonPageGroup1.Text = "Cadastro";
+            // 
+            // ribbonPageGroup2
+            // 
+            ribbonPageGroup2.ItemLinks.Add(btn_Sheets_Dados);
+            ribbonPageGroup2.ItemLinks.Add(btn_Sheets_Escala);
+            ribbonPageGroup2.ItemLinks.Add(btn_Sheets_Saldo);
+            ribbonPageGroup2.Name = "ribbonPageGroup2";
+            ribbonPageGroup2.Text = "Planilhas";
+            // 
+            // ribbonPageGroup3
+            // 
+            ribbonPageGroup3.ItemLinks.Add(btn_T1);
+            ribbonPageGroup3.Name = "ribbonPageGroup3";
+            ribbonPageGroup3.Text = "Tests";
             // 
             // nvp_Details
             // 
@@ -1098,19 +1104,6 @@
             nvp_Tests.Name = "nvp_Tests";
             nvp_Tests.Size = new System.Drawing.Size(744, 444);
             // 
-            // btn_T1
-            // 
-            tablePanel3.SetColumn(btn_T1, 0);
-            btn_T1.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_T1.Location = new System.Drawing.Point(0, 3);
-            btn_T1.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            btn_T1.Name = "btn_T1";
-            tablePanel3.SetRow(btn_T1, 0);
-            btn_T1.Size = new System.Drawing.Size(90, 20);
-            btn_T1.TabIndex = 1;
-            btn_T1.Text = "T1";
-            btn_T1.Click += btn_T1_Click;
-            // 
             // frm_Data
             // 
             Appearance.Options.UseFont = true;
@@ -1151,8 +1144,6 @@
             tablePanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)cmb_Search.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)rbbc_Main).EndInit();
-            ((System.ComponentModel.ISupportInitialize)tablePanel3).EndInit();
-            tablePanel3.ResumeLayout(false);
             nvp_Details.ResumeLayout(false);
             nvp_Details.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tablePanel4).EndInit();
@@ -1208,8 +1199,6 @@
         private DevExpress.XtraBars.Navigation.NavigationPage nvp_Details;
         private DevExpress.XtraBars.Navigation.NavigationPage nvp_Tests;
         private DevExpress.XtraEditors.SimpleButton btn_SavePassword;
-        private DevExpress.XtraEditors.DropDownButton ddbtn_Create;
-        private DevExpress.XtraEditors.DropDownButton ddbtn_Update;
         private DevExpress.Utils.Layout.TablePanel tlp_UnitInfo;
         private DevExpress.XtraEditors.LabelControl labelControl2;
         private DevExpress.XtraEditors.LabelControl labelControl1;
@@ -1231,12 +1220,18 @@
         private DevExpress.XtraBars.BarButtonItem btn_Refresh;
         private DevExpress.XtraBars.BarButtonItem btn_Return;
         private DevExpress.Utils.Layout.TablePanel tablePanel2;
-        private DevExpress.Utils.Layout.TablePanel tablePanel3;
         private DevExpress.XtraBars.Ribbon.RibbonControl rbbc_Main;
         private DevExpress.Utils.Layout.TablePanel tablePanel5;
         private DevExpress.XtraEditors.SimpleButton btn_Search;
         private DevExpress.XtraEditors.ComboBoxEdit cmb_Search;
-        private DevExpress.XtraEditors.DropDownButton ddbtn_Sheets;
-        private DevExpress.XtraEditors.SimpleButton btn_T1;
+        private DevExpress.XtraBars.BarButtonItem btn_Sheets_Dados;
+        private DevExpress.XtraBars.BarButtonItem btn_Sheets_Escala;
+        private DevExpress.XtraBars.BarButtonItem btn_Sheets_Saldo;
+        private DevExpress.XtraBars.Ribbon.RibbonPage ribbonPage1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup2;
+        private DevExpress.XtraBars.BarButtonItem btn_Create_Unit;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
+        private DevExpress.XtraBars.BarButtonItem btn_T1;
     }
 }

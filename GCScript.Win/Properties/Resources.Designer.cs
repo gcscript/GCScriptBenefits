@@ -113,6 +113,16 @@ namespace GCScript.Win.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
         /// </summary>
+        internal static DevExpress.Utils.Svg.SvgImage gcscript_benefits {
+            get {
+                object obj = ResourceManager.GetObject("gcscript_benefits", resourceCulture);
+                return ((DevExpress.Utils.Svg.SvgImage)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo DevExpress.Utils.Svg.SvgImage.
+        /// </summary>
         internal static DevExpress.Utils.Svg.SvgImage l2r {
             get {
                 object obj = ResourceManager.GetObject("l2r", resourceCulture);

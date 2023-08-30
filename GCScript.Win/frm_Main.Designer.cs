@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_Main));
             pnl_Login = new DevExpress.XtraEditors.PanelControl();
+            btn_Management = new DevExpress.XtraEditors.SimpleButton();
             lbl_Password = new DevExpress.XtraEditors.LabelControl();
             txt_Password = new DevExpress.XtraEditors.TextEdit();
-            pnl_SvgUser = new DevExpress.XtraEditors.PanelControl();
             svg_User = new DevExpress.XtraEditors.SvgImageBox();
             lbl_Username = new DevExpress.XtraEditors.LabelControl();
             txt_Username = new DevExpress.XtraEditors.TextEdit();
@@ -51,11 +51,11 @@
             acce_Management = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             acce_Tools = new DevExpress.XtraBars.Navigation.AccordionControlElement();
             ssm_Main = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(pi_Loading), true, true);
+            tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
+            tablePanel3 = new DevExpress.Utils.Layout.TablePanel();
             ((System.ComponentModel.ISupportInitialize)pnl_Login).BeginInit();
             pnl_Login.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)txt_Password.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pnl_SvgUser).BeginInit();
-            pnl_SvgUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)svg_User).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txt_Username.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pnl_Main).BeginInit();
@@ -67,97 +67,116 @@
             ((System.ComponentModel.ISupportInitialize)svgImageBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)svg_Shortcut).BeginInit();
             ((System.ComponentModel.ISupportInitialize)acc_Sidebar).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)tablePanel2).BeginInit();
+            tablePanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)tablePanel3).BeginInit();
+            tablePanel3.SuspendLayout();
             SuspendLayout();
             // 
             // pnl_Login
             // 
-            pnl_Login.Controls.Add(lbl_Password);
-            pnl_Login.Controls.Add(txt_Password);
-            pnl_Login.Controls.Add(pnl_SvgUser);
-            pnl_Login.Controls.Add(lbl_Username);
-            pnl_Login.Controls.Add(txt_Username);
-            pnl_Login.Controls.Add(btn_LogIn);
+            pnl_Login.Controls.Add(tablePanel2);
             pnl_Login.Dock = System.Windows.Forms.DockStyle.Fill;
             pnl_Login.Location = new System.Drawing.Point(0, 0);
             pnl_Login.Name = "pnl_Login";
             pnl_Login.Size = new System.Drawing.Size(798, 468);
             pnl_Login.TabIndex = 0;
             // 
+            // btn_Management
+            // 
+            tablePanel3.SetColumn(btn_Management, 2);
+            btn_Management.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_Management.Location = new System.Drawing.Point(292, 416);
+            btn_Management.Margin = new System.Windows.Forms.Padding(1);
+            btn_Management.Name = "btn_Management";
+            tablePanel3.SetRow(btn_Management, 7);
+            btn_Management.Size = new System.Drawing.Size(89, 22);
+            btn_Management.TabIndex = 6;
+            btn_Management.Text = "Management";
+            btn_Management.Click += btn_Management_Click;
+            // 
             // lbl_Password
             // 
-            lbl_Password.Anchor = System.Windows.Forms.AnchorStyles.None;
             lbl_Password.Appearance.Options.UseFont = true;
-            lbl_Password.Location = new System.Drawing.Point(319, 306);
-            lbl_Password.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            tablePanel3.SetColumn(lbl_Password, 1);
+            lbl_Password.Dock = System.Windows.Forms.DockStyle.Fill;
+            lbl_Password.Location = new System.Drawing.Point(92, 196);
+            lbl_Password.Margin = new System.Windows.Forms.Padding(1);
             lbl_Password.Name = "lbl_Password";
-            lbl_Password.Size = new System.Drawing.Size(48, 13);
+            tablePanel3.SetRow(lbl_Password, 3);
+            lbl_Password.Size = new System.Drawing.Size(198, 13);
             lbl_Password.TabIndex = 5;
             lbl_Password.Text = "Password";
             // 
             // txt_Password
             // 
-            txt_Password.Anchor = System.Windows.Forms.AnchorStyles.None;
+            tablePanel3.SetColumn(txt_Password, 1);
+            txt_Password.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Password.EditValue = "";
-            txt_Password.Location = new System.Drawing.Point(319, 319);
+            txt_Password.Location = new System.Drawing.Point(92, 211);
+            txt_Password.Margin = new System.Windows.Forms.Padding(1);
             txt_Password.Name = "txt_Password";
             txt_Password.Properties.Appearance.Options.UseFont = true;
             txt_Password.Properties.Appearance.Options.UseTextOptions = true;
             txt_Password.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             txt_Password.Properties.UseSystemPasswordChar = true;
-            txt_Password.Size = new System.Drawing.Size(160, 20);
+            tablePanel3.SetRow(txt_Password, 4);
+            txt_Password.Size = new System.Drawing.Size(198, 20);
             txt_Password.TabIndex = 1;
-            // 
-            // pnl_SvgUser
-            // 
-            pnl_SvgUser.Anchor = System.Windows.Forms.AnchorStyles.None;
-            pnl_SvgUser.Controls.Add(svg_User);
-            pnl_SvgUser.Location = new System.Drawing.Point(319, 101);
-            pnl_SvgUser.Name = "pnl_SvgUser";
-            pnl_SvgUser.Padding = new System.Windows.Forms.Padding(5);
-            pnl_SvgUser.Size = new System.Drawing.Size(160, 160);
-            pnl_SvgUser.TabIndex = 3;
+            txt_Password.KeyPress += txt_Password_KeyPress;
             // 
             // svg_User
             // 
+            tablePanel2.SetColumn(svg_User, 0);
             svg_User.Dock = System.Windows.Forms.DockStyle.Fill;
-            svg_User.Location = new System.Drawing.Point(7, 7);
+            svg_User.Location = new System.Drawing.Point(11, 10);
             svg_User.Margin = new System.Windows.Forms.Padding(0);
             svg_User.Name = "svg_User";
-            svg_User.Size = new System.Drawing.Size(146, 146);
-            svg_User.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Stretch;
-            svg_User.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("svg_User.SvgImage");
+            tablePanel2.SetRow(svg_User, 0);
+            svg_User.Size = new System.Drawing.Size(386, 443);
+            svg_User.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Zoom;
+            svg_User.SvgImage = Properties.Resources.gcscript;
             svg_User.TabIndex = 2;
             svg_User.Text = "svgImageBox1";
             // 
             // lbl_Username
             // 
-            lbl_Username.Anchor = System.Windows.Forms.AnchorStyles.None;
             lbl_Username.Appearance.Options.UseFont = true;
-            lbl_Username.Location = new System.Drawing.Point(319, 267);
-            lbl_Username.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            tablePanel3.SetColumn(lbl_Username, 1);
+            lbl_Username.Dock = System.Windows.Forms.DockStyle.Fill;
+            lbl_Username.Location = new System.Drawing.Point(92, 159);
+            lbl_Username.Margin = new System.Windows.Forms.Padding(1);
             lbl_Username.Name = "lbl_Username";
-            lbl_Username.Size = new System.Drawing.Size(48, 13);
+            tablePanel3.SetRow(lbl_Username, 1);
+            lbl_Username.Size = new System.Drawing.Size(198, 13);
             lbl_Username.TabIndex = 0;
             lbl_Username.Text = "Username";
             // 
             // txt_Username
             // 
-            txt_Username.Anchor = System.Windows.Forms.AnchorStyles.None;
+            tablePanel3.SetColumn(txt_Username, 1);
+            txt_Username.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Username.EditValue = "";
-            txt_Username.Location = new System.Drawing.Point(319, 280);
+            txt_Username.Location = new System.Drawing.Point(92, 174);
+            txt_Username.Margin = new System.Windows.Forms.Padding(1);
             txt_Username.Name = "txt_Username";
             txt_Username.Properties.Appearance.Options.UseFont = true;
             txt_Username.Properties.Appearance.Options.UseTextOptions = true;
             txt_Username.Properties.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            txt_Username.Size = new System.Drawing.Size(160, 20);
+            tablePanel3.SetRow(txt_Username, 2);
+            txt_Username.Size = new System.Drawing.Size(198, 20);
             txt_Username.TabIndex = 0;
+            txt_Username.KeyPress += txt_Username_KeyPress;
             // 
             // btn_LogIn
             // 
-            btn_LogIn.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_LogIn.Location = new System.Drawing.Point(319, 345);
+            tablePanel3.SetColumn(btn_LogIn, 1);
+            btn_LogIn.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_LogIn.Location = new System.Drawing.Point(92, 233);
+            btn_LogIn.Margin = new System.Windows.Forms.Padding(1);
             btn_LogIn.Name = "btn_LogIn";
-            btn_LogIn.Size = new System.Drawing.Size(160, 23);
+            tablePanel3.SetRow(btn_LogIn, 5);
+            btn_LogIn.Size = new System.Drawing.Size(198, 23);
             btn_LogIn.TabIndex = 2;
             btn_LogIn.Text = "LogIn";
             btn_LogIn.Click += btn_LogIn_Click;
@@ -313,6 +332,7 @@
             acce_Management.Name = "acce_Management";
             acce_Management.Style = DevExpress.XtraBars.Navigation.ElementStyle.Item;
             acce_Management.Text = "Management";
+            acce_Management.Click += acce_Management_Click;
             // 
             // acce_Tools
             // 
@@ -324,14 +344,46 @@
             // 
             ssm_Main.ClosingDelay = 500;
             // 
+            // tablePanel2
+            // 
+            tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F) });
+            tablePanel2.Controls.Add(tablePanel3);
+            tablePanel2.Controls.Add(svg_User);
+            tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tablePanel2.Location = new System.Drawing.Point(2, 2);
+            tablePanel2.Name = "tablePanel2";
+            tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
+            tablePanel2.Size = new System.Drawing.Size(794, 464);
+            tablePanel2.TabIndex = 7;
+            tablePanel2.UseSkinIndents = true;
+            // 
+            // tablePanel3
+            // 
+            tablePanel2.SetColumn(tablePanel3, 1);
+            tablePanel3.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 200F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
+            tablePanel3.Controls.Add(lbl_Username);
+            tablePanel3.Controls.Add(btn_Management);
+            tablePanel3.Controls.Add(txt_Username);
+            tablePanel3.Controls.Add(btn_LogIn);
+            tablePanel3.Controls.Add(txt_Password);
+            tablePanel3.Controls.Add(lbl_Password);
+            tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            tablePanel3.Location = new System.Drawing.Point(399, 12);
+            tablePanel3.Name = "tablePanel3";
+            tablePanel2.SetRow(tablePanel3, 0);
+            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F) });
+            tablePanel3.Size = new System.Drawing.Size(382, 439);
+            tablePanel3.TabIndex = 3;
+            // 
             // frm_Main
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(798, 468);
-            Controls.Add(pnl_Main);
             Controls.Add(pnl_Login);
+            Controls.Add(pnl_Main);
+            IconOptions.SvgImage = Properties.Resources.gcscript_benefits;
             MinimumSize = new System.Drawing.Size(800, 500);
             Name = "frm_Main";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -339,10 +391,7 @@
             Load += frm_Main_Load;
             ((System.ComponentModel.ISupportInitialize)pnl_Login).EndInit();
             pnl_Login.ResumeLayout(false);
-            pnl_Login.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)txt_Password.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pnl_SvgUser).EndInit();
-            pnl_SvgUser.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)svg_User).EndInit();
             ((System.ComponentModel.ISupportInitialize)txt_Username.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)pnl_Main).EndInit();
@@ -355,13 +404,17 @@
             ((System.ComponentModel.ISupportInitialize)svgImageBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)svg_Shortcut).EndInit();
             ((System.ComponentModel.ISupportInitialize)acc_Sidebar).EndInit();
+            ((System.ComponentModel.ISupportInitialize)tablePanel2).EndInit();
+            tablePanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)tablePanel3).EndInit();
+            tablePanel3.ResumeLayout(false);
+            tablePanel3.PerformLayout();
             ResumeLayout(false);
         }
 
         #endregion
 
         private DevExpress.XtraEditors.PanelControl pnl_Login;
-        private DevExpress.XtraEditors.PanelControl pnl_SvgUser;
         private DevExpress.XtraEditors.SvgImageBox svg_User;
         private DevExpress.XtraEditors.LabelControl lbl_Username;
         private DevExpress.XtraEditors.TextEdit txt_Username;
@@ -383,5 +436,8 @@
         private DevExpress.XtraEditors.SvgImageBox svg_Shortcut;
         private DevExpress.XtraEditors.SvgImageBox svgImageBox1;
         private DevExpress.XtraEditors.LabelControl lbl_LoggedInUser;
+        private DevExpress.XtraEditors.SimpleButton btn_Management;
+        private DevExpress.Utils.Layout.TablePanel tablePanel2;
+        private DevExpress.Utils.Layout.TablePanel tablePanel3;
     }
 }

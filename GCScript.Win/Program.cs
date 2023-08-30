@@ -17,6 +17,7 @@ namespace GCScript.Win
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new frm_Management());
             Application.Run(new frm_Main());
         }
     }

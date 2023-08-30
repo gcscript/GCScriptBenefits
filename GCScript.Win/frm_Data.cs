@@ -68,6 +68,7 @@ public partial class frm_Data : XtraForm
     {
         ColumnDefinitions();
         CreateDropDownMenus();
+        rbbc_Main.Minimized = true;
         rbbc_Details.Minimized = true;
         try
         {
@@ -99,13 +100,6 @@ public partial class frm_Data : XtraForm
 
     private void CreateDropDownMenus()
     {
-        ddbtn_Create.DropDownControl = new DXPopupMenu
-        {
-            Items = { new DXMenuItem("Unidade", (s, e) => {
-                new frm_Unit().ShowDialog();
-                //LoadDataMenuFromDataBase();
-            }) }
-        };
 
         ddbtn_CopyResume.DropDownControl = new DXPopupMenu
         {
@@ -122,17 +116,6 @@ public partial class frm_Data : XtraForm
                 Clipboard.SetText($"{txt_BankSlip.Text} [NOVO-SEM CARTAO]");
             }), new DXMenuItem("2ª Via", (s, e) => {
                 Clipboard.SetText($"{txt_BankSlip.Text} [2ª VIA]");
-            }) }
-        };
-
-        ddbtn_Sheets.DropDownControl = new DXPopupMenu
-        {
-            Items = { new DXMenuItem("Dados", (s, e) => {
-                SalvarPlanilha("dados");
-            }), new DXMenuItem("Escala", (s, e) => {
-                Process.Start(new ProcessStartInfo(Settings.EscalaSheetPath) { UseShellExecute = true });
-            }), new DXMenuItem("Saldo", (s, e) => {
-                SalvarPlanilha("saldos");
             }) }
         };
     }
@@ -265,6 +248,11 @@ public partial class frm_Data : XtraForm
             if (gv_Main.RowCount > 0) { gv_Main.FocusedRowHandle = 0; }
             gv_Main.Focus();
         }
+        catch (Exception ex)
+        {
+            try { Ssm.CloseWaitForm(); } catch { }
+            XtraMessageBox.Show(ex.Message, "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        }
         finally
         {
             try { Ssm.CloseWaitForm(); } catch { }
@@ -321,10 +309,10 @@ public partial class frm_Data : XtraForm
 
     private async Task RefreshResume(ObjectId unitId)
     {
-        Ssm.ShowWaitForm();
-        Ssm.SetWaitFormDescription("Loading Unit...");
         try
         {
+            labelControl1.Select();
+            try { Ssm.ShowWaitForm(); Ssm.SetWaitFormDescription("Loading Unit..."); } catch { }
             ClearComponents();
             nvf_Main.SelectedPage = nvp_Details;
 
@@ -348,9 +336,14 @@ public partial class frm_Data : XtraForm
                 XtraMessageBox.Show("Não foi possível carregar os dados!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
             }
         }
+        catch (Exception ex)
+        {
+            try { Ssm.CloseWaitForm(); } catch { }
+            XtraMessageBox.Show(ex.Message, "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        }
         finally
         {
-            Ssm?.CloseWaitForm();
+            try { Ssm.CloseWaitForm(); } catch { }
         }
 
 
@@ -623,7 +616,28 @@ public partial class frm_Data : XtraForm
         if (e.KeyChar == (char)13) { btn_Search_Click(sender, e); }
     }
 
-    private void btn_T1_Click(object sender, EventArgs e)
+    private void btn_Create_Unit_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
+        new frm_Unit().ShowDialog();
+    }
+
+    private void btn_Sheets_Dados_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        SalvarPlanilha("dados");
+    }
+
+    private void btn_Sheets_Escala_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        Process.Start(new ProcessStartInfo(Settings.EscalaSheetPath) { UseShellExecute = true });
+    }
+
+    private void btn_Sheets_Saldo_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        SalvarPlanilha("saldos");
+    }
+
+    private void btn_T1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+
     }
 }
