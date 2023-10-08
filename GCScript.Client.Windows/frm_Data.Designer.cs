@@ -39,7 +39,7 @@
             btn_InsertCompanies = new DevExpress.XtraEditors.SimpleButton();
             gc_Main = new DevExpress.XtraGrid.GridControl();
             gv_Main = new DevExpress.XtraGrid.Views.Grid.GridView();
-            gcol_UF = new DevExpress.XtraGrid.Columns.GridColumn();
+            gcol_Uf = new DevExpress.XtraGrid.Columns.GridColumn();
             gcol_Operator = new DevExpress.XtraGrid.Columns.GridColumn();
             gcol_Company = new DevExpress.XtraGrid.Columns.GridColumn();
             gcol_Unit = new DevExpress.XtraGrid.Columns.GridColumn();
@@ -49,6 +49,7 @@
             tlp_UnitInfo = new DevExpress.Utils.Layout.TablePanel();
             ddbtn_CopyResume = new DevExpress.XtraEditors.DropDownButton();
             lbl_Unit = new DevExpress.XtraEditors.LabelControl();
+            lbl_Password = new DevExpress.XtraEditors.LabelControl();
             labelControl1 = new DevExpress.XtraEditors.LabelControl();
             labelControl2 = new DevExpress.XtraEditors.LabelControl();
             btn_GoToUrl = new DevExpress.XtraEditors.SimpleButton();
@@ -58,7 +59,6 @@
             btn_CopyUrl = new DevExpress.XtraEditors.SimpleButton();
             txt_Username = new DevExpress.XtraEditors.TextEdit();
             txt_Password = new DevExpress.XtraEditors.TextEdit();
-            lbl_Password = new DevExpress.XtraEditors.LabelControl();
             lbl_Username = new DevExpress.XtraEditors.LabelControl();
             lbl_CNPJ = new DevExpress.XtraEditors.LabelControl();
             btn_GenerateOrder = new DevExpress.XtraEditors.SimpleButton();
@@ -67,20 +67,18 @@
             txt_Resume = new DevExpress.XtraEditors.TextEdit();
             txt_BankSlip = new DevExpress.XtraEditors.TextEdit();
             ddbtn_CopyBankSlip = new DevExpress.XtraEditors.DropDownButton();
-            svg_CompanyLogo = new DevExpress.XtraEditors.SvgImageBox();
             lbl_Company = new DevExpress.XtraEditors.LabelControl();
             tc_Details = new DevExpress.XtraTab.XtraTabControl();
-            tp_Unit = new DevExpress.XtraTab.XtraTabPage();
+            tp_Notes = new DevExpress.XtraTab.XtraTabPage();
             tablePanel1 = new DevExpress.Utils.Layout.TablePanel();
+            mmo_OperatorNotes = new DevExpress.XtraEditors.MemoEdit();
+            btn_SaveOperatorNotes = new DevExpress.XtraEditors.SimpleButton();
+            labelControl6 = new DevExpress.XtraEditors.LabelControl();
+            mmo_CompanyNotes = new DevExpress.XtraEditors.MemoEdit();
+            btn_SaveCompanyNotes = new DevExpress.XtraEditors.SimpleButton();
+            sdaasdasd = new DevExpress.XtraEditors.LabelControl();
             tp_Company = new DevExpress.XtraTab.XtraTabPage();
             tp_Operator = new DevExpress.XtraTab.XtraTabPage();
-            simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
-            nvf_Main = new DevExpress.XtraBars.Navigation.NavigationFrame();
-            nvp_Main = new DevExpress.XtraBars.Navigation.NavigationPage();
-            tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
-            tablePanel5 = new DevExpress.Utils.Layout.TablePanel();
-            btn_Search = new DevExpress.XtraEditors.SimpleButton();
-            cmb_Search = new DevExpress.XtraEditors.ComboBoxEdit();
             rbbc_Main = new DevExpress.XtraBars.Ribbon.RibbonControl();
             btn_Sheets_Dados = new DevExpress.XtraBars.BarButtonItem();
             btn_Sheets_Escala = new DevExpress.XtraBars.BarButtonItem();
@@ -91,9 +89,17 @@
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
+            nvf_Main = new DevExpress.XtraBars.Navigation.NavigationFrame();
+            nvp_Main = new DevExpress.XtraBars.Navigation.NavigationPage();
+            tablePanel2 = new DevExpress.Utils.Layout.TablePanel();
+            tablePanel5 = new DevExpress.Utils.Layout.TablePanel();
+            btn_Search = new DevExpress.XtraEditors.SimpleButton();
+            cmb_Search = new DevExpress.XtraEditors.ComboBoxEdit();
             nvp_Details = new DevExpress.XtraBars.Navigation.NavigationPage();
             tablePanel4 = new DevExpress.Utils.Layout.TablePanel();
             tlp_OperatorCompany = new DevExpress.Utils.Layout.TablePanel();
+            pic_CompanyLogo = new DevExpress.XtraEditors.PictureEdit();
             labelControl3 = new DevExpress.XtraEditors.LabelControl();
             labelControl4 = new DevExpress.XtraEditors.LabelControl();
             lbl_ResponsibleGVT = new DevExpress.XtraEditors.LabelControl();
@@ -115,11 +121,14 @@
             ((System.ComponentModel.ISupportInitialize)txt_Url.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txt_Resume.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)txt_BankSlip.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)svg_CompanyLogo).BeginInit();
             ((System.ComponentModel.ISupportInitialize)tc_Details).BeginInit();
             tc_Details.SuspendLayout();
-            tp_Unit.SuspendLayout();
+            tp_Notes.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tablePanel1).BeginInit();
+            tablePanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)mmo_OperatorNotes.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)mmo_CompanyNotes.Properties).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)rbbc_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nvf_Main).BeginInit();
             nvf_Main.SuspendLayout();
             nvp_Main.SuspendLayout();
@@ -128,12 +137,12 @@
             ((System.ComponentModel.ISupportInitialize)tablePanel5).BeginInit();
             tablePanel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)cmb_Search.Properties).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)rbbc_Main).BeginInit();
             nvp_Details.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tablePanel4).BeginInit();
             tablePanel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)tlp_OperatorCompany).BeginInit();
             tlp_OperatorCompany.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_CompanyLogo.Properties).BeginInit();
             ((System.ComponentModel.ISupportInitialize)rbbc_Details).BeginInit();
             nvp_Tests.SuspendLayout();
             SuspendLayout();
@@ -141,7 +150,7 @@
             // simpleButton2
             // 
             simpleButton2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            simpleButton2.Location = new System.Drawing.Point(169, 238);
+            simpleButton2.Location = new System.Drawing.Point(219, 288);
             simpleButton2.Name = "simpleButton2";
             simpleButton2.Size = new System.Drawing.Size(125, 20);
             simpleButton2.TabIndex = 9;
@@ -150,7 +159,7 @@
             // simpleButton1
             // 
             simpleButton1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            simpleButton1.Location = new System.Drawing.Point(169, 212);
+            simpleButton1.Location = new System.Drawing.Point(219, 262);
             simpleButton1.Name = "simpleButton1";
             simpleButton1.Size = new System.Drawing.Size(125, 20);
             simpleButton1.TabIndex = 8;
@@ -159,7 +168,7 @@
             // btn_LoadDataMenu
             // 
             btn_LoadDataMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_LoadDataMenu.Location = new System.Drawing.Point(431, 264);
+            btn_LoadDataMenu.Location = new System.Drawing.Point(481, 314);
             btn_LoadDataMenu.Name = "btn_LoadDataMenu";
             btn_LoadDataMenu.Size = new System.Drawing.Size(125, 20);
             btn_LoadDataMenu.TabIndex = 5;
@@ -168,7 +177,7 @@
             // btn_InsertUnits
             // 
             btn_InsertUnits.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_InsertUnits.Location = new System.Drawing.Point(300, 264);
+            btn_InsertUnits.Location = new System.Drawing.Point(350, 314);
             btn_InsertUnits.Name = "btn_InsertUnits";
             btn_InsertUnits.Size = new System.Drawing.Size(125, 20);
             btn_InsertUnits.TabIndex = 4;
@@ -177,7 +186,7 @@
             // btn_InsertOperators
             // 
             btn_InsertOperators.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_InsertOperators.Location = new System.Drawing.Point(300, 212);
+            btn_InsertOperators.Location = new System.Drawing.Point(350, 262);
             btn_InsertOperators.Name = "btn_InsertOperators";
             btn_InsertOperators.Size = new System.Drawing.Size(125, 20);
             btn_InsertOperators.TabIndex = 3;
@@ -186,7 +195,7 @@
             // btn_LoadOperators
             // 
             btn_LoadOperators.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_LoadOperators.Location = new System.Drawing.Point(431, 212);
+            btn_LoadOperators.Location = new System.Drawing.Point(481, 262);
             btn_LoadOperators.Name = "btn_LoadOperators";
             btn_LoadOperators.Size = new System.Drawing.Size(125, 20);
             btn_LoadOperators.TabIndex = 2;
@@ -195,7 +204,7 @@
             // btn_LoadCompanies
             // 
             btn_LoadCompanies.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_LoadCompanies.Location = new System.Drawing.Point(431, 238);
+            btn_LoadCompanies.Location = new System.Drawing.Point(481, 288);
             btn_LoadCompanies.Name = "btn_LoadCompanies";
             btn_LoadCompanies.Size = new System.Drawing.Size(125, 20);
             btn_LoadCompanies.TabIndex = 1;
@@ -204,7 +213,7 @@
             // btn_InsertCompanies
             // 
             btn_InsertCompanies.Anchor = System.Windows.Forms.AnchorStyles.None;
-            btn_InsertCompanies.Location = new System.Drawing.Point(300, 238);
+            btn_InsertCompanies.Location = new System.Drawing.Point(350, 288);
             btn_InsertCompanies.Name = "btn_InsertCompanies";
             btn_InsertCompanies.Size = new System.Drawing.Size(125, 20);
             btn_InsertCompanies.TabIndex = 0;
@@ -221,15 +230,16 @@
             gc_Main.Name = "gc_Main";
             gc_Main.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { btn_LoadUnit });
             tablePanel2.SetRow(gc_Main, 1);
-            gc_Main.Size = new System.Drawing.Size(744, 296);
+            gc_Main.Size = new System.Drawing.Size(844, 396);
             gc_Main.TabIndex = 0;
             gc_Main.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] { gv_Main });
             // 
             // gv_Main
             // 
-            gv_Main.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gcol_UF, gcol_Operator, gcol_Company, gcol_Unit, gcol_UnitId, col_btn_LoadUnit });
+            gv_Main.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] { gcol_Uf, gcol_Operator, gcol_Company, gcol_Unit, gcol_UnitId, col_btn_LoadUnit });
             gv_Main.GridControl = gc_Main;
             gv_Main.Name = "gv_Main";
+            gv_Main.OptionsSelection.EnableAppearanceFocusedCell = false;
             gv_Main.OptionsView.BestFitMode = DevExpress.XtraGrid.Views.Grid.GridBestFitMode.Full;
             gv_Main.OptionsView.ColumnHeaderAutoHeight = DevExpress.Utils.DefaultBoolean.True;
             gv_Main.OptionsView.ShowAutoFilterRow = true;
@@ -237,17 +247,17 @@
             gv_Main.KeyDown += gv_Main_KeyDown;
             gv_Main.DoubleClick += gv_Main_DoubleClick;
             // 
-            // gcol_UF
+            // gcol_Uf
             // 
-            gcol_UF.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            gcol_UF.Caption = "UF";
-            gcol_UF.FieldName = "UF";
-            gcol_UF.MaxWidth = 40;
-            gcol_UF.MinWidth = 40;
-            gcol_UF.Name = "gcol_UF";
-            gcol_UF.Visible = true;
-            gcol_UF.VisibleIndex = 0;
-            gcol_UF.Width = 40;
+            gcol_Uf.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            gcol_Uf.Caption = "UF";
+            gcol_Uf.FieldName = "Uf";
+            gcol_Uf.MaxWidth = 40;
+            gcol_Uf.MinWidth = 40;
+            gcol_Uf.Name = "gcol_Uf";
+            gcol_Uf.Visible = true;
+            gcol_Uf.VisibleIndex = 0;
+            gcol_Uf.Width = 40;
             // 
             // gcol_Operator
             // 
@@ -305,6 +315,7 @@
             tlp_UnitInfo.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F) });
             tlp_UnitInfo.Controls.Add(ddbtn_CopyResume);
             tlp_UnitInfo.Controls.Add(lbl_Unit);
+            tlp_UnitInfo.Controls.Add(lbl_Password);
             tlp_UnitInfo.Controls.Add(labelControl1);
             tlp_UnitInfo.Controls.Add(labelControl2);
             tlp_UnitInfo.Controls.Add(btn_GoToUrl);
@@ -314,7 +325,6 @@
             tlp_UnitInfo.Controls.Add(btn_CopyUrl);
             tlp_UnitInfo.Controls.Add(txt_Username);
             tlp_UnitInfo.Controls.Add(txt_Password);
-            tlp_UnitInfo.Controls.Add(lbl_Password);
             tlp_UnitInfo.Controls.Add(lbl_Username);
             tlp_UnitInfo.Controls.Add(lbl_CNPJ);
             tlp_UnitInfo.Controls.Add(btn_GenerateOrder);
@@ -328,7 +338,7 @@
             tlp_UnitInfo.Name = "tlp_UnitInfo";
             tablePanel4.SetRow(tlp_UnitInfo, 0);
             tlp_UnitInfo.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 18F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
-            tlp_UnitInfo.Size = new System.Drawing.Size(338, 314);
+            tlp_UnitInfo.Size = new System.Drawing.Size(438, 314);
             tlp_UnitInfo.TabIndex = 0;
             // 
             // ddbtn_CopyResume
@@ -340,11 +350,11 @@
             ddbtn_CopyResume.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             ddbtn_CopyResume.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_CopyResume.ImageOptions.SvgImage");
             ddbtn_CopyResume.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_CopyResume.Location = new System.Drawing.Point(279, 185);
+            ddbtn_CopyResume.Location = new System.Drawing.Point(379, 191);
             ddbtn_CopyResume.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             ddbtn_CopyResume.Name = "ddbtn_CopyResume";
             tlp_UnitInfo.SetRow(ddbtn_CopyResume, 9);
-            ddbtn_CopyResume.Size = new System.Drawing.Size(59, 18);
+            ddbtn_CopyResume.Size = new System.Drawing.Size(59, 20);
             ddbtn_CopyResume.TabIndex = 13;
             ddbtn_CopyResume.Click += ddbtn_CopyResume_Click;
             // 
@@ -364,21 +374,34 @@
             lbl_Unit.Margin = new System.Windows.Forms.Padding(0);
             lbl_Unit.Name = "lbl_Unit";
             tlp_UnitInfo.SetRow(lbl_Unit, 0);
-            lbl_Unit.Size = new System.Drawing.Size(338, 26);
+            lbl_Unit.Size = new System.Drawing.Size(438, 26);
             lbl_Unit.TabIndex = 11;
             lbl_Unit.TextChanged += lbl_Unit_TextChanged;
             lbl_Unit.Click += lbl_Unit_Click;
+            // 
+            // lbl_Password
+            // 
+            lbl_Password.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            tlp_UnitInfo.SetColumn(lbl_Password, 0);
+            lbl_Password.Dock = System.Windows.Forms.DockStyle.Fill;
+            lbl_Password.Location = new System.Drawing.Point(3, 89);
+            lbl_Password.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            lbl_Password.Name = "lbl_Password";
+            tlp_UnitInfo.SetRow(lbl_Password, 4);
+            lbl_Password.Size = new System.Drawing.Size(342, 17);
+            lbl_Password.TabIndex = 3;
+            lbl_Password.Text = "Senha";
             // 
             // labelControl1
             // 
             labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(labelControl1, 0);
             labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl1.Location = new System.Drawing.Point(3, 207);
+            labelControl1.Location = new System.Drawing.Point(3, 215);
             labelControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl1.Name = "labelControl1";
             tlp_UnitInfo.SetRow(labelControl1, 10);
-            labelControl1.Size = new System.Drawing.Size(242, 17);
+            labelControl1.Size = new System.Drawing.Size(342, 17);
             labelControl1.TabIndex = 11;
             labelControl1.Text = "Boleto";
             // 
@@ -387,11 +410,11 @@
             labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(labelControl2, 0);
             labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl2.Location = new System.Drawing.Point(3, 167);
+            labelControl2.Location = new System.Drawing.Point(3, 173);
             labelControl2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl2.Name = "labelControl2";
             tlp_UnitInfo.SetRow(labelControl2, 8);
-            labelControl2.Size = new System.Drawing.Size(242, 17);
+            labelControl2.Size = new System.Drawing.Size(342, 17);
             labelControl2.TabIndex = 11;
             labelControl2.Text = "Resumo";
             // 
@@ -402,11 +425,11 @@
             btn_GoToUrl.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_GoToUrl.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_GoToUrl.ImageOptions.SvgImage");
             btn_GoToUrl.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_GoToUrl.Location = new System.Drawing.Point(279, 145);
+            btn_GoToUrl.Location = new System.Drawing.Point(379, 149);
             btn_GoToUrl.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_GoToUrl.Name = "btn_GoToUrl";
             tlp_UnitInfo.SetRow(btn_GoToUrl, 7);
-            btn_GoToUrl.Size = new System.Drawing.Size(29, 18);
+            btn_GoToUrl.Size = new System.Drawing.Size(29, 20);
             btn_GoToUrl.TabIndex = 0;
             btn_GoToUrl.Click += btn_Resume_GoToUrl_Click;
             // 
@@ -414,14 +437,15 @@
             // 
             tlp_UnitInfo.SetColumn(btn_SavePassword, 2);
             btn_SavePassword.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_SavePassword.Enabled = false;
             btn_SavePassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_SavePassword.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_SavePassword.ImageOptions.SvgImage");
             btn_SavePassword.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_SavePassword.Location = new System.Drawing.Point(279, 105);
+            btn_SavePassword.Location = new System.Drawing.Point(379, 107);
             btn_SavePassword.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_SavePassword.Name = "btn_SavePassword";
             tlp_UnitInfo.SetRow(btn_SavePassword, 5);
-            btn_SavePassword.Size = new System.Drawing.Size(29, 18);
+            btn_SavePassword.Size = new System.Drawing.Size(29, 20);
             btn_SavePassword.TabIndex = 11;
             btn_SavePassword.Click += btn_Resume_SavePassword_Click;
             // 
@@ -432,11 +456,11 @@
             btn_CopyUsername.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_CopyUsername.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_CopyUsername.ImageOptions.SvgImage");
             btn_CopyUsername.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_CopyUsername.Location = new System.Drawing.Point(309, 65);
+            btn_CopyUsername.Location = new System.Drawing.Point(409, 65);
             btn_CopyUsername.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyUsername.Name = "btn_CopyUsername";
             tlp_UnitInfo.SetRow(btn_CopyUsername, 3);
-            btn_CopyUsername.Size = new System.Drawing.Size(29, 18);
+            btn_CopyUsername.Size = new System.Drawing.Size(29, 20);
             btn_CopyUsername.TabIndex = 0;
             btn_CopyUsername.Click += btn_Resume_CopyUsername_Click;
             // 
@@ -447,11 +471,11 @@
             btn_CopyPassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_CopyPassword.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_CopyPassword.ImageOptions.SvgImage");
             btn_CopyPassword.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_CopyPassword.Location = new System.Drawing.Point(309, 105);
+            btn_CopyPassword.Location = new System.Drawing.Point(409, 107);
             btn_CopyPassword.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyPassword.Name = "btn_CopyPassword";
             tlp_UnitInfo.SetRow(btn_CopyPassword, 5);
-            btn_CopyPassword.Size = new System.Drawing.Size(29, 18);
+            btn_CopyPassword.Size = new System.Drawing.Size(29, 20);
             btn_CopyPassword.TabIndex = 0;
             btn_CopyPassword.Click += btn_Resume_CopyPassword_Click;
             // 
@@ -462,11 +486,11 @@
             btn_CopyUrl.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_CopyUrl.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_CopyUrl.ImageOptions.SvgImage");
             btn_CopyUrl.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_CopyUrl.Location = new System.Drawing.Point(309, 145);
+            btn_CopyUrl.Location = new System.Drawing.Point(409, 149);
             btn_CopyUrl.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyUrl.Name = "btn_CopyUrl";
             tlp_UnitInfo.SetRow(btn_CopyUrl, 7);
-            btn_CopyUrl.Size = new System.Drawing.Size(29, 18);
+            btn_CopyUrl.Size = new System.Drawing.Size(29, 20);
             btn_CopyUrl.TabIndex = 11;
             btn_CopyUrl.Click += btn_Resume_CopyUrl_Click;
             // 
@@ -480,7 +504,7 @@
             txt_Username.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Username.Name = "txt_Username";
             tlp_UnitInfo.SetRow(txt_Username, 3);
-            txt_Username.Size = new System.Drawing.Size(307, 20);
+            txt_Username.Size = new System.Drawing.Size(407, 20);
             txt_Username.TabIndex = 4;
             // 
             // txt_Password
@@ -488,26 +512,13 @@
             tlp_UnitInfo.SetColumn(txt_Password, 0);
             tlp_UnitInfo.SetColumnSpan(txt_Password, 2);
             txt_Password.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_Password.Location = new System.Drawing.Point(1, 105);
+            txt_Password.Location = new System.Drawing.Point(1, 107);
             txt_Password.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Password.Name = "txt_Password";
             tlp_UnitInfo.SetRow(txt_Password, 5);
-            txt_Password.Size = new System.Drawing.Size(277, 20);
+            txt_Password.Size = new System.Drawing.Size(377, 20);
             txt_Password.TabIndex = 5;
             txt_Password.EditValueChanged += txt_Password_EditValueChanged;
-            // 
-            // lbl_Password
-            // 
-            lbl_Password.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_UnitInfo.SetColumn(lbl_Password, 0);
-            lbl_Password.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Password.Location = new System.Drawing.Point(3, 87);
-            lbl_Password.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
-            lbl_Password.Name = "lbl_Password";
-            tlp_UnitInfo.SetRow(lbl_Password, 4);
-            lbl_Password.Size = new System.Drawing.Size(242, 17);
-            lbl_Password.TabIndex = 3;
-            lbl_Password.Text = "Senha";
             // 
             // lbl_Username
             // 
@@ -518,7 +529,7 @@
             lbl_Username.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             lbl_Username.Name = "lbl_Username";
             tlp_UnitInfo.SetRow(lbl_Username, 2);
-            lbl_Username.Size = new System.Drawing.Size(242, 17);
+            lbl_Username.Size = new System.Drawing.Size(342, 17);
             lbl_Username.TabIndex = 2;
             lbl_Username.Text = "Usuario";
             // 
@@ -538,7 +549,7 @@
             lbl_CNPJ.Margin = new System.Windows.Forms.Padding(0);
             lbl_CNPJ.Name = "lbl_CNPJ";
             tlp_UnitInfo.SetRow(lbl_CNPJ, 1);
-            lbl_CNPJ.Size = new System.Drawing.Size(338, 18);
+            lbl_CNPJ.Size = new System.Drawing.Size(438, 18);
             lbl_CNPJ.TabIndex = 1;
             lbl_CNPJ.Text = "00.000.000/0000-00";
             lbl_CNPJ.Click += lbl_CNPJ_Click;
@@ -555,7 +566,7 @@
             btn_GenerateOrder.Margin = new System.Windows.Forms.Padding(0);
             btn_GenerateOrder.Name = "btn_GenerateOrder";
             tlp_UnitInfo.SetRow(btn_GenerateOrder, 13);
-            btn_GenerateOrder.Size = new System.Drawing.Size(338, 40);
+            btn_GenerateOrder.Size = new System.Drawing.Size(438, 40);
             btn_GenerateOrder.TabIndex = 12;
             btn_GenerateOrder.Text = "GERAR PEDIDO";
             btn_GenerateOrder.Click += btn_GenerateOrder_Click;
@@ -566,11 +577,11 @@
             tlp_UnitInfo.SetColumnSpan(txt_Url, 2);
             txt_Url.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Url.Enabled = false;
-            txt_Url.Location = new System.Drawing.Point(1, 145);
+            txt_Url.Location = new System.Drawing.Point(1, 149);
             txt_Url.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Url.Name = "txt_Url";
             tlp_UnitInfo.SetRow(txt_Url, 7);
-            txt_Url.Size = new System.Drawing.Size(277, 20);
+            txt_Url.Size = new System.Drawing.Size(377, 20);
             txt_Url.TabIndex = 4;
             // 
             // lbl_Url
@@ -578,11 +589,11 @@
             lbl_Url.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(lbl_Url, 0);
             lbl_Url.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Url.Location = new System.Drawing.Point(3, 127);
+            lbl_Url.Location = new System.Drawing.Point(3, 131);
             lbl_Url.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             lbl_Url.Name = "lbl_Url";
             tlp_UnitInfo.SetRow(lbl_Url, 6);
-            lbl_Url.Size = new System.Drawing.Size(242, 17);
+            lbl_Url.Size = new System.Drawing.Size(342, 17);
             lbl_Url.TabIndex = 11;
             lbl_Url.Text = "URL";
             // 
@@ -592,11 +603,11 @@
             tlp_UnitInfo.SetColumnSpan(txt_Resume, 2);
             txt_Resume.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Resume.Enabled = false;
-            txt_Resume.Location = new System.Drawing.Point(1, 185);
+            txt_Resume.Location = new System.Drawing.Point(1, 191);
             txt_Resume.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Resume.Name = "txt_Resume";
             tlp_UnitInfo.SetRow(txt_Resume, 9);
-            txt_Resume.Size = new System.Drawing.Size(277, 20);
+            txt_Resume.Size = new System.Drawing.Size(377, 20);
             txt_Resume.TabIndex = 4;
             // 
             // txt_BankSlip
@@ -605,11 +616,11 @@
             tlp_UnitInfo.SetColumnSpan(txt_BankSlip, 2);
             txt_BankSlip.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_BankSlip.Enabled = false;
-            txt_BankSlip.Location = new System.Drawing.Point(1, 225);
+            txt_BankSlip.Location = new System.Drawing.Point(1, 233);
             txt_BankSlip.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_BankSlip.Name = "txt_BankSlip";
             tlp_UnitInfo.SetRow(txt_BankSlip, 11);
-            txt_BankSlip.Size = new System.Drawing.Size(277, 20);
+            txt_BankSlip.Size = new System.Drawing.Size(377, 20);
             txt_BankSlip.TabIndex = 4;
             // 
             // ddbtn_CopyBankSlip
@@ -621,26 +632,13 @@
             ddbtn_CopyBankSlip.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             ddbtn_CopyBankSlip.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_CopyBankSlip.ImageOptions.SvgImage");
             ddbtn_CopyBankSlip.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_CopyBankSlip.Location = new System.Drawing.Point(279, 225);
+            ddbtn_CopyBankSlip.Location = new System.Drawing.Point(379, 233);
             ddbtn_CopyBankSlip.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             ddbtn_CopyBankSlip.Name = "ddbtn_CopyBankSlip";
             tlp_UnitInfo.SetRow(ddbtn_CopyBankSlip, 11);
-            ddbtn_CopyBankSlip.Size = new System.Drawing.Size(59, 18);
+            ddbtn_CopyBankSlip.Size = new System.Drawing.Size(59, 20);
             ddbtn_CopyBankSlip.TabIndex = 13;
             ddbtn_CopyBankSlip.Click += ddbtn_CopyBankSlip_Click;
-            // 
-            // svg_CompanyLogo
-            // 
-            tlp_OperatorCompany.SetColumn(svg_CompanyLogo, 0);
-            tlp_OperatorCompany.SetColumnSpan(svg_CompanyLogo, 3);
-            svg_CompanyLogo.Dock = System.Windows.Forms.DockStyle.Fill;
-            svg_CompanyLogo.Location = new System.Drawing.Point(3, 47);
-            svg_CompanyLogo.Name = "svg_CompanyLogo";
-            tlp_OperatorCompany.SetRow(svg_CompanyLogo, 2);
-            svg_CompanyLogo.Size = new System.Drawing.Size(388, 226);
-            svg_CompanyLogo.SizeMode = DevExpress.XtraEditors.SvgImageSizeMode.Zoom;
-            svg_CompanyLogo.SvgImage = Properties.Resources.gcscript;
-            svg_CompanyLogo.TabIndex = 0;
             // 
             // lbl_Company
             // 
@@ -650,14 +648,11 @@
             lbl_Company.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_Company.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lbl_Company.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(lbl_Company, 0);
-            tlp_OperatorCompany.SetColumnSpan(lbl_Company, 3);
             lbl_Company.Cursor = System.Windows.Forms.Cursors.Hand;
             lbl_Company.Dock = System.Windows.Forms.DockStyle.Fill;
             lbl_Company.Location = new System.Drawing.Point(0, 0);
             lbl_Company.Margin = new System.Windows.Forms.Padding(0);
             lbl_Company.Name = "lbl_Company";
-            tlp_OperatorCompany.SetRow(lbl_Company, 0);
             lbl_Company.Size = new System.Drawing.Size(394, 26);
             lbl_Company.TabIndex = 11;
             lbl_Company.TextChanged += lbl_Company_TextChanged;
@@ -676,37 +671,131 @@
             tc_Details.Name = "tc_Details";
             tablePanel4.SetRow(tc_Details, 1);
             tablePanel4.SetRowSpan(tc_Details, 2);
-            tc_Details.SelectedTabPage = tp_Unit;
+            tc_Details.SelectedTabPage = tp_Notes;
             tc_Details.ShowTabHeader = DevExpress.Utils.DefaultBoolean.True;
-            tc_Details.Size = new System.Drawing.Size(738, 92);
+            tc_Details.Size = new System.Drawing.Size(838, 192);
             tc_Details.TabIndex = 0;
-            tc_Details.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tp_Unit, tp_Company, tp_Operator });
+            tc_Details.TabPages.AddRange(new DevExpress.XtraTab.XtraTabPage[] { tp_Notes, tp_Company, tp_Operator });
             // 
-            // tp_Unit
+            // tp_Notes
             // 
-            tp_Unit.Controls.Add(tablePanel1);
-            tp_Unit.Margin = new System.Windows.Forms.Padding(0);
-            tp_Unit.Name = "tp_Unit";
-            tp_Unit.Padding = new System.Windows.Forms.Padding(3);
-            tp_Unit.Size = new System.Drawing.Size(736, 69);
-            tp_Unit.Text = "Unidade";
+            tp_Notes.Controls.Add(tablePanel1);
+            tp_Notes.Margin = new System.Windows.Forms.Padding(0);
+            tp_Notes.Name = "tp_Notes";
+            tp_Notes.Padding = new System.Windows.Forms.Padding(3);
+            tp_Notes.Size = new System.Drawing.Size(836, 169);
+            tp_Notes.Text = "Anotacoes";
             // 
             // tablePanel1
             // 
-            tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 5F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 55F) });
+            tablePanel1.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 30F) });
+            tablePanel1.Controls.Add(mmo_OperatorNotes);
+            tablePanel1.Controls.Add(btn_SaveOperatorNotes);
+            tablePanel1.Controls.Add(labelControl6);
+            tablePanel1.Controls.Add(mmo_CompanyNotes);
+            tablePanel1.Controls.Add(btn_SaveCompanyNotes);
+            tablePanel1.Controls.Add(sdaasdasd);
             tablePanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             tablePanel1.Location = new System.Drawing.Point(3, 3);
             tablePanel1.Name = "tablePanel1";
-            tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
-            tablePanel1.Size = new System.Drawing.Size(730, 63);
+            tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 20F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
+            tablePanel1.Size = new System.Drawing.Size(830, 163);
             tablePanel1.TabIndex = 0;
+            // 
+            // mmo_OperatorNotes
+            // 
+            tablePanel1.SetColumn(mmo_OperatorNotes, 0);
+            tablePanel1.SetColumnSpan(mmo_OperatorNotes, 2);
+            mmo_OperatorNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            mmo_OperatorNotes.Location = new System.Drawing.Point(1, 23);
+            mmo_OperatorNotes.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            mmo_OperatorNotes.Name = "mmo_OperatorNotes";
+            mmo_OperatorNotes.Properties.MaxLength = 2048;
+            tablePanel1.SetRow(mmo_OperatorNotes, 1);
+            mmo_OperatorNotes.Size = new System.Drawing.Size(413, 137);
+            mmo_OperatorNotes.TabIndex = 12;
+            mmo_OperatorNotes.EditValueChanged += mmo_OperatorNotes_EditValueChanged;
+            // 
+            // btn_SaveOperatorNotes
+            // 
+            tablePanel1.SetColumn(btn_SaveOperatorNotes, 1);
+            btn_SaveOperatorNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_SaveOperatorNotes.Enabled = false;
+            btn_SaveOperatorNotes.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btn_SaveOperatorNotes.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_SaveOperatorNotes.ImageOptions.SvgImage");
+            btn_SaveOperatorNotes.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
+            btn_SaveOperatorNotes.Location = new System.Drawing.Point(386, 1);
+            btn_SaveOperatorNotes.Margin = new System.Windows.Forms.Padding(1);
+            btn_SaveOperatorNotes.Name = "btn_SaveOperatorNotes";
+            tablePanel1.SetRow(btn_SaveOperatorNotes, 0);
+            btn_SaveOperatorNotes.Size = new System.Drawing.Size(28, 18);
+            btn_SaveOperatorNotes.TabIndex = 11;
+            btn_SaveOperatorNotes.Click += btn_SaveOperatorNotes_Click;
+            // 
+            // labelControl6
+            // 
+            labelControl6.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            tablePanel1.SetColumn(labelControl6, 0);
+            labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
+            labelControl6.Location = new System.Drawing.Point(3, 3);
+            labelControl6.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            labelControl6.Name = "labelControl6";
+            tablePanel1.SetRow(labelControl6, 0);
+            labelControl6.Size = new System.Drawing.Size(379, 17);
+            labelControl6.TabIndex = 3;
+            labelControl6.Text = "Operadora";
+            // 
+            // mmo_CompanyNotes
+            // 
+            tablePanel1.SetColumn(mmo_CompanyNotes, 2);
+            tablePanel1.SetColumnSpan(mmo_CompanyNotes, 2);
+            mmo_CompanyNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            mmo_CompanyNotes.Location = new System.Drawing.Point(416, 23);
+            mmo_CompanyNotes.Margin = new System.Windows.Forms.Padding(1, 3, 1, 3);
+            mmo_CompanyNotes.Name = "mmo_CompanyNotes";
+            mmo_CompanyNotes.Properties.MaxLength = 2048;
+            tablePanel1.SetRow(mmo_CompanyNotes, 1);
+            mmo_CompanyNotes.Size = new System.Drawing.Size(413, 137);
+            mmo_CompanyNotes.TabIndex = 12;
+            mmo_CompanyNotes.EditValueChanged += mmo_CompanyNotes_EditValueChanged;
+            // 
+            // btn_SaveCompanyNotes
+            // 
+            tablePanel1.SetColumn(btn_SaveCompanyNotes, 3);
+            btn_SaveCompanyNotes.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_SaveCompanyNotes.Enabled = false;
+            btn_SaveCompanyNotes.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btn_SaveCompanyNotes.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_SaveCompanyNotes.ImageOptions.SvgImage");
+            btn_SaveCompanyNotes.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
+            btn_SaveCompanyNotes.Location = new System.Drawing.Point(801, 1);
+            btn_SaveCompanyNotes.Margin = new System.Windows.Forms.Padding(1);
+            btn_SaveCompanyNotes.Name = "btn_SaveCompanyNotes";
+            tablePanel1.SetRow(btn_SaveCompanyNotes, 0);
+            btn_SaveCompanyNotes.Size = new System.Drawing.Size(28, 18);
+            btn_SaveCompanyNotes.TabIndex = 11;
+            btn_SaveCompanyNotes.Click += btn_SaveCompanyNotes_Click;
+            // 
+            // sdaasdasd
+            // 
+            sdaasdasd.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
+            tablePanel1.SetColumn(sdaasdasd, 2);
+            sdaasdasd.Dock = System.Windows.Forms.DockStyle.Fill;
+            sdaasdasd.Location = new System.Drawing.Point(418, 3);
+            sdaasdasd.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
+            sdaasdasd.Name = "sdaasdasd";
+            tablePanel1.SetRow(sdaasdasd, 0);
+            sdaasdasd.Size = new System.Drawing.Size(379, 17);
+            sdaasdasd.TabIndex = 3;
+            sdaasdasd.Text = "Empresa";
             // 
             // tp_Company
             // 
             tp_Company.Margin = new System.Windows.Forms.Padding(0);
             tp_Company.Name = "tp_Company";
             tp_Company.Padding = new System.Windows.Forms.Padding(3);
-            tp_Company.Size = new System.Drawing.Size(736, 67);
+            tp_Company.PageEnabled = false;
+            tp_Company.PageVisible = false;
+            tp_Company.Size = new System.Drawing.Size(836, 169);
             tp_Company.Text = "Empresa";
             // 
             // tp_Operator
@@ -714,95 +803,10 @@
             tp_Operator.Margin = new System.Windows.Forms.Padding(0);
             tp_Operator.Name = "tp_Operator";
             tp_Operator.Padding = new System.Windows.Forms.Padding(3);
-            tp_Operator.Size = new System.Drawing.Size(736, 67);
+            tp_Operator.PageEnabled = false;
+            tp_Operator.PageVisible = false;
+            tp_Operator.Size = new System.Drawing.Size(836, 169);
             tp_Operator.Text = "Operadora";
-            // 
-            // simpleButton3
-            // 
-            simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            simpleButton3.Location = new System.Drawing.Point(169, 264);
-            simpleButton3.Name = "simpleButton3";
-            simpleButton3.Size = new System.Drawing.Size(125, 20);
-            simpleButton3.TabIndex = 10;
-            simpleButton3.Text = "simpleButton3";
-            // 
-            // nvf_Main
-            // 
-            nvf_Main.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
-            nvf_Main.Controls.Add(nvp_Main);
-            nvf_Main.Controls.Add(nvp_Details);
-            nvf_Main.Controls.Add(nvp_Tests);
-            nvf_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            nvf_Main.Location = new System.Drawing.Point(0, 0);
-            nvf_Main.Name = "nvf_Main";
-            nvf_Main.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { nvp_Main, nvp_Details, nvp_Tests });
-            nvf_Main.SelectedPage = nvp_Main;
-            nvf_Main.Size = new System.Drawing.Size(744, 444);
-            nvf_Main.TabIndex = 0;
-            // 
-            // nvp_Main
-            // 
-            nvp_Main.Controls.Add(tablePanel2);
-            nvp_Main.Controls.Add(rbbc_Main);
-            nvp_Main.Name = "nvp_Main";
-            nvp_Main.Size = new System.Drawing.Size(744, 444);
-            // 
-            // tablePanel2
-            // 
-            tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F) });
-            tablePanel2.Controls.Add(tablePanel5);
-            tablePanel2.Controls.Add(gc_Main);
-            tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel2.Location = new System.Drawing.Point(0, 122);
-            tablePanel2.Name = "tablePanel2";
-            tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
-            tablePanel2.Size = new System.Drawing.Size(744, 322);
-            tablePanel2.TabIndex = 2;
-            // 
-            // tablePanel5
-            // 
-            tablePanel2.SetColumn(tablePanel5, 0);
-            tablePanel5.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
-            tablePanel5.Controls.Add(btn_Search);
-            tablePanel5.Controls.Add(cmb_Search);
-            tablePanel5.Dock = System.Windows.Forms.DockStyle.Fill;
-            tablePanel5.Location = new System.Drawing.Point(0, 0);
-            tablePanel5.Margin = new System.Windows.Forms.Padding(0);
-            tablePanel5.Name = "tablePanel5";
-            tablePanel2.SetRow(tablePanel5, 0);
-            tablePanel5.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
-            tablePanel5.Size = new System.Drawing.Size(372, 26);
-            tablePanel5.TabIndex = 2;
-            // 
-            // btn_Search
-            // 
-            tablePanel5.SetColumn(btn_Search, 1);
-            btn_Search.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_Search.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
-            btn_Search.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Search.ImageOptions.SvgImage");
-            btn_Search.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_Search.Location = new System.Drawing.Point(332, 3);
-            btn_Search.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            btn_Search.Name = "btn_Search";
-            tablePanel5.SetRow(btn_Search, 0);
-            btn_Search.Size = new System.Drawing.Size(37, 20);
-            btn_Search.TabIndex = 1;
-            btn_Search.Click += btn_Search_Click;
-            // 
-            // cmb_Search
-            // 
-            tablePanel5.SetColumn(cmb_Search, 0);
-            cmb_Search.Dock = System.Windows.Forms.DockStyle.Fill;
-            cmb_Search.Location = new System.Drawing.Point(0, 3);
-            cmb_Search.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
-            cmb_Search.MenuManager = rbbc_Main;
-            cmb_Search.Name = "cmb_Search";
-            cmb_Search.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
-            cmb_Search.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
-            tablePanel5.SetRow(cmb_Search, 0);
-            cmb_Search.Size = new System.Drawing.Size(329, 20);
-            cmb_Search.TabIndex = 0;
-            cmb_Search.KeyPress += cmb_Search_KeyPress;
             // 
             // rbbc_Main
             // 
@@ -816,7 +820,7 @@
             rbbc_Main.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1 });
             rbbc_Main.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.ShowToolbarCustomizeItem = false;
-            rbbc_Main.Size = new System.Drawing.Size(744, 122);
+            rbbc_Main.Size = new System.Drawing.Size(844, 122);
             rbbc_Main.Toolbar.ShowCustomizeItem = false;
             rbbc_Main.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -858,6 +862,7 @@
             btn_T1.Id = 6;
             btn_T1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_T1.ImageOptions.SvgImage");
             btn_T1.Name = "btn_T1";
+            btn_T1.ItemClick += btn_T1_ItemClick_1;
             // 
             // ribbonPage1
             // 
@@ -883,9 +888,100 @@
             // 
             // ribbonPageGroup3
             // 
+            ribbonPageGroup3.Enabled = false;
             ribbonPageGroup3.ItemLinks.Add(btn_T1);
             ribbonPageGroup3.Name = "ribbonPageGroup3";
             ribbonPageGroup3.Text = "Tests";
+            ribbonPageGroup3.Visible = false;
+            // 
+            // simpleButton3
+            // 
+            simpleButton3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            simpleButton3.Location = new System.Drawing.Point(219, 314);
+            simpleButton3.Name = "simpleButton3";
+            simpleButton3.Size = new System.Drawing.Size(125, 20);
+            simpleButton3.TabIndex = 10;
+            simpleButton3.Text = "simpleButton3";
+            // 
+            // nvf_Main
+            // 
+            nvf_Main.AllowTransitionAnimation = DevExpress.Utils.DefaultBoolean.False;
+            nvf_Main.Controls.Add(nvp_Main);
+            nvf_Main.Controls.Add(nvp_Details);
+            nvf_Main.Controls.Add(nvp_Tests);
+            nvf_Main.Dock = System.Windows.Forms.DockStyle.Fill;
+            nvf_Main.Enabled = false;
+            nvf_Main.Location = new System.Drawing.Point(0, 0);
+            nvf_Main.Name = "nvf_Main";
+            nvf_Main.Pages.AddRange(new DevExpress.XtraBars.Navigation.NavigationPageBase[] { nvp_Main, nvp_Details, nvp_Tests });
+            nvf_Main.SelectedPage = nvp_Main;
+            nvf_Main.Size = new System.Drawing.Size(844, 544);
+            nvf_Main.TabIndex = 0;
+            nvf_Main.Visible = false;
+            // 
+            // nvp_Main
+            // 
+            nvp_Main.Controls.Add(tablePanel2);
+            nvp_Main.Controls.Add(rbbc_Main);
+            nvp_Main.Name = "nvp_Main";
+            nvp_Main.Size = new System.Drawing.Size(844, 544);
+            // 
+            // tablePanel2
+            // 
+            tablePanel2.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F) });
+            tablePanel2.Controls.Add(tablePanel5);
+            tablePanel2.Controls.Add(gc_Main);
+            tablePanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            tablePanel2.Location = new System.Drawing.Point(0, 122);
+            tablePanel2.Name = "tablePanel2";
+            tablePanel2.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
+            tablePanel2.Size = new System.Drawing.Size(844, 422);
+            tablePanel2.TabIndex = 2;
+            // 
+            // tablePanel5
+            // 
+            tablePanel2.SetColumn(tablePanel5, 0);
+            tablePanel5.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 40F) });
+            tablePanel5.Controls.Add(btn_Search);
+            tablePanel5.Controls.Add(cmb_Search);
+            tablePanel5.Dock = System.Windows.Forms.DockStyle.Fill;
+            tablePanel5.Location = new System.Drawing.Point(0, 0);
+            tablePanel5.Margin = new System.Windows.Forms.Padding(0);
+            tablePanel5.Name = "tablePanel5";
+            tablePanel2.SetRow(tablePanel5, 0);
+            tablePanel5.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
+            tablePanel5.Size = new System.Drawing.Size(422, 26);
+            tablePanel5.TabIndex = 2;
+            // 
+            // btn_Search
+            // 
+            tablePanel5.SetColumn(btn_Search, 1);
+            btn_Search.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_Search.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
+            btn_Search.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Search.ImageOptions.SvgImage");
+            btn_Search.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
+            btn_Search.Location = new System.Drawing.Point(382, 3);
+            btn_Search.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            btn_Search.Name = "btn_Search";
+            tablePanel5.SetRow(btn_Search, 0);
+            btn_Search.Size = new System.Drawing.Size(37, 20);
+            btn_Search.TabIndex = 1;
+            btn_Search.Click += btn_Search_Click;
+            // 
+            // cmb_Search
+            // 
+            tablePanel5.SetColumn(cmb_Search, 0);
+            cmb_Search.Dock = System.Windows.Forms.DockStyle.Fill;
+            cmb_Search.Location = new System.Drawing.Point(0, 3);
+            cmb_Search.Margin = new System.Windows.Forms.Padding(0, 3, 3, 3);
+            cmb_Search.MenuManager = rbbc_Main;
+            cmb_Search.Name = "cmb_Search";
+            cmb_Search.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] { new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo) });
+            cmb_Search.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor;
+            tablePanel5.SetRow(cmb_Search, 0);
+            cmb_Search.Size = new System.Drawing.Size(379, 20);
+            cmb_Search.TabIndex = 0;
+            cmb_Search.KeyPress += cmb_Search_KeyPress;
             // 
             // nvp_Details
             // 
@@ -893,7 +989,7 @@
             nvp_Details.Controls.Add(tablePanel4);
             nvp_Details.Controls.Add(rbbc_Details);
             nvp_Details.Name = "nvp_Details";
-            nvp_Details.Size = new System.Drawing.Size(744, 444);
+            nvp_Details.Size = new System.Drawing.Size(844, 544);
             // 
             // tablePanel4
             // 
@@ -905,15 +1001,16 @@
             tablePanel4.Location = new System.Drawing.Point(0, 26);
             tablePanel4.Name = "tablePanel4";
             tablePanel4.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 320F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
-            tablePanel4.Size = new System.Drawing.Size(744, 418);
+            tablePanel4.Size = new System.Drawing.Size(844, 518);
             tablePanel4.TabIndex = 14;
+            tablePanel4.Paint += tablePanel4_Paint;
             // 
             // tlp_OperatorCompany
             // 
             tablePanel4.SetColumn(tlp_OperatorCompany, 0);
             tlp_OperatorCompany.Columns.AddRange(new DevExpress.Utils.Layout.TablePanelColumn[] { new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 50F), new DevExpress.Utils.Layout.TablePanelColumn(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 50F) });
+            tlp_OperatorCompany.Controls.Add(pic_CompanyLogo);
             tlp_OperatorCompany.Controls.Add(lbl_Company);
-            tlp_OperatorCompany.Controls.Add(svg_CompanyLogo);
             tlp_OperatorCompany.Controls.Add(labelControl3);
             tlp_OperatorCompany.Controls.Add(labelControl4);
             tlp_OperatorCompany.Controls.Add(lbl_ResponsibleGVT);
@@ -929,6 +1026,23 @@
             tlp_OperatorCompany.Size = new System.Drawing.Size(394, 314);
             tlp_OperatorCompany.TabIndex = 1;
             // 
+            // pic_CompanyLogo
+            // 
+            tlp_OperatorCompany.SetColumn(pic_CompanyLogo, 0);
+            tlp_OperatorCompany.SetColumnSpan(pic_CompanyLogo, 3);
+            pic_CompanyLogo.Dock = System.Windows.Forms.DockStyle.Fill;
+            pic_CompanyLogo.Location = new System.Drawing.Point(3, 47);
+            pic_CompanyLogo.MenuManager = rbbc_Main;
+            pic_CompanyLogo.Name = "pic_CompanyLogo";
+            pic_CompanyLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
+            pic_CompanyLogo.Properties.Appearance.Options.UseBackColor = true;
+            pic_CompanyLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
+            pic_CompanyLogo.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Auto;
+            pic_CompanyLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
+            tlp_OperatorCompany.SetRow(pic_CompanyLogo, 2);
+            pic_CompanyLogo.Size = new System.Drawing.Size(388, 226);
+            pic_CompanyLogo.TabIndex = 12;
+            // 
             // labelControl3
             // 
             labelControl3.Appearance.Options.UseFont = true;
@@ -936,13 +1050,11 @@
             labelControl3.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             labelControl3.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(labelControl3, 0);
             labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             labelControl3.LineVisible = true;
             labelControl3.Location = new System.Drawing.Point(0, 279);
             labelControl3.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             labelControl3.Name = "labelControl3";
-            tlp_OperatorCompany.SetRow(labelControl3, 3);
             labelControl3.Size = new System.Drawing.Size(172, 15);
             labelControl3.TabIndex = 2;
             labelControl3.Text = "Responsavel GVT";
@@ -954,13 +1066,11 @@
             labelControl4.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             labelControl4.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             labelControl4.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(labelControl4, 1);
             labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
             labelControl4.LineVisible = true;
             labelControl4.Location = new System.Drawing.Point(172, 279);
             labelControl4.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             labelControl4.Name = "labelControl4";
-            tlp_OperatorCompany.SetRow(labelControl4, 3);
             labelControl4.Size = new System.Drawing.Size(172, 15);
             labelControl4.TabIndex = 2;
             labelControl4.Text = "Responsavel TI";
@@ -973,13 +1083,11 @@
             lbl_ResponsibleGVT.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_ResponsibleGVT.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lbl_ResponsibleGVT.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(lbl_ResponsibleGVT, 0);
             lbl_ResponsibleGVT.Cursor = System.Windows.Forms.Cursors.Hand;
             lbl_ResponsibleGVT.Dock = System.Windows.Forms.DockStyle.Fill;
             lbl_ResponsibleGVT.Location = new System.Drawing.Point(3, 295);
             lbl_ResponsibleGVT.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             lbl_ResponsibleGVT.Name = "lbl_ResponsibleGVT";
-            tlp_OperatorCompany.SetRow(lbl_ResponsibleGVT, 4);
             lbl_ResponsibleGVT.Size = new System.Drawing.Size(166, 17);
             lbl_ResponsibleGVT.TabIndex = 2;
             lbl_ResponsibleGVT.Click += lbl_ResponsibleGVT_Click;
@@ -992,12 +1100,10 @@
             lbl_ResponsibleTI.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_ResponsibleTI.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lbl_ResponsibleTI.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(lbl_ResponsibleTI, 1);
             lbl_ResponsibleTI.Dock = System.Windows.Forms.DockStyle.Fill;
             lbl_ResponsibleTI.Location = new System.Drawing.Point(175, 295);
             lbl_ResponsibleTI.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             lbl_ResponsibleTI.Name = "lbl_ResponsibleTI";
-            tlp_OperatorCompany.SetRow(lbl_ResponsibleTI, 4);
             lbl_ResponsibleTI.Size = new System.Drawing.Size(166, 17);
             lbl_ResponsibleTI.TabIndex = 2;
             // 
@@ -1008,15 +1114,12 @@
             lbl_Operator.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_Operator.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Top;
             lbl_Operator.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(lbl_Operator, 0);
-            tlp_OperatorCompany.SetColumnSpan(lbl_Operator, 3);
             lbl_Operator.Cursor = System.Windows.Forms.Cursors.Hand;
             lbl_Operator.Dock = System.Windows.Forms.DockStyle.Fill;
             lbl_Operator.LineVisible = true;
             lbl_Operator.Location = new System.Drawing.Point(0, 26);
             lbl_Operator.Margin = new System.Windows.Forms.Padding(0);
             lbl_Operator.Name = "lbl_Operator";
-            tlp_OperatorCompany.SetRow(lbl_Operator, 1);
             lbl_Operator.Size = new System.Drawing.Size(394, 18);
             lbl_Operator.TabIndex = 1;
             lbl_Operator.Click += lbl_Operator_Click;
@@ -1028,13 +1131,11 @@
             labelControl5.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             labelControl5.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
             labelControl5.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(labelControl5, 2);
             labelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
             labelControl5.LineVisible = true;
             labelControl5.Location = new System.Drawing.Point(344, 279);
             labelControl5.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             labelControl5.Name = "labelControl5";
-            tlp_OperatorCompany.SetRow(labelControl5, 3);
             labelControl5.Size = new System.Drawing.Size(50, 15);
             labelControl5.TabIndex = 2;
             labelControl5.Text = "Margem";
@@ -1047,12 +1148,10 @@
             lbl_Margin.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
             lbl_Margin.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             lbl_Margin.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
-            tlp_OperatorCompany.SetColumn(lbl_Margin, 2);
             lbl_Margin.Dock = System.Windows.Forms.DockStyle.Fill;
             lbl_Margin.Location = new System.Drawing.Point(347, 295);
             lbl_Margin.Margin = new System.Windows.Forms.Padding(3, 1, 3, 2);
             lbl_Margin.Name = "lbl_Margin";
-            tlp_OperatorCompany.SetRow(lbl_Margin, 4);
             lbl_Margin.Size = new System.Drawing.Size(44, 17);
             lbl_Margin.TabIndex = 2;
             // 
@@ -1069,7 +1168,7 @@
             rbbc_Details.PageHeaderItemLinks.Add(btn_Return);
             rbbc_Details.ShowApplicationButton = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Details.ShowToolbarCustomizeItem = false;
-            rbbc_Details.Size = new System.Drawing.Size(744, 26);
+            rbbc_Details.Size = new System.Drawing.Size(844, 26);
             rbbc_Details.Toolbar.ShowCustomizeItem = false;
             rbbc_Details.ToolbarLocation = DevExpress.XtraBars.Ribbon.RibbonQuickAccessToolbarLocation.Hidden;
             // 
@@ -1102,16 +1201,15 @@
             nvp_Tests.Controls.Add(btn_LoadCompanies);
             nvp_Tests.Controls.Add(btn_LoadOperators);
             nvp_Tests.Name = "nvp_Tests";
-            nvp_Tests.Size = new System.Drawing.Size(744, 444);
+            nvp_Tests.Size = new System.Drawing.Size(844, 544);
             // 
             // frm_Data
             // 
             Appearance.Options.UseFont = true;
             AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(744, 444);
+            ClientSize = new System.Drawing.Size(844, 544);
             Controls.Add(nvf_Main);
-            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             MinimumSize = new System.Drawing.Size(744, 444);
             Name = "frm_Data";
@@ -1129,11 +1227,15 @@
             ((System.ComponentModel.ISupportInitialize)txt_Url.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txt_Resume.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)txt_BankSlip.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)svg_CompanyLogo).EndInit();
             ((System.ComponentModel.ISupportInitialize)tc_Details).EndInit();
             tc_Details.ResumeLayout(false);
-            tp_Unit.ResumeLayout(false);
+            tp_Notes.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)tablePanel1).EndInit();
+            tablePanel1.ResumeLayout(false);
+            tablePanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)mmo_OperatorNotes.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)mmo_CompanyNotes.Properties).EndInit();
+            ((System.ComponentModel.ISupportInitialize)rbbc_Main).EndInit();
             ((System.ComponentModel.ISupportInitialize)nvf_Main).EndInit();
             nvf_Main.ResumeLayout(false);
             nvp_Main.ResumeLayout(false);
@@ -1143,7 +1245,6 @@
             ((System.ComponentModel.ISupportInitialize)tablePanel5).EndInit();
             tablePanel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)cmb_Search.Properties).EndInit();
-            ((System.ComponentModel.ISupportInitialize)rbbc_Main).EndInit();
             nvp_Details.ResumeLayout(false);
             nvp_Details.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)tablePanel4).EndInit();
@@ -1151,6 +1252,7 @@
             ((System.ComponentModel.ISupportInitialize)tlp_OperatorCompany).EndInit();
             tlp_OperatorCompany.ResumeLayout(false);
             tlp_OperatorCompany.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pic_CompanyLogo.Properties).EndInit();
             ((System.ComponentModel.ISupportInitialize)rbbc_Details).EndInit();
             nvp_Tests.ResumeLayout(false);
             ResumeLayout(false);
@@ -1167,16 +1269,15 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraGrid.GridControl gc_Main;
         private DevExpress.XtraGrid.Views.Grid.GridView gv_Main;
-        private DevExpress.XtraGrid.Columns.GridColumn gcol_UF;
+        private DevExpress.XtraGrid.Columns.GridColumn gcol_Uf;
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Operator;
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Company;
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Unit;
         private DevExpress.XtraGrid.Columns.GridColumn col_btn_LoadUnit;
         private DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit btn_LoadUnit;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
-        private DevExpress.XtraEditors.SvgImageBox svg_CompanyLogo;
         private DevExpress.XtraTab.XtraTabControl tc_Details;
-        private DevExpress.XtraTab.XtraTabPage tp_Unit;
+        private DevExpress.XtraTab.XtraTabPage tp_Notes;
         private DevExpress.XtraTab.XtraTabPage tp_Company;
         private DevExpress.XtraTab.XtraTabPage tp_Operator;
         private DevExpress.XtraEditors.TextEdit txt_Password;
@@ -1233,5 +1334,12 @@
         private DevExpress.XtraBars.BarButtonItem btn_Create_Unit;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup3;
         private DevExpress.XtraBars.BarButtonItem btn_T1;
+        private DevExpress.XtraEditors.PictureEdit pic_CompanyLogo;
+        private DevExpress.XtraEditors.SimpleButton btn_SaveOperatorNotes;
+        private DevExpress.XtraEditors.MemoEdit mmo_OperatorNotes;
+        private DevExpress.XtraEditors.LabelControl labelControl6;
+        private DevExpress.XtraEditors.MemoEdit mmo_CompanyNotes;
+        private DevExpress.XtraEditors.SimpleButton btn_SaveCompanyNotes;
+        private DevExpress.XtraEditors.LabelControl sdaasdasd;
     }
 }

@@ -1,10 +1,6 @@
 ﻿using DevExpress.Utils.Menu;
 using DevExpress.XtraEditors;
-using DevExpress.XtraGrid;
 using DevExpress.XtraSplashScreen;
-using GCScript.DataBase.Controllers;
-using GCScript.DataBase.Models;
-using GCScript.DataBase.ViewModels;
 using GCScript.Operator;
 using GCScript.Shared;
 using MongoDB.Bson;
@@ -17,14 +13,24 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows;
+using GCScript.Database.MongoDB.Models;
+using GCScript.Database.MongoDB.DataAccess;
+using DevExpress.XtraGrid;
+using System.Collections.Generic;
+using GCScript.Database.MongoDB.ViewModels;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
+using Au;
+using System.Net.Http;
+using GCScript.Shared.Models;
+using GCScript.Database.MongoDB;
 
 namespace GCScript.Client.Windows;
 
 public partial class frm_Data : XtraForm
 {
+    public List<VMUnitMenu> DataSourceMenu { get; set; }
 
     public MOperator CurrentOperator { get; set; }
     public MCompany CurrentCompany { get; set; }
@@ -68,18 +74,20 @@ public partial class frm_Data : XtraForm
     {
         ColumnDefinitions();
         CreateDropDownMenus();
-        rbbc_Main.Minimized = true;
+        //rbbc_Main.Minimized = true;
         rbbc_Details.Minimized = true;
         try
         {
             try { Ssm.ShowWaitForm(); Ssm.SetWaitFormDescription("Loading Companies..."); } catch { }
-            CompanyController companyController = new();
-            var companies = await companyController.GetAllAsync();
+            CompanyDataAccess cda = new();
+            var companies = await cda.GetAllAsync();
             companies = companies.OrderBy(x => x.Name).ToList();
             foreach (var comp in companies)
             {
                 cmb_Search.Properties.Items.Add(comp.Name);
             }
+            nvf_Main.Enabled = true;
+            nvf_Main.Visible = true;
         }
         catch (Exception ex)
         {
@@ -100,24 +108,27 @@ public partial class frm_Data : XtraForm
 
     private void CreateDropDownMenus()
     {
-
-        ddbtn_CopyResume.DropDownControl = new DXPopupMenu
+        try
         {
-            Items = { new DXMenuItem("Novo", (s, e) => {
-                Clipboard.SetText($"{txt_Resume.Text} [NOVO-SEM CARTAO]");
+            ddbtn_CopyResume.DropDownControl = new DXPopupMenu
+            {
+                Items = { new DXMenuItem("Novo", (s, e) => {
+                clipboard.text = $"{txt_Resume.Text} [NOVO-SEM CARTAO]";
             }), new DXMenuItem("2ª Via", (s, e) => {
-                Clipboard.SetText($"{txt_Resume.Text} [2ª VIA]");
+                clipboard.text = $"{txt_Resume.Text} [2ª VIA]";
             }) }
-        };
+            };
 
-        ddbtn_CopyBankSlip.DropDownControl = new DXPopupMenu
-        {
-            Items = { new DXMenuItem("Novo", (s, e) => {
-                Clipboard.SetText($"{txt_BankSlip.Text} [NOVO-SEM CARTAO]");
+            ddbtn_CopyBankSlip.DropDownControl = new DXPopupMenu
+            {
+                Items = { new DXMenuItem("Novo", (s, e) => {
+                clipboard.text = $"{txt_BankSlip.Text} [NOVO-SEM CARTAO]";
             }), new DXMenuItem("2ª Via", (s, e) => {
-                Clipboard.SetText($"{txt_BankSlip.Text} [2ª VIA]");
+                clipboard.text = $"{txt_BankSlip.Text} [2ª VIA]";
             }) }
-        };
+            };
+        }
+        catch { }
     }
 
     private async void SalvarPlanilha(string nome)
@@ -168,80 +179,67 @@ public partial class frm_Data : XtraForm
         {
             if (!Pasting)
             {
+                clipboard.clear();
                 Pasting = true;
-                try { Clipboard.Clear(); } catch { }
                 switch (e.Name)
                 {
                     case "DefinirUsername":
-                        Clipboard.SetText(txt_Username.Text);
+                        clipboard.tryPaste(txt_Username.Text);
                         break;
                     case "DefinirPassword":
-                        Clipboard.SetText(txt_Password.Text);
+                        clipboard.tryPaste(txt_Password.Text);
                         break;
                     case "DefinirResumo":
-                        Clipboard.SetText(txt_Resume.Text);
+                        clipboard.tryPaste(txt_Resume.Text);
                         break;
                     case "DefinirBoleto":
-                        Clipboard.SetText(txt_BankSlip.Text);
+                        clipboard.tryPaste(txt_BankSlip.Text);
                         break;
 
                     case "DefinirResumoNovo":
-                        Clipboard.SetText($"{txt_Resume.Text} [NOVO-SEM CARTAO]");
+                        clipboard.tryPaste($"{txt_Resume.Text} [NOVO-SEM CARTAO]");
                         break;
                     case "DefinirBoletoNovo":
-                        Clipboard.SetText($"{txt_BankSlip.Text} [NOVO-SEM CARTAO]");
+                        clipboard.tryPaste($"{txt_BankSlip.Text} [NOVO-SEM CARTAO]");
                         break;
 
                     case "DefinirResumo2Via":
-                        Clipboard.SetText($"{txt_Resume.Text} [2ª VIA]");
+                        clipboard.tryPaste($"{txt_Resume.Text} [2ª VIA]");
                         break;
                     case "DefinirBoleto2Via":
-                        Clipboard.SetText($"{txt_BankSlip.Text} [2ª VIA]");
+                        clipboard.tryPaste($"{txt_BankSlip.Text} [2ª VIA]");
                         break;
                     default:
                         break;
                 }
-                Thread.Sleep(200);
-                System.Windows.Forms.SendKeys.Send("^(v)");
                 e.Handled = true;
-                _ = AllowNHotkey(200);
+                Task.Run(() => { Thread.Sleep(200); Pasting = false; });
             }
         }
-        catch (Exception)
+        catch (Exception ex)
         {
-            try { Clipboard.Clear(); } catch { }
+            XtraMessageBox.Show(ex.Message);
         }
     }
 
-    private async Task AllowNHotkey(int millisecondsDelay)
-    {
-        await Task.Delay(millisecondsDelay);
-        Pasting = false;
-    }
+    //private async Task AllowNHotkey(int millisecondsDelay)
+    //{
+    //    await Task.Delay(millisecondsDelay);
+    //    Pasting = false;
+    //}
 
     private async void LoadDataMenuFromDataBase(string companyName)
     {
         try
         {
             try { Ssm.ShowWaitForm(); Ssm.SetWaitFormDescription("Loading Data..."); } catch { }
-            DataMenuController dms = new();
-            var result = await dms.GetAllAsyncByCompanyName(companyName);
+            UnitDataAccess uda = new();
+            var DataSourceMenu = await uda.GetAllAsyncByCompanyName(companyName);
 
-            result = result.OrderBy(x => x.UF).ThenBy(x => x.Operator).ThenBy(x => x.Company).ThenBy(x => x.Unit).ToList();
+            DataSourceMenu = DataSourceMenu.OrderBy(x => x.Uf).ThenBy(x => x.Operator).ThenBy(x => x.Company).ThenBy(x => x.Unit).ToList();
 
             gv_Main.BeginDataUpdate();
-            gc_Main.DataSource = result;
-
-            foreach (var item in result)
-            {
-                gv_Main.AddNewRow();
-                gv_Main.SetRowCellValue(GridControl.NewItemRowHandle, gcol_UF.FieldName, item.UF);
-                gv_Main.SetRowCellValue(GridControl.NewItemRowHandle, gcol_Operator.FieldName, item.Operator);
-                gv_Main.SetRowCellValue(GridControl.NewItemRowHandle, gcol_Company.FieldName, item.Company);
-                gv_Main.SetRowCellValue(GridControl.NewItemRowHandle, gcol_Unit.FieldName, item.Unit);
-                gv_Main.SetRowCellValue(GridControl.NewItemRowHandle, gcol_UnitId.FieldName, item.UnitId);
-            }
-
+            gc_Main.DataSource = DataSourceMenu;
             gv_Main.EndDataUpdate();
             gv_Main.BestFitColumns();
 
@@ -250,6 +248,7 @@ public partial class frm_Data : XtraForm
         }
         catch (Exception ex)
         {
+            gc_Main.DataSource = null;
             try { Ssm.CloseWaitForm(); } catch { }
             XtraMessageBox.Show(ex.Message, "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
         }
@@ -262,8 +261,8 @@ public partial class frm_Data : XtraForm
     private void ColumnDefinitions()
     {
         gcol_UnitId.Visible = false;
-        gcol_UF.OptionsColumn.AllowEdit = false;
-        gcol_UF.OptionsColumn.ReadOnly = true;
+        gcol_Uf.OptionsColumn.AllowEdit = false;
+        gcol_Uf.OptionsColumn.ReadOnly = true;
         gcol_Company.OptionsColumn.AllowEdit = false;
         gcol_Company.OptionsColumn.ReadOnly = true;
         gcol_Operator.OptionsColumn.AllowEdit = false;
@@ -274,7 +273,7 @@ public partial class frm_Data : XtraForm
 
     private async void btn_LoadData_ButtonClick(object sender, DevExpress.XtraEditors.Controls.ButtonPressedEventArgs e)
     {
-        var dmfgv = gv_Main.GetFocusedRow() as VMDataMenu;
+        var dmfgv = gv_Main.GetFocusedRow() as VMUnitMenu;
         await RefreshResume(ObjectId.Parse(dmfgv.UnitId));
         btn_GenerateOrder.Select();
     }
@@ -286,7 +285,7 @@ public partial class frm_Data : XtraForm
         GridHitInfo info = view.CalcHitInfo(ea.Location);
         if (info.InRow || info.InRowCell)
         {
-            var dmfgv = gv_Main.GetFocusedRow() as VMDataMenu;
+            var dmfgv = gv_Main.GetFocusedRow() as VMUnitMenu;
             await RefreshResume(ObjectId.Parse(dmfgv.UnitId));
             btn_GenerateOrder.Select();
         }
@@ -296,7 +295,7 @@ public partial class frm_Data : XtraForm
     {
         if (e.KeyCode == System.Windows.Forms.Keys.Enter)
         {
-            var dmfgv = gv_Main.GetFocusedRow() as VMDataMenu;
+            var dmfgv = gv_Main.GetFocusedRow() as VMUnitMenu;
             await RefreshResume(ObjectId.Parse(dmfgv.UnitId));
             btn_GenerateOrder.Select();
         }
@@ -304,37 +303,35 @@ public partial class frm_Data : XtraForm
         {
             cmb_Search.Select();
         }
-
     }
 
     private async Task RefreshResume(ObjectId unitId)
     {
         try
         {
-            labelControl1.Select();
-            try { Ssm.ShowWaitForm(); Ssm.SetWaitFormDescription("Loading Unit..."); } catch { }
             ClearComponents();
-            nvf_Main.SelectedPage = nvp_Details;
+            //labelControl1.Select();
+            try { Ssm.ShowWaitForm(); Ssm.SetWaitFormDescription("Loading Unit..."); } catch { }
 
-            await GetData(unitId);
-            if (CurrentOperator is not null)
-            {
-                lbl_Operator.Text = $"{CurrentOperator.UF} > {CurrentOperator.Name}";
-                lbl_Company.Text = CurrentCompany.Name;
-                lbl_Unit.Text = CurrentUnit.Name;
-                lbl_CNPJ.Text = Tools.TreatCNPJ(CurrentUnit.CNPJ);
-                txt_Username.Text = CurrentUnit.Username;
-                txt_Password.Text = CurrentUnit.Password;
-                txt_Url.Text = CurrentOperator.Url;
-                lbl_ResponsibleGVT.Text = CurrentCompany.ResponsibleGVT;
-                lbl_ResponsibleTI.Text = CurrentCompany.ResponsibleTI;
-                lbl_Margin.Text = CurrentCompany.Margin.ToString();
-                btn_GenerateOrder.Enabled = CurrentOperator.GenerateOrder;
-            }
-            else
-            {
-                XtraMessageBox.Show("Não foi possível carregar os dados!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-            }
+            CurrentUnit = await new UnitDataAccess().GetAsync(unitId);
+            CurrentCompany = await new CompanyDataAccess().GetAsync(CurrentUnit.Company);
+            CurrentOperator = await new OperatorDataAccess().GetAsync(CurrentUnit.Uf, CurrentUnit.Operator);
+            lbl_Operator.Text = $"{CurrentOperator.Uf} > {CurrentOperator.Name}";
+            lbl_Company.Text = CurrentCompany.Name;
+            lbl_Unit.Text = CurrentUnit.Name;
+            lbl_CNPJ.Text = Tools.TreatCNPJ(CurrentUnit.Cnpj);
+            txt_Username.Text = CurrentUnit.Username;
+            txt_Password.Text = CurrentUnit.Password;
+            txt_Url.Text = CurrentOperator.Url;
+            lbl_ResponsibleGVT.Text = CurrentCompany.ResponsibleGVT;
+            lbl_ResponsibleTI.Text = CurrentCompany.ResponsibleTI;
+            lbl_Margin.Text = CurrentCompany.Margin.ToString();
+            mmo_OperatorNotes.Text = CurrentOperator.Notes;
+            mmo_CompanyNotes.Text = CurrentCompany.Notes;
+            //mmo_UnitNotes.Text = CurrentUnit.Notes;
+            btn_GenerateOrder.Enabled = CurrentOperator.GenerateOrder;
+            nvp_Details.PageEnabled = true;
+            nvf_Main.SelectedPage = nvp_Details;
         }
         catch (Exception ex)
         {
@@ -345,12 +342,11 @@ public partial class frm_Data : XtraForm
         {
             try { Ssm.CloseWaitForm(); } catch { }
         }
-
-
     }
 
     private void ClearComponents()
     {
+        nvp_Details.PageEnabled = false;
         lbl_Operator.Text = "";
         lbl_Company.Text = "";
         lbl_Unit.Text = "";
@@ -364,40 +360,14 @@ public partial class frm_Data : XtraForm
         btn_GenerateOrder.Enabled = false;
     }
 
-    private async Task GetData(ObjectId unitId)
-    {
-        try
-        {
-            UnitController uc = new();
-            var result = await uc.GetDataAsync(unitId);
-
-            if (result.mOperator is not null)
-            {
-                CurrentOperator = result.mOperator;
-                CurrentUnit = result.mUnit;
-                CurrentCompany = result.mCompany;
-            }
-            else
-            {
-                throw new Exception("Não foi possível carregar os dados!");
-            }
-        }
-        catch
-        {
-            CurrentOperator = null;
-            CurrentUnit = null;
-            CurrentCompany = null;
-        }
-    }
-
     private void btn_Resume_CopyUsername_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(txt_Username.Text); } catch { }
+        try { clipboard.text = txt_Username.Text; } catch { }
     }
 
     private void btn_Resume_CopyPassword_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(txt_Password.Text); } catch { }
+        try { clipboard.text = txt_Password.Text; } catch { }
     }
 
     private async void btn_Resume_SavePassword_Click(object sender, EventArgs e)
@@ -406,19 +376,22 @@ public partial class frm_Data : XtraForm
         {
             if (CurrentUnit is not null)
             {
-                UnitController uc = new();
+                string password = txt_Password.Text.Trim();
+                UnitDataAccess uc = new();
                 var result = await uc.UpdatePasswordAsync(new MUnit()
                 {
                     Username = CurrentUnit.Username,
-                    Password = txt_Password.Text,
-                    CompanyId = CurrentUnit.CompanyId,
-                    OperatorId = CurrentUnit.OperatorId,
+                    Password = password,
+                    Company = CurrentUnit.Company,
+                    Operator = CurrentUnit.Operator,
+                    Uf = CurrentUnit.Uf,
                 });
 
                 if (result.Success)
                 {
+                    await DiscordWebhook.SendMessage(Settings.DiscordWebhookUrl, new MDiscordWebhook() { Username = $"GCScript Benefits", Content = $"**{SettingsDB.MongoDbUsername}** alterou a senha de **{CurrentUnit.Uf}** > **{CurrentUnit.Operator}** > **{CurrentUnit.Company}** > **{CurrentUnit.Name}** para ||{password}||" });
                     XtraMessageBox.Show($"{result.Count} senhas foram atualizadas!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-                    CurrentUnit.Password = txt_Password.Text;
+                    CurrentUnit.Password = password;
                     btn_SavePassword.Enabled = false;
                 }
                 else
@@ -445,17 +418,13 @@ public partial class frm_Data : XtraForm
 
     private void btn_Resume_CopyUrl_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(txt_Url.Text); } catch { }
+        try { clipboard.text = txt_Url.Text; } catch { }
     }
 
     private void txt_Password_EditValueChanged(object sender, EventArgs e)
     {
         string password = txt_Password.Text.Trim();
         btn_SavePassword.Enabled = password.Length > 0 && password != CurrentUnit.Password;
-    }
-
-    private async void simpleButton4_Click(object sender, EventArgs e)
-    {
     }
 
     private void btn_GenerateOrder_Click(object sender, EventArgs e)
@@ -465,7 +434,7 @@ public partial class frm_Data : XtraForm
             Tools.RemoveOrderFiles();
             string id = CurrentOperator.Id.ToString();
 
-            if (id == "64ce595375654feaabb9f81d") // RJ - RIOCARD
+            if (id == "6518bffd8427d5df54abffe3") // RJ - RIOCARD
             {
                 if (XtraMessageBox.Show(
                     "Selecione e Copie as colunas na ORDEM abaixo:\nMat (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
@@ -473,10 +442,10 @@ public partial class frm_Data : XtraForm
                     System.Windows.Forms.MessageBoxButtons.YesNo,
                     System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.CNPJ, Clipboard.GetText());
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, Clipboard.GetText());
                 File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
-            else if (id == "64d8ff515f6a7bc64a513f55") // RIOCARD - PRA VOCE
+            else if (id == "6518bffd8427d5df54abffe4") // RIOCARD - PRA VOCE
             {
                 if (XtraMessageBox.Show(
                     "Selecione e Copie as colunas na ORDEM abaixo:\nMat (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
@@ -484,10 +453,10 @@ public partial class frm_Data : XtraForm
                     System.Windows.Forms.MessageBoxButtons.YesNo,
                     System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.CNPJ, Clipboard.GetText());
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, Clipboard.GetText());
                 File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
-            else if (id == "64ce595375654feaabb9f81e") // RJ - SETRANSOL
+            else if (id == "6518bffd8427d5df54abffe5") // RJ - SETRANSOL
             {
                 if (XtraMessageBox.Show(
                     "Selecione e Copie as colunas na ORDEM abaixo:\nCPF (PRIMEIRA COLUNA) | Compra Final (ÚLTIMA COLUNA)\nDeseja continuar",
@@ -515,7 +484,7 @@ public partial class frm_Data : XtraForm
     {
         if (CurrentOperator is null || CurrentCompany is null || CurrentUnit is null) { return; }
 
-        var uf = CurrentOperator.UF;
+        var uf = CurrentOperator.Uf;
         var @operator = CurrentOperator.Name;
         var company = CurrentCompany.Name;
         var unit = CurrentUnit.Name;
@@ -545,42 +514,38 @@ public partial class frm_Data : XtraForm
 
     private void ddbtn_CopyResume_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(txt_Resume.Text); } catch { }
+        try { clipboard.text = txt_Resume.Text; } catch { }
     }
 
     private void ddbtn_CopyBankSlip_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(txt_BankSlip.Text); } catch { }
+        try { clipboard.text = txt_BankSlip.Text; } catch { }
     }
 
     private void lbl_Company_TextChanged(object sender, EventArgs e)
     {
-        svg_CompanyLogo.SvgImage = lbl_Company.Text switch
-        {
-            "L2R" => Properties.Resources.l2r,
-            "CAPITAL" => Properties.Resources.capital,
-            _ => Properties.Resources.gcscript,
-        };
+        if (!string.IsNullOrWhiteSpace(CurrentCompany.ImageUrl)) { pic_CompanyLogo.LoadAsync(CurrentCompany.ImageUrl); }
+        else { pic_CompanyLogo.LoadAsync("https://i.imgur.com/5Abs9eR.png"); }
     }
 
     private void lbl_Company_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(lbl_Company.Text); } catch { }
+        try { clipboard.text = lbl_Company.Text; } catch { }
     }
 
     private void lbl_Operator_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(lbl_Operator.Text); } catch { }
+        try { clipboard.text = lbl_Operator.Text; } catch { }
     }
 
     private void lbl_Unit_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(lbl_Unit.Text); } catch { }
+        try { clipboard.text = lbl_Unit.Text; } catch { }
     }
 
     private void lbl_CNPJ_Click(object sender, EventArgs e)
     {
-        try { Clipboard.SetText(lbl_CNPJ.Text); } catch { }
+        try { clipboard.text = lbl_CNPJ.Text; } catch { }
     }
 
 
@@ -592,11 +557,12 @@ public partial class frm_Data : XtraForm
             >= 12 and < 18 => "Boa tarde",
             _ => "Boa noite",
         };
-        try { Clipboard.SetText($"{greeting}, {lbl_ResponsibleGVT.Text}!\nSegue anexo o(s) arquivo(s) da {lbl_Company.Text}.\nObrigado!"); } catch { }
+        try { clipboard.text = $"{greeting}, {lbl_ResponsibleGVT.Text}!\nSegue anexo o(s) arquivo(s) da {lbl_Company.Text}.\nObrigado!"; } catch { }
     }
 
     private void btn_Return_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
+        ClearComponents();
         nvf_Main.SelectedPage = nvp_Main;
         gv_Main.Focus();
     }
@@ -640,4 +606,108 @@ public partial class frm_Data : XtraForm
     {
 
     }
+
+    private void btn_T1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        //CompanyDataAccess cc = new();
+        //MCompany company = new();
+        //company.Name = "BOY VINY";
+        //company.ResponsibleGVT = "ROSI";
+        //company.ResponsibleTI = "GUSTAVO";
+        //company.Margin = 3;
+
+        //var result = await cc.InsertOneAsync(company);
+
+        //if (result)
+        //{
+        //    XtraMessageBox.Show($"{company.Name} adicionado com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+        //}
+        //else
+        //{
+        //    XtraMessageBox.Show($"Erro ao adicionar {company.Name}!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        //}
+    }
+
+    private void mmo_OperatorNotes_EditValueChanged(object sender, EventArgs e)
+    {
+        string currentNotes = string.IsNullOrWhiteSpace(CurrentOperator.Notes) ? "" : CurrentOperator.Notes;
+        string newNotes = string.IsNullOrWhiteSpace(mmo_OperatorNotes.Text.Trim()) ? "" : mmo_OperatorNotes.Text.Trim();
+        btn_SaveOperatorNotes.Enabled = newNotes != currentNotes;
+    }
+
+    private void mmo_CompanyNotes_EditValueChanged(object sender, EventArgs e)
+    {
+        string currentNotes = string.IsNullOrWhiteSpace(CurrentCompany.Notes) ? "" : CurrentCompany.Notes;
+        string newNotes = string.IsNullOrWhiteSpace(mmo_CompanyNotes.Text.Trim()) ? "" : mmo_CompanyNotes.Text.Trim();
+        btn_SaveCompanyNotes.Enabled = newNotes != currentNotes;
+    }
+
+    private async void btn_SaveOperatorNotes_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            string notes = mmo_OperatorNotes.Text.Trim();
+            OperatorDataAccess odc = new();
+            if (await odc.UpdateNotesAsync(new MOperator() { Id = CurrentOperator.Id, Notes = string.IsNullOrWhiteSpace(notes) ? null : notes }))
+            {
+                CurrentOperator.Notes = notes;
+                btn_SaveOperatorNotes.Enabled = false;
+                mmo_OperatorNotes.Focus();
+                XtraMessageBox.Show("Anotação salvar com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+            }
+            else { throw new Exception(); }
+        }
+        catch
+        {
+            XtraMessageBox.Show("Não foi possível salvar a anotação!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        }
+    }
+
+    private async void btn_SaveCompanyNotes_Click(object sender, EventArgs e)
+    {
+        try
+        {
+            var notes = mmo_CompanyNotes.Text.Trim();
+            CompanyDataAccess cda = new();
+            if (await cda.UpdateNotesAsync(new MCompany() { Id = CurrentCompany.Id, Notes = string.IsNullOrWhiteSpace(notes) ? null : notes }))
+            {
+                CurrentCompany.Notes = notes;
+                btn_SaveCompanyNotes.Enabled = false;
+                mmo_CompanyNotes.Focus();
+                XtraMessageBox.Show("Anotação salvar com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+            }
+            else { throw new Exception(); }
+        }
+        catch
+        {
+            XtraMessageBox.Show("Não foi possível salvar a anotação!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+        }
+    }
+
+    private void tablePanel4_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
+    {
+
+    }
+
+
+    //private async void btn_SaveUnitNotes_Click(object sender, EventArgs e)
+    //{
+    //    try
+    //    {
+    //        string notes = mmo_UnitNotes.Text.Trim();
+    //        UnitDataAccess uda = new();
+    //        if (await uda.UpdateNotesAsync(new MUnit() { Id = CurrentUnit.Id, Notes = string.IsNullOrWhiteSpace(notes) ? null : notes }))
+    //        {
+    //            CurrentUnit.Notes = notes;
+    //            btn_SaveUnitNotes.Enabled = false;
+    //            mmo_UnitNotes.Focus();
+    //            XtraMessageBox.Show("Anotação salvar com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+    //        }
+    //        else { throw new Exception(); }
+    //    }
+    //    catch
+    //    {
+    //        XtraMessageBox.Show("Não foi possível salvar a anotação!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
+    //    }
+    //}
 }

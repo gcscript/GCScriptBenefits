@@ -1,6 +1,4 @@
-﻿using GCScript.DataBase;
-using GCScript.DataBase.Controllers;
-using GCScript.DataBase.Models;
+﻿using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models.Management;
 using System;
@@ -65,48 +63,48 @@ public partial class frm_ManagementWizard : DevExpress.XtraEditors.XtraForm
 
     private async void frm_ManagementImportData_Load(object sender, EventArgs e)
     {
-        try
-        {
-            Settings.ManagementWizardSettings = null;
-            ssm_Main.ShowWaitForm();
-            ssm_Main.SetWaitFormDescription("Carregando Dados...");
+        //try
+        //{
+        //    Settings.ManagementWizardSettings = null;
+        //    ssm_Main.ShowWaitForm();
+        //    ssm_Main.SetWaitFormDescription("Carregando Dados...");
 
-            SettingsDB.MongoDbUsername = "";
-            SettingsDB.MongoDbPassword = "";
-            dte_Home_Start.DateTime = DateTime.Now;
-            dte_Home_End.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
+        //    SettingsDB.MongoDbUsername = "";
+        //    SettingsDB.MongoDbPassword = "";
+        //    dte_Home_Start.DateTime = DateTime.Now;
+        //    dte_Home_End.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
 
-            OperatorController operatorController = new();
-            Operators = await operatorController.GetAllAsync();
-            Operators = Operators.OrderBy(x => x.UF).ThenBy(x => x.Name).ToList();
+        //    OperatorDataAccess oda = new();
+        //    Operators = await oda.GetAllAsync();
+        //    Operators = Operators.OrderBy(x => x.UF).ThenBy(x => x.Name).ToList();
 
-            CompanyController companyController = new();
-            Companies = await companyController.GetAllAsync();
-            Companies = Companies.OrderBy(x => x.Name).ToList();
-            foreach (var comp in Companies)
-            {
-                cmb_Home_Company.Properties.Items.Add(comp.Name);
-            }
+        //    CompanyDataAccess cda = new();
+        //    Companies = await cda.GetAllAsync();
+        //    Companies = Companies.OrderBy(x => x.Name).ToList();
+        //    foreach (var comp in Companies)
+        //    {
+        //        cmb_Home_Company.Properties.Items.Add(comp.Name);
+        //    }
 
-            if (cmb_Home_Company.Properties.Items.Count > 0)
-            {
-                cmb_Home_Company.SelectedIndex = 0;
-                btn_Home_Next.Enabled = true;
-                cmb_Home_Company.Focus();
-            }
-            else
-            {
-                btn_Home_Next.Enabled = false;
-            }
-        }
-        catch
-        {
-            try { ssm_Main.CloseWaitForm(); } catch { }
-        }
-        finally
-        {
-            try { ssm_Main.CloseWaitForm(); } catch { }
-        }
+        //    if (cmb_Home_Company.Properties.Items.Count > 0)
+        //    {
+        //        cmb_Home_Company.SelectedIndex = 0;
+        //        btn_Home_Next.Enabled = true;
+        //        cmb_Home_Company.Focus();
+        //    }
+        //    else
+        //    {
+        //        btn_Home_Next.Enabled = false;
+        //    }
+        //}
+        //catch
+        //{
+        //    try { ssm_Main.CloseWaitForm(); } catch { }
+        //}
+        //finally
+        //{
+        //    try { ssm_Main.CloseWaitForm(); } catch { }
+        //}
     }
 
     private void dte_Home_Start_EditValueChanged(object sender, EventArgs e)
@@ -148,7 +146,7 @@ public partial class frm_ManagementWizard : DevExpress.XtraEditors.XtraForm
 
             foreach (var op in Operators)
             {
-                cmb_ImportData_OperatorForAll.Properties.Items.Add($"{op.UF} - {op.Name}");
+                cmb_ImportData_OperatorForAll.Properties.Items.Add($"{op.Uf} - {op.Name}");
             }
 
             if (cmb_ImportData_OperatorForAll.Properties.Items.Count > 0)

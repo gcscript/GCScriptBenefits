@@ -118,17 +118,14 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="capital" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\capital.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\refresh.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="on" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\on.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="gcscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gcscript.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="l2r" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\l2r.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="gcscript_benefits" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gcscript_benefits.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="copy" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\copy.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
@@ -142,16 +139,10 @@
   <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\save.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="refresh" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\refresh.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
   <data name="return" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\return.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
-  <data name="logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logo.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
-  </data>
-  <data name="gcscript_benefits" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\gcscript_benefits.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
+  <data name="gcscript" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\gcscript1.svg;DevExpress.Utils.Svg.SvgImage, DevExpress.Data.v23.1, Version=23.1.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
 </root>

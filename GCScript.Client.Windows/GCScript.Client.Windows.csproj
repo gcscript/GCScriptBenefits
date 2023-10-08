@@ -13,14 +13,19 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Consulta.CNPJ" Version="1.0.1" />
+    <PackageReference Include="Cpf.Cnpj" Version="1.0.2" />
     <PackageReference Include="DevExpress.Win.Design" Version="23.1.4" />
     <PackageReference Include="NHotkey.WindowsForms" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GCScript.DataBase\GCScript.DataBase.csproj" />
+    <ProjectReference Include="..\GCScript.Automate\GCScript.Automate.csproj" />
+    <ProjectReference Include="..\GCScript.Core\GCScript.Core.csproj" />
+    <ProjectReference Include="..\GCScript.Database.MongoDB\GCScript.Database.MongoDB.csproj" />
     <ProjectReference Include="..\GCScript.Operator\GCScript.Operator.csproj" />
     <ProjectReference Include="..\GCScript.Shared\GCScript.Shared.csproj" />
+    <ProjectReference Include="..\GCScript.Test\GCScript.Test.csproj" />
   </ItemGroup>
 
   <ItemGroup>

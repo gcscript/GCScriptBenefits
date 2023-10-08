@@ -87,6 +87,17 @@ public static class Tools
         return text;
     }
 
+    public static string ProcessTextDefault(string? text)
+    {
+        if (text == null) return "";
+        return ProcessText(text,
+                           true,
+                           ETextTrim.Trim,
+                           ETextCase.ToUpper,
+                           ETextType.None,
+                           ETextRemoveSpaces.Duplicate);
+    }
+
     public static string RemoveAccents(string text)
     {
         if (string.IsNullOrWhiteSpace(text)) { return ""; }

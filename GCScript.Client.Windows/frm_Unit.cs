@@ -1,16 +1,21 @@
-﻿using DevExpress.XtraEditors;
-using GCScript.DataBase.Controllers;
-using GCScript.DataBase.Models;
+﻿using Consulta.CNPJ.Services;
+using CpfCnpjLibrary;
+using DevExpress.XtraEditors;
+using GCScript.Database.MongoDB;
+using GCScript.Database.MongoDB.DataAccess;
+using GCScript.Database.MongoDB.Models;
+using GCScript.Shared;
+using GCScript.Shared.Models;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GCScript.Client.Windows;
 
 public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
 {
+    public string LastCnpj = string.Empty;
     public frm_Unit()
     {
         InitializeComponent();
@@ -18,207 +23,194 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
 
     private async void frm_Unit_Load(object sender, EventArgs e)
     {
-        OperatorController operatorController = new();
-        var operators = await operatorController.GetAllAsync();
-        operators = operators.OrderBy(x => x.UF).ThenBy(x => x.Name).ToList();
-        foreach (var op in operators)
+        try
         {
-            cmb_Operators.Properties.Items.Add($"{op.UF} - {op.Name}");
-        }
+            ssm_Main.ShowWaitForm();
+            ssm_Main.SetWaitFormDescription("Carregando...");
+            OperatorDataAccess oda = new();
+            var operators = await oda.GetAllAsync();
+            operators = operators.OrderBy(x => x.Uf).ThenBy(x => x.Name).ToList();
+            foreach (var op in operators)
+            {
+                cmb_Operators.Properties.Items.Add($"{op.Uf} - {op.Name}");
+            }
 
-        if (cmb_Operators.Properties.Items.Count > 0)
-        {
-            cmb_Operators.SelectedIndex = 0;
-        }
+            if (cmb_Operators.Properties.Items.Count > 0)
+            {
+                cmb_Operators.SelectedIndex = 0;
+            }
+            else
+            {
+                throw new Exception("Erro ao obter lista de operadoras!");
+            }
 
-        CompanyController companyController = new();
-        var companies = await companyController.GetAllAsync();
-        companies = companies.OrderBy(x => x.Name).ToList();
-        foreach (var comp in companies)
-        {
-            cmb_Companies.Properties.Items.Add(comp.Name);
-        }
+            CompanyDataAccess cda = new();
+            var companies = await cda.GetAllAsync();
+            companies = companies.OrderBy(x => x.Name).ToList();
+            foreach (var comp in companies)
+            {
+                cmb_Companies.Properties.Items.Add(comp.Name);
+            }
 
-        if (cmb_Companies.Properties.Items.Count > 0)
+            if (cmb_Companies.Properties.Items.Count > 0)
+            {
+                cmb_Companies.SelectedIndex = 0;
+            }
+            else
+            {
+                throw new Exception("Erro ao obter lista de empresas!");
+            }
+
+            try { ssm_Main.CloseWaitForm(); } catch { }
+
+            cmb_Operators.Focus();
+        }
+        catch (Exception ex)
         {
-            cmb_Companies.SelectedIndex = 0;
+            XtraMessageBox.Show($"{ex.Message}", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            try { Close(); } catch { }
+            return;
+        }
+        finally
+        {
+            try { ssm_Main.CloseWaitForm(); } catch { }
         }
     }
 
     private async void btn_Create_Click(object sender, EventArgs e)
     {
-        //await Create();
-        await ManyCreate();
-    }
-
-    private async Task Create()
-    {
-        var operatorUF = cmb_Operators.Text.Substring(0, 2);
-        var operatorName = cmb_Operators.Text.Substring(5).Trim();
-        var companyName = cmb_Companies.Text.Trim();
-        var unitName = txt_Name.Text.Trim();
-        var unitUsername = txt_Username.Text.Trim();
-        var unitPassword = txt_Password.Text.Trim();
-        var unitCNPJ = Regex.Replace(txt_CNPJ.Text.Trim(), "[^0-9]", "");
-        var unitObservations = mmo_Observations.Text.Trim();
-
-        if (string.IsNullOrEmpty(operatorUF) || string.IsNullOrEmpty(operatorName))
+        try
         {
-            XtraMessageBox.Show("Selecione uma operadora!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            cmb_Operators.Select();
-            return;
-        }
+            UnitDataAccess unitDataAccess = new();
+            MUnit unit = new()
+            {
+                Uf = cmb_Operators.Text[..2],
+                Operator = cmb_Operators.Text[5..].Trim(),
+                Company = cmb_Companies.Text.Trim(),
+                Name = txt_Name.Text.Trim(),
+                Username = txt_Username.Text.Trim(),
+                Password = txt_Password.Text.Trim(),
+                Cnpj = chk_DoNotInformCnpj.Checked ? "00000000000000" : txt_CNPJ.Text.Trim()
+            };
 
-        if (string.IsNullOrEmpty(companyName))
-        {
-            XtraMessageBox.Show("Selecione uma empresa!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            cmb_Companies.Select();
-            return;
-        }
+            if (string.IsNullOrWhiteSpace(unit.Name) || unit.Name.Length < 2)
+            {
+                XtraMessageBox.Show("O nome da unidade deve ter no mínimo 2 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Name.Select();
+                return;
+            }
 
-        if (string.IsNullOrEmpty(unitName) || unitName.Length < 2)
-        {
-            XtraMessageBox.Show("O nome da unidade deve ter no mínimo 2 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            txt_Name.Select();
-            return;
-        }
+            if (string.IsNullOrWhiteSpace(unit.Username) || unit.Username.Length < 3)
+            {
+                XtraMessageBox.Show("O nome de usuário deve ter no mínimo 3 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Username.Select();
+                return;
+            }
 
-        if (string.IsNullOrEmpty(unitUsername) || unitUsername.Length < 3)
-        {
-            XtraMessageBox.Show("O nome de usuário deve ter no mínimo 3 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            txt_Username.Select();
-            return;
-        }
+            if (string.IsNullOrWhiteSpace(unit.Password) || unit.Password.Length < 3)
+            {
+                XtraMessageBox.Show("A senha deve ter no mínimo 3 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txt_Password.Select();
+                return;
+            }
 
-        if (string.IsNullOrEmpty(unitPassword) || unitPassword.Length < 3)
-        {
-            XtraMessageBox.Show("A senha deve ter no mínimo 3 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            txt_Password.Select();
-            return;
-        }
+            if (!chk_DoNotInformCnpj.Checked)
+            {
+                if (!Cnpj.Validar(unit.Cnpj))
+                {
+                    XtraMessageBox.Show("Informe um CNPJ válido!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txt_CNPJ.Select();
+                    return;
+                }
+            }
 
-        if (string.IsNullOrEmpty(unitCNPJ) || unitCNPJ.Length < 14)
-        {
-            XtraMessageBox.Show("O CNPJ deve ter 14 caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            txt_CNPJ.Select();
-            return;
-        }
+            if (cmb_Operators.SelectedIndex == 0)
+            {
+                if (XtraMessageBox.Show($"Você tem certeza que deseja criar {unit.Name} na operadora {unit.Uf} - {unit.Operator}?",
+                                       "GCScript Benefits",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Question,
+                                       MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    cmb_Operators.Select();
+                    return;
+                }
+            }
+            if (cmb_Companies.SelectedIndex == 0)
+            {
+                if (XtraMessageBox.Show($"Você tem certeza que deseja criar {unit.Name} na empresa {unit.Company}?",
+                                       "GCScript Benefits",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Question,
+                                       MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    cmb_Companies.Select();
+                    return;
+                }
+            }
 
-        if (string.IsNullOrEmpty(unitObservations)) { unitObservations = null; }
+            if (await new OperatorDataAccess().GetAsync(unit.Uf, unit.Operator) is null)
+            {
+                XtraMessageBox.Show($"A operadora {unit.Uf} - {unit.Operator} não existe.\nReinicie a aplicação e tente novamente!",
+                                       "GCScript Benefits",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Error);
+                return;
+            }
 
-        OperatorController operatorController = new();
-        var op = await operatorController.GetAsync(operatorUF, operatorName);
+            if (await new CompanyDataAccess().GetAsync(unit.Company) is null)
+            {
+                XtraMessageBox.Show($"A empresa {unit.Company} não existe.\nReinicie a aplicação e tente novamente!",
+                                       "GCScript Benefits",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Error);
+                return;
+            }
 
-        if (op is null)
-        {
-            XtraMessageBox.Show($"A operadora {operatorName} não foi encontrada!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
+            ssm_Main.ShowWaitForm();
+            ssm_Main.SetWaitFormDescription("Cadastrando...");
 
-        CompanyController companyController = new();
-        var co = await companyController.GetAsync(companyName);
-
-        if (co is null)
-        {
-            XtraMessageBox.Show($"A empresa {companyName} não foi encontrada!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            return;
-        }
-
-        MUnit unit = new()
-        {
-            Name = unitName,
-            Username = unitUsername,
-            Password = unitPassword,
-            CNPJ = unitCNPJ,
-            Observations = unitObservations,
-            OperatorId = op.Id,
-            CompanyId = co.Id,
-        };
-
-        UnitController us = new();
-        var result = await us.InsertOneAsync(unit);
-        if (result)
-        {
-            XtraMessageBox.Show($"A unidade {unitName} foi criada com sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            txt_Name.Text = string.Empty;
+            if (await unitDataAccess.InsertOneAsync(unit))
+            {
+                await DiscordWebhook.SendMessage(Settings.DiscordWebhookUrl, new MDiscordWebhook() { Username = $"GCScript Benefits", Content = $"**{SettingsDB.MongoDbUsername}** cadastrou a unidade **{unit.Uf}** > **{unit.Operator}** > **{unit.Company}** > **{unit.Name}** [{unit.Id}]" });
+                XtraMessageBox.Show($"A unidade {unit.Name} foi criada com sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else { throw new Exception(); }
+            try { ssm_Main.CloseWaitForm(); } catch { }
 
             if (chk_ClearFields.Checked)
             {
+                txt_Name.Text = string.Empty;
                 txt_Username.Text = string.Empty;
                 txt_Password.Text = string.Empty;
                 txt_CNPJ.Text = string.Empty;
-                mmo_Observations.Text = string.Empty;
             }
 
             txt_Name.Select();
         }
-        else
+        catch
         {
-            XtraMessageBox.Show($"Erro ao criar a unidade {unitName}!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            XtraMessageBox.Show($"Não foi possível criar a unidade!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        finally
+        {
+            try { ssm_Main.CloseWaitForm(); } catch { }
         }
     }
 
-    private async void txt_Name_KeyPress(object sender, KeyPressEventArgs e)
+    private void txt_Name_KeyPress(object sender, KeyPressEventArgs e)
     {
-        if (e.KeyChar == (char)Keys.Enter)
+        if (!char.IsLetterOrDigit(e.KeyChar)
+            && e.KeyChar != 8 // Backspace
+            && e.KeyChar != 32 // Space
+            && e.KeyChar != 40 // (
+            && e.KeyChar != 41 // )
+            && e.KeyChar != 45 // -
+            && e.KeyChar != 46 // .
+            && !char.IsControl(e.KeyChar))
         {
-            await Create();
+            e.Handled = true; // Cancela a entrada do caractere
         }
-        else if (e.KeyChar == 22)
-        {
-            var cb = Clipboard.GetText();
-            var itens = cb.Split('\t');
-            if (itens.Length == 4)
-            {
-                txt_Username.Text = itens[1].Trim();
-                txt_Password.Text = itens[2].Trim();
-                txt_CNPJ.Text = itens[3].Trim();
-                await Task.Delay(200);
-                txt_Name.Text = itens[0].Trim();
-                btn_Create.Select();
-            }
-            else if (itens.Length == 5)
-            {
-                txt_Username.Text = itens[1].Trim();
-                txt_Password.Text = itens[2].Trim();
-                txt_CNPJ.Text = itens[3].Trim();
-                mmo_Observations.Text = itens[4].Trim();
-                await Task.Delay(200);
-                txt_Name.Text = itens[0].Trim();
-                btn_Create.Select();
-            }
-
-        }
-    }
-
-    private async Task ManyCreate()
-    {
-        var cb = Clipboard.GetText().Trim();
-        var lines = cb.Split('\n');
-        foreach (var line in lines)
-        {
-            var itens = line.Split('\t');
-
-            if (itens.Length != 4)
-            {
-                XtraMessageBox.Show($"O seguinte item não pode ser inserido:\n{line}", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-        }
-
-        foreach (var line in lines)
-        {
-            var itens = line.Split('\t');
-
-            txt_Name.Text = itens[0].Trim();
-            txt_Username.Text = itens[1].Trim();
-            txt_Password.Text = itens[2].Trim();
-            txt_CNPJ.Text = itens[3].Trim();
-            //await Task.Delay(200);
-            await Create();
-        }
-
-        XtraMessageBox.Show($"Foram criadas {lines.Length} unidades!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
 
     private void txt_Username_KeyPress(object sender, KeyPressEventArgs e)
@@ -238,20 +230,57 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
 
     }
 
-    private void txt_CNPJ_KeyPress(object sender, KeyPressEventArgs e)
+
+    private void txt_Name_Validating(object sender, System.ComponentModel.CancelEventArgs e)
     {
-        if (e.KeyChar == 22 || e.KeyChar == (char)Keys.Enter)
+        txt_Name.Text = Tools.ProcessTextDefault(Regex.Replace(Tools.ProcessTextDefault(txt_Name.Text), @"[^A-Z0-9\s\(\)-]", ""));
+    }
+
+    private void chk_DoNotInformCnpj_CheckedChanged(object sender, EventArgs e)
+    {
+        if (!chk_DoNotInformCnpj.Checked)
         {
-            mmo_Observations.Select();
+            txt_CNPJ.Enabled = true;
+            btn_SearchCnpj.Enabled = true;
+        }
+        else
+        {
+            btn_SearchCnpj.Enabled = false;
+            txt_CNPJ.Text = ""; txt_CNPJ.Enabled = false;
         }
     }
 
-    private void mmo_Observations_KeyPress(object sender, KeyPressEventArgs e)
+    private void txt_CNPJ_Leave(object sender, EventArgs e)
     {
-        if (e.KeyChar == 22)
+        if (Cnpj.Validar(txt_CNPJ.Text))
         {
-            btn_Create.Select();
+            var cnpj = Cnpj.FormatarComPontuacao(txt_CNPJ.Text);
+            txt_CNPJ.Text = cnpj;
         }
+    }
 
+    private void btn_SearchCnpj_Click(object sender, EventArgs e)
+    {
+        string cnpj = txt_CNPJ.Text;
+        if (Cnpj.Validar(cnpj))
+        {
+            try
+            {
+                ssm_Main.ShowWaitForm();
+                ssm_Main.SetWaitFormDescription("Consultando CNPJ...");
+                var result = new CNPJService().ConsultarCPNJ(Cnpj.FormatarSemPontuacao(cnpj));
+                try { ssm_Main.CloseWaitForm(); } catch { }
+
+                if (result != null)
+                {
+                    txt_Name.Text = result.Nome.Trim();
+                    txt_Name.Focus();
+                }
+            }
+            finally
+            {
+                try { ssm_Main.CloseWaitForm(); } catch { }
+            }
+        }
     }
 }
