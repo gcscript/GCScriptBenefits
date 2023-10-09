@@ -25,7 +25,6 @@
     <ProjectReference Include="..\GCScript.Database.MongoDB\GCScript.Database.MongoDB.csproj" />
     <ProjectReference Include="..\GCScript.Operator\GCScript.Operator.csproj" />
     <ProjectReference Include="..\GCScript.Shared\GCScript.Shared.csproj" />
-    <ProjectReference Include="..\GCScript.Test\GCScript.Test.csproj" />
   </ItemGroup>
 
   <ItemGroup>
