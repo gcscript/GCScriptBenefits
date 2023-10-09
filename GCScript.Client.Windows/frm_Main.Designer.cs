@@ -43,6 +43,7 @@
             btn_LogIn = new DevExpress.XtraEditors.SimpleButton();
             txt_Password = new DevExpress.XtraEditors.TextEdit();
             lbl_Password = new DevExpress.XtraEditors.LabelControl();
+            lbl_Version = new DevExpress.XtraEditors.LabelControl();
             nvp_Register = new DevExpress.XtraBars.Navigation.NavigationPage();
             tbp_Register = new DevExpress.Utils.Layout.TablePanel();
             labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -167,10 +168,11 @@
             tablePanel3.Controls.Add(btn_LogIn);
             tablePanel3.Controls.Add(txt_Password);
             tablePanel3.Controls.Add(lbl_Password);
+            tablePanel3.Controls.Add(lbl_Version);
             tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             tablePanel3.Location = new System.Drawing.Point(0, 0);
             tablePanel3.Name = "tablePanel3";
-            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
+            tablePanel3.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.AutoSize, 26F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F), new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Absolute, 26F) });
             tablePanel3.Size = new System.Drawing.Size(382, 489);
             tablePanel3.TabIndex = 3;
             // 
@@ -180,14 +182,15 @@
             lbl_Register.Appearance.Options.UseFont = true;
             lbl_Register.Appearance.Options.UseTextOptions = true;
             lbl_Register.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            lbl_Register.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            tablePanel3.SetColumn(lbl_Register, 2);
+            lbl_Register.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
+            tablePanel3.SetColumn(lbl_Register, 1);
             lbl_Register.Cursor = System.Windows.Forms.Cursors.Hand;
             lbl_Register.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Register.Location = new System.Drawing.Point(294, 466);
+            lbl_Register.Location = new System.Drawing.Point(91, 290);
+            lbl_Register.Margin = new System.Windows.Forms.Padding(0, 3, 0, 0);
             lbl_Register.Name = "lbl_Register";
-            tablePanel3.SetRow(lbl_Register, 8);
-            lbl_Register.Size = new System.Drawing.Size(85, 20);
+            tablePanel3.SetRow(lbl_Register, 7);
+            lbl_Register.Size = new System.Drawing.Size(200, 13);
             lbl_Register.TabIndex = 8;
             lbl_Register.Text = "Register";
             lbl_Register.Click += lbl_Register_Click;
@@ -201,7 +204,7 @@
             labelControl3.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             tablePanel3.SetColumn(labelControl3, 1);
             labelControl3.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl3.Location = new System.Drawing.Point(94, 171);
+            labelControl3.Location = new System.Drawing.Point(94, 163);
             labelControl3.Name = "labelControl3";
             tablePanel3.SetRow(labelControl3, 1);
             labelControl3.Size = new System.Drawing.Size(194, 20);
@@ -213,7 +216,7 @@
             lbl_Username.Appearance.Options.UseFont = true;
             tablePanel3.SetColumn(lbl_Username, 1);
             lbl_Username.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Username.Location = new System.Drawing.Point(92, 195);
+            lbl_Username.Location = new System.Drawing.Point(92, 187);
             lbl_Username.Margin = new System.Windows.Forms.Padding(1);
             lbl_Username.Name = "lbl_Username";
             tablePanel3.SetRow(lbl_Username, 2);
@@ -223,14 +226,14 @@
             // 
             // btn_Management
             // 
-            tablePanel3.SetColumn(btn_Management, 0);
+            tablePanel3.SetColumn(btn_Management, 1);
             btn_Management.Dock = System.Windows.Forms.DockStyle.Fill;
             btn_Management.Enabled = false;
-            btn_Management.Location = new System.Drawing.Point(1, 464);
+            btn_Management.Location = new System.Drawing.Point(92, 464);
             btn_Management.Margin = new System.Windows.Forms.Padding(1);
             btn_Management.Name = "btn_Management";
-            tablePanel3.SetRow(btn_Management, 8);
-            btn_Management.Size = new System.Drawing.Size(89, 24);
+            tablePanel3.SetRow(btn_Management, 9);
+            btn_Management.Size = new System.Drawing.Size(198, 24);
             btn_Management.TabIndex = 6;
             btn_Management.Text = "Management";
             btn_Management.Visible = false;
@@ -241,7 +244,7 @@
             tablePanel3.SetColumn(txt_Username, 1);
             txt_Username.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Username.EditValue = "";
-            txt_Username.Location = new System.Drawing.Point(92, 210);
+            txt_Username.Location = new System.Drawing.Point(92, 202);
             txt_Username.Margin = new System.Windows.Forms.Padding(1);
             txt_Username.Name = "txt_Username";
             txt_Username.Properties.Appearance.Options.UseFont = true;
@@ -258,7 +261,7 @@
             // 
             tablePanel3.SetColumn(btn_LogIn, 1);
             btn_LogIn.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_LogIn.Location = new System.Drawing.Point(92, 271);
+            btn_LogIn.Location = new System.Drawing.Point(92, 263);
             btn_LogIn.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             btn_LogIn.Name = "btn_LogIn";
             tablePanel3.SetRow(btn_LogIn, 6);
@@ -272,7 +275,7 @@
             tablePanel3.SetColumn(txt_Password, 1);
             txt_Password.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Password.EditValue = "";
-            txt_Password.Location = new System.Drawing.Point(92, 247);
+            txt_Password.Location = new System.Drawing.Point(92, 239);
             txt_Password.Margin = new System.Windows.Forms.Padding(1);
             txt_Password.Name = "txt_Password";
             txt_Password.Properties.Appearance.Options.UseFont = true;
@@ -290,13 +293,28 @@
             lbl_Password.Appearance.Options.UseFont = true;
             tablePanel3.SetColumn(lbl_Password, 1);
             lbl_Password.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Password.Location = new System.Drawing.Point(92, 232);
+            lbl_Password.Location = new System.Drawing.Point(92, 224);
             lbl_Password.Margin = new System.Windows.Forms.Padding(1);
             lbl_Password.Name = "lbl_Password";
             tablePanel3.SetRow(lbl_Password, 4);
             lbl_Password.Size = new System.Drawing.Size(198, 13);
             lbl_Password.TabIndex = 5;
             lbl_Password.Text = "Password";
+            // 
+            // lbl_Version
+            // 
+            lbl_Version.Appearance.Options.UseFont = true;
+            lbl_Version.Appearance.Options.UseTextOptions = true;
+            lbl_Version.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            lbl_Version.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
+            tablePanel3.SetColumn(lbl_Version, 2);
+            lbl_Version.Dock = System.Windows.Forms.DockStyle.Fill;
+            lbl_Version.Location = new System.Drawing.Point(294, 466);
+            lbl_Version.Name = "lbl_Version";
+            tablePanel3.SetRow(lbl_Version, 9);
+            lbl_Version.Size = new System.Drawing.Size(85, 20);
+            lbl_Version.TabIndex = 5;
+            lbl_Version.Text = "0.0.0";
             // 
             // nvp_Register
             // 
@@ -412,7 +430,7 @@
             labelControl2.Margin = new System.Windows.Forms.Padding(1);
             labelControl2.Name = "labelControl2";
             tbp_Register.SetRow(labelControl2, 4);
-            labelControl2.Size = new System.Drawing.Size(46, 13);
+            labelControl2.Size = new System.Drawing.Size(48, 13);
             labelControl2.TabIndex = 5;
             labelControl2.Text = "Password";
             // 
@@ -478,7 +496,7 @@
             tlp_Main.Controls.Add(pnl_Container, 0, 0);
             tlp_Main.Controls.Add(tablePanel1, 0, 1);
             tlp_Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            tlp_Main.Location = new System.Drawing.Point(54, 2);
+            tlp_Main.Location = new System.Drawing.Point(52, 2);
             tlp_Main.Margin = new System.Windows.Forms.Padding(0);
             tlp_Main.Name = "tlp_Main";
             tlp_Main.RowCount = 2;
@@ -486,7 +504,7 @@
             tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             tlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            tlp_Main.Size = new System.Drawing.Size(742, 514);
+            tlp_Main.Size = new System.Drawing.Size(744, 514);
             tlp_Main.TabIndex = 0;
             // 
             // pnl_Container
@@ -496,7 +514,7 @@
             pnl_Container.Location = new System.Drawing.Point(0, 0);
             pnl_Container.Margin = new System.Windows.Forms.Padding(0);
             pnl_Container.Name = "pnl_Container";
-            pnl_Container.Size = new System.Drawing.Size(742, 494);
+            pnl_Container.Size = new System.Drawing.Size(744, 494);
             pnl_Container.TabIndex = 1;
             // 
             // tablePanel1
@@ -512,7 +530,7 @@
             tablePanel1.Margin = new System.Windows.Forms.Padding(0);
             tablePanel1.Name = "tablePanel1";
             tablePanel1.Rows.AddRange(new DevExpress.Utils.Layout.TablePanelRow[] { new DevExpress.Utils.Layout.TablePanelRow(DevExpress.Utils.Layout.TablePanelEntityStyle.Relative, 100F) });
-            tablePanel1.Size = new System.Drawing.Size(742, 20);
+            tablePanel1.Size = new System.Drawing.Size(744, 20);
             tablePanel1.TabIndex = 2;
             // 
             // svgImageBox1
@@ -536,7 +554,7 @@
             labelControl6.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Center;
             tablePanel1.SetColumn(labelControl6, 3);
             labelControl6.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl6.Location = new System.Drawing.Point(572, 2);
+            labelControl6.Location = new System.Drawing.Point(574, 2);
             labelControl6.Margin = new System.Windows.Forms.Padding(0, 2, 5, 0);
             labelControl6.Name = "labelControl6";
             tablePanel1.SetRow(labelControl6, 0);
@@ -548,7 +566,7 @@
             // 
             tablePanel1.SetColumn(svg_Shortcut, 4);
             svg_Shortcut.Dock = System.Windows.Forms.DockStyle.Fill;
-            svg_Shortcut.Location = new System.Drawing.Point(728, 1);
+            svg_Shortcut.Location = new System.Drawing.Point(730, 1);
             svg_Shortcut.Margin = new System.Windows.Forms.Padding(1, 1, 5, 1);
             svg_Shortcut.Name = "svg_Shortcut";
             tablePanel1.SetRow(svg_Shortcut, 0);
@@ -568,7 +586,7 @@
             lbl_Credits.Margin = new System.Windows.Forms.Padding(0);
             lbl_Credits.Name = "lbl_Credits";
             tablePanel1.SetRow(lbl_Credits, 0);
-            lbl_Credits.Size = new System.Drawing.Size(402, 20);
+            lbl_Credits.Size = new System.Drawing.Size(404, 20);
             lbl_Credits.TabIndex = 0;
             lbl_Credits.Text = "Direitos Reservados © 2023 - GCScript";
             // 
@@ -595,7 +613,7 @@
             acc_Sidebar.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             acc_Sidebar.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Fluent;
             acc_Sidebar.ShowFilterControl = DevExpress.XtraBars.Navigation.ShowFilterControl.Always;
-            acc_Sidebar.Size = new System.Drawing.Size(52, 514);
+            acc_Sidebar.Size = new System.Drawing.Size(50, 514);
             acc_Sidebar.TabIndex = 1;
             // 
             // acce_Data
@@ -634,7 +652,6 @@
             ClientSize = new System.Drawing.Size(798, 518);
             Controls.Add(pnl_Login);
             Controls.Add(pnl_Main);
-            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             IconOptions.SvgImage = Properties.Resources.gcscript_benefits;
             MinimumSize = new System.Drawing.Size(800, 500);
             Name = "frm_Main";
@@ -716,5 +733,6 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txt_RegisterConfirmPassword;
         private DevExpress.XtraEditors.LabelControl lbl_Register;
+        private DevExpress.XtraEditors.LabelControl lbl_Version;
     }
 }

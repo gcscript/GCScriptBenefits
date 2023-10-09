@@ -90,7 +90,8 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
                 Name = txt_Name.Text.Trim(),
                 Username = txt_Username.Text.Trim(),
                 Password = txt_Password.Text.Trim(),
-                Cnpj = chk_DoNotInformCnpj.Checked ? "00000000000000" : txt_CNPJ.Text.Trim()
+                Cnpj = chk_DoNotInformCnpj.Checked ? "00000000000000" : txt_CNPJ.Text.Trim(),
+                CreatedBy = SettingsDB.MongoDbUsername
             };
 
             if (string.IsNullOrWhiteSpace(unit.Name) || unit.Name.Length < 2)
@@ -124,6 +125,18 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
                 }
             }
 
+            if (chk_DoNotInformCnpj.Checked && cmb_Operators.Text.Contains("RJ - RIOCARD"))
+            {
+                if (XtraMessageBox.Show($"Você não poderar gerar pedidos se não fornecer um CNPJ.\nDeseja continuar?",
+                                       "GCScript Benefits",
+                                       MessageBoxButtons.YesNo,
+                                       MessageBoxIcon.Warning,
+                                       MessageBoxDefaultButton.Button2) == DialogResult.No)
+                {
+                    return;
+                }
+            }
+
             if (cmb_Operators.SelectedIndex == 0)
             {
                 if (XtraMessageBox.Show($"Você tem certeza que deseja criar {unit.Name} na operadora {unit.Uf} - {unit.Operator}?",
@@ -136,6 +149,7 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
                     return;
                 }
             }
+
             if (cmb_Companies.SelectedIndex == 0)
             {
                 if (XtraMessageBox.Show($"Você tem certeza que deseja criar {unit.Name} na empresa {unit.Company}?",
@@ -169,13 +183,26 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
 
             ssm_Main.ShowWaitForm();
             ssm_Main.SetWaitFormDescription("Cadastrando...");
-
-            if (await unitDataAccess.InsertOneAsync(unit))
+            var insert = await unitDataAccess.InsertOneAsync(unit);
+            if (insert.Result)
             {
+                try { ssm_Main.CloseWaitForm(); } catch { }
                 await DiscordWebhook.SendMessage(Settings.DiscordWebhookUrl, new MDiscordWebhook() { Username = $"GCScript Benefits", Content = $"**{SettingsDB.MongoDbUsername}** cadastrou a unidade **{unit.Uf}** > **{unit.Operator}** > **{unit.Company}** > **{unit.Name}** [{unit.Id}]" });
                 XtraMessageBox.Show($"A unidade {unit.Name} foi criada com sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            else { throw new Exception(); }
+            else
+            {
+                try { ssm_Main.CloseWaitForm(); } catch { }
+                if (insert.Message.Contains("user is not allowed", StringComparison.OrdinalIgnoreCase))
+                {
+                    XtraMessageBox.Show($"Você não tem permissão para cadastrar unidades!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    throw new Exception();
+                }
+            }
             try { ssm_Main.CloseWaitForm(); } catch { }
 
             if (chk_ClearFields.Checked)
@@ -190,6 +217,7 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
         }
         catch
         {
+            try { ssm_Main.CloseWaitForm(); } catch { }
             XtraMessageBox.Show($"Não foi possível criar a unidade!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         finally
@@ -238,15 +266,15 @@ public partial class frm_Unit : DevExpress.XtraEditors.XtraForm
 
     private void chk_DoNotInformCnpj_CheckedChanged(object sender, EventArgs e)
     {
-        if (!chk_DoNotInformCnpj.Checked)
-        {
-            txt_CNPJ.Enabled = true;
-            btn_SearchCnpj.Enabled = true;
-        }
-        else
+        if (chk_DoNotInformCnpj.Checked)
         {
             btn_SearchCnpj.Enabled = false;
             txt_CNPJ.Text = ""; txt_CNPJ.Enabled = false;
+        }
+        else
+        {
+            txt_CNPJ.Enabled = true;
+            btn_SearchCnpj.Enabled = true;
         }
     }
 

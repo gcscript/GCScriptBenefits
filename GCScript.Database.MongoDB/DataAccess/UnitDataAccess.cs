@@ -11,10 +11,10 @@ public class UnitDataAccess
     private readonly IMongoDBContext dbContext = new MongoDBContext();
     //private readonly IMongoClient mongoClient = new MongoClient(SettingsDB.MongoDbConnectionString);
 
-    public async Task<bool> InsertOneAsync(MUnit unit)
+    public async Task<(bool Result, string Message)> InsertOneAsync(MUnit unit)
     {
-        try { await dbContext.UnitCollection.InsertOneAsync(unit); return true; }
-        catch { return false; }
+        try { await dbContext.UnitCollection.InsertOneAsync(unit); return (true, ""); }
+        catch (Exception ex) { return (false, ex.Message); }
     }
 
     public async Task<bool> InsertManyAsync(List<MUnit> units)

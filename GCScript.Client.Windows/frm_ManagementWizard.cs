@@ -1,4 +1,6 @@
-﻿using GCScript.Database.MongoDB.Models;
+﻿using GCScript.Database.MongoDB;
+using GCScript.Database.MongoDB.DataAccess;
+using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models.Management;
 using System;
@@ -63,48 +65,43 @@ public partial class frm_ManagementWizard : DevExpress.XtraEditors.XtraForm
 
     private async void frm_ManagementImportData_Load(object sender, EventArgs e)
     {
-        //try
-        //{
-        //    Settings.ManagementWizardSettings = null;
-        //    ssm_Main.ShowWaitForm();
-        //    ssm_Main.SetWaitFormDescription("Carregando Dados...");
+        try
+        {
+            Settings.ManagementWizardSettings = null;
+            ssm_Main.ShowWaitForm();
+            ssm_Main.SetWaitFormDescription("Carregando Dados...");
 
-        //    SettingsDB.MongoDbUsername = "";
-        //    SettingsDB.MongoDbPassword = "";
-        //    dte_Home_Start.DateTime = DateTime.Now;
-        //    dte_Home_End.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
+            SettingsDB.MongoDbUsername = "";
+            SettingsDB.MongoDbPassword = "";
+            dte_Home_Start.DateTime = DateTime.Now;
+            dte_Home_End.DateTime = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1).AddMonths(1).AddDays(-1);
 
-        //    OperatorDataAccess oda = new();
-        //    Operators = await oda.GetAllAsync();
-        //    Operators = Operators.OrderBy(x => x.UF).ThenBy(x => x.Name).ToList();
+            Operators = await new OperatorDataAccess().GetAllAsync();
+            Operators = Operators.OrderBy(x => x.Uf).ThenBy(x => x.Name).ToList();
 
-        //    CompanyDataAccess cda = new();
-        //    Companies = await cda.GetAllAsync();
-        //    Companies = Companies.OrderBy(x => x.Name).ToList();
-        //    foreach (var comp in Companies)
-        //    {
-        //        cmb_Home_Company.Properties.Items.Add(comp.Name);
-        //    }
+            Companies = await new CompanyDataAccess().GetAllAsync();
+            Companies = Companies.OrderBy(x => x.Name).ToList();
+            foreach (var comp in Companies)
+            {
+                cmb_Home_Company.Properties.Items.Add(comp.Name);
+            }
 
-        //    if (cmb_Home_Company.Properties.Items.Count > 0)
-        //    {
-        //        cmb_Home_Company.SelectedIndex = 0;
-        //        btn_Home_Next.Enabled = true;
-        //        cmb_Home_Company.Focus();
-        //    }
-        //    else
-        //    {
-        //        btn_Home_Next.Enabled = false;
-        //    }
-        //}
-        //catch
-        //{
-        //    try { ssm_Main.CloseWaitForm(); } catch { }
-        //}
-        //finally
-        //{
-        //    try { ssm_Main.CloseWaitForm(); } catch { }
-        //}
+            if (cmb_Home_Company.Properties.Items.Count > 0)
+            {
+                cmb_Home_Company.SelectedIndex = 0;
+                btn_Home_Next.Enabled = true;
+                cmb_Home_Company.Focus();
+            }
+            else
+            {
+                btn_Home_Next.Enabled = false;
+            }
+        }
+        catch { }
+        finally
+        {
+            try { ssm_Main.CloseWaitForm(); } catch { }
+        }
     }
 
     private void dte_Home_Start_EditValueChanged(object sender, EventArgs e)

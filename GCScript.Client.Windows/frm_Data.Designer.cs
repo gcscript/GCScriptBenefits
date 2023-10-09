@@ -111,6 +111,8 @@
             btn_Refresh = new DevExpress.XtraBars.BarButtonItem();
             btn_Return = new DevExpress.XtraBars.BarButtonItem();
             nvp_Tests = new DevExpress.XtraBars.Navigation.NavigationPage();
+            btn_Create_Company = new DevExpress.XtraBars.BarButtonItem();
+            btn_Create_Operator = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)gc_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gv_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_LoadUnit).BeginInit();
@@ -811,9 +813,9 @@
             // rbbc_Main
             // 
             rbbc_Main.ExpandCollapseItem.Id = 0;
-            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1 });
+            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1, btn_Create_Company, btn_Create_Operator });
             rbbc_Main.Location = new System.Drawing.Point(0, 0);
-            rbbc_Main.MaxItemId = 7;
+            rbbc_Main.MaxItemId = 9;
             rbbc_Main.Name = "rbbc_Main";
             rbbc_Main.OptionsExpandCollapseMenu.EnableExpandCollapseMenu = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.OptionsExpandCollapseMenu.ShowQuickAccessToolbarItem = DevExpress.Utils.DefaultBoolean.False;
@@ -875,6 +877,8 @@
             // ribbonPageGroup1
             // 
             ribbonPageGroup1.ItemLinks.Add(btn_Create_Unit);
+            ribbonPageGroup1.ItemLinks.Add(btn_Create_Company);
+            ribbonPageGroup1.ItemLinks.Add(btn_Create_Operator);
             ribbonPageGroup1.Name = "ribbonPageGroup1";
             ribbonPageGroup1.Text = "Cadastro";
             // 
@@ -1203,6 +1207,22 @@
             nvp_Tests.Name = "nvp_Tests";
             nvp_Tests.Size = new System.Drawing.Size(844, 544);
             // 
+            // btn_Create_Company
+            // 
+            btn_Create_Company.Caption = "Empresa";
+            btn_Create_Company.Enabled = false;
+            btn_Create_Company.Id = 7;
+            btn_Create_Company.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Company.ImageOptions.SvgImage");
+            btn_Create_Company.Name = "btn_Create_Company";
+            // 
+            // btn_Create_Operator
+            // 
+            btn_Create_Operator.Caption = "Operadora";
+            btn_Create_Operator.Enabled = false;
+            btn_Create_Operator.Id = 8;
+            btn_Create_Operator.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Operator.ImageOptions.SvgImage");
+            btn_Create_Operator.Name = "btn_Create_Operator";
+            // 
             // frm_Data
             // 
             Appearance.Options.UseFont = true;
@@ -1341,5 +1361,7 @@
         private DevExpress.XtraEditors.MemoEdit mmo_CompanyNotes;
         private DevExpress.XtraEditors.SimpleButton btn_SaveCompanyNotes;
         private DevExpress.XtraEditors.LabelControl sdaasdasd;
+        private DevExpress.XtraBars.BarButtonItem btn_Create_Company;
+        private DevExpress.XtraBars.BarButtonItem btn_Create_Operator;
     }
 }
