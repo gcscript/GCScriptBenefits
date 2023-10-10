@@ -43,7 +43,6 @@
             btn_LogIn = new DevExpress.XtraEditors.SimpleButton();
             txt_Password = new DevExpress.XtraEditors.TextEdit();
             lbl_Password = new DevExpress.XtraEditors.LabelControl();
-            lbl_Version = new DevExpress.XtraEditors.LabelControl();
             nvp_Register = new DevExpress.XtraBars.Navigation.NavigationPage();
             tbp_Register = new DevExpress.Utils.Layout.TablePanel();
             labelControl4 = new DevExpress.XtraEditors.LabelControl();
@@ -168,7 +167,6 @@
             tablePanel3.Controls.Add(btn_LogIn);
             tablePanel3.Controls.Add(txt_Password);
             tablePanel3.Controls.Add(lbl_Password);
-            tablePanel3.Controls.Add(lbl_Version);
             tablePanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             tablePanel3.Location = new System.Drawing.Point(0, 0);
             tablePanel3.Name = "tablePanel3";
@@ -301,21 +299,6 @@
             lbl_Password.TabIndex = 5;
             lbl_Password.Text = "Password";
             // 
-            // lbl_Version
-            // 
-            lbl_Version.Appearance.Options.UseFont = true;
-            lbl_Version.Appearance.Options.UseTextOptions = true;
-            lbl_Version.Appearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
-            lbl_Version.Appearance.TextOptions.VAlignment = DevExpress.Utils.VertAlignment.Bottom;
-            tablePanel3.SetColumn(lbl_Version, 2);
-            lbl_Version.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Version.Location = new System.Drawing.Point(294, 466);
-            lbl_Version.Name = "lbl_Version";
-            tablePanel3.SetRow(lbl_Version, 9);
-            lbl_Version.Size = new System.Drawing.Size(85, 20);
-            lbl_Version.TabIndex = 5;
-            lbl_Version.Text = "0.0.0";
-            // 
             // nvp_Register
             // 
             nvp_Register.Caption = "navigationPage2";
@@ -352,7 +335,7 @@
             tbp_Register.SetColumn(labelControl4, 1);
             tbp_Register.SetColumnSpan(labelControl4, 2);
             labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl4.Location = new System.Drawing.Point(94, 169);
+            labelControl4.Location = new System.Drawing.Point(94, 165);
             labelControl4.Name = "labelControl4";
             tbp_Register.SetRow(labelControl4, 1);
             labelControl4.Size = new System.Drawing.Size(194, 20);
@@ -365,11 +348,11 @@
             tbp_Register.SetColumn(labelControl1, 1);
             tbp_Register.SetColumnSpan(labelControl1, 2);
             labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl1.Location = new System.Drawing.Point(92, 193);
+            labelControl1.Location = new System.Drawing.Point(92, 189);
             labelControl1.Margin = new System.Windows.Forms.Padding(1);
             labelControl1.Name = "labelControl1";
             tbp_Register.SetRow(labelControl1, 2);
-            labelControl1.Size = new System.Drawing.Size(198, 13);
+            labelControl1.Size = new System.Drawing.Size(198, 18);
             labelControl1.TabIndex = 0;
             labelControl1.Text = "Username";
             // 
@@ -379,7 +362,7 @@
             tbp_Register.SetColumnSpan(txt_RegisterUsername, 2);
             txt_RegisterUsername.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_RegisterUsername.EditValue = "";
-            txt_RegisterUsername.Location = new System.Drawing.Point(92, 208);
+            txt_RegisterUsername.Location = new System.Drawing.Point(92, 209);
             txt_RegisterUsername.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterUsername.Name = "txt_RegisterUsername";
             txt_RegisterUsername.Properties.Appearance.Options.UseFont = true;
@@ -395,7 +378,7 @@
             // 
             tbp_Register.SetColumn(btn_RegisterCancel, 1);
             btn_RegisterCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_RegisterCancel.Location = new System.Drawing.Point(92, 306);
+            btn_RegisterCancel.Location = new System.Drawing.Point(92, 311);
             btn_RegisterCancel.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             btn_RegisterCancel.Name = "btn_RegisterCancel";
             tbp_Register.SetRow(btn_RegisterCancel, 8);
@@ -409,7 +392,7 @@
             tbp_Register.SetColumn(txt_RegisterPassword, 1);
             tbp_Register.SetColumnSpan(txt_RegisterPassword, 2);
             txt_RegisterPassword.EditValue = "";
-            txt_RegisterPassword.Location = new System.Drawing.Point(92, 245);
+            txt_RegisterPassword.Location = new System.Drawing.Point(92, 249);
             txt_RegisterPassword.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterPassword.Name = "txt_RegisterPassword";
             txt_RegisterPassword.Properties.Appearance.Options.UseFont = true;
@@ -426,7 +409,7 @@
             labelControl2.Appearance.Options.UseFont = true;
             tbp_Register.SetColumn(labelControl2, 1);
             tbp_Register.SetColumnSpan(labelControl2, 2);
-            labelControl2.Location = new System.Drawing.Point(92, 230);
+            labelControl2.Location = new System.Drawing.Point(92, 231);
             labelControl2.Margin = new System.Windows.Forms.Padding(1);
             labelControl2.Name = "labelControl2";
             tbp_Register.SetRow(labelControl2, 4);
@@ -438,7 +421,7 @@
             // 
             tbp_Register.SetColumn(btn_Register, 2);
             btn_Register.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_Register.Location = new System.Drawing.Point(192, 306);
+            btn_Register.Location = new System.Drawing.Point(192, 311);
             btn_Register.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             btn_Register.Name = "btn_Register";
             tbp_Register.SetRow(btn_Register, 8);
@@ -453,11 +436,11 @@
             tbp_Register.SetColumn(labelControl5, 1);
             tbp_Register.SetColumnSpan(labelControl5, 2);
             labelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl5.Location = new System.Drawing.Point(92, 267);
+            labelControl5.Location = new System.Drawing.Point(92, 269);
             labelControl5.Margin = new System.Windows.Forms.Padding(1);
             labelControl5.Name = "labelControl5";
             tbp_Register.SetRow(labelControl5, 6);
-            labelControl5.Size = new System.Drawing.Size(198, 13);
+            labelControl5.Size = new System.Drawing.Size(198, 18);
             labelControl5.TabIndex = 5;
             labelControl5.Text = "Confirm Password";
             // 
@@ -467,7 +450,7 @@
             tbp_Register.SetColumnSpan(txt_RegisterConfirmPassword, 2);
             txt_RegisterConfirmPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_RegisterConfirmPassword.EditValue = "";
-            txt_RegisterConfirmPassword.Location = new System.Drawing.Point(92, 282);
+            txt_RegisterConfirmPassword.Location = new System.Drawing.Point(92, 289);
             txt_RegisterConfirmPassword.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterConfirmPassword.Name = "txt_RegisterConfirmPassword";
             txt_RegisterConfirmPassword.Properties.Appearance.Options.UseFont = true;
@@ -652,6 +635,7 @@
             ClientSize = new System.Drawing.Size(798, 518);
             Controls.Add(pnl_Login);
             Controls.Add(pnl_Main);
+            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             IconOptions.SvgImage = Properties.Resources.gcscript_benefits;
             MinimumSize = new System.Drawing.Size(800, 500);
             Name = "frm_Main";
@@ -733,6 +717,5 @@
         private DevExpress.XtraEditors.LabelControl labelControl5;
         private DevExpress.XtraEditors.TextEdit txt_RegisterConfirmPassword;
         private DevExpress.XtraEditors.LabelControl lbl_Register;
-        private DevExpress.XtraEditors.LabelControl lbl_Version;
     }
 }

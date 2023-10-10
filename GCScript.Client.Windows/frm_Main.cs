@@ -102,7 +102,6 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
 
     private void frm_Main_Load(object sender, EventArgs e)
     {
-        lbl_Version.Text = Settings.AppVersion;
         ShowLoginPanel();
         var username = LoadUsername();
         if (!string.IsNullOrWhiteSpace(username))

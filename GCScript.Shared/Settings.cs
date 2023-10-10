@@ -5,7 +5,6 @@ namespace GCScript.Shared;
 public static class Settings
 {
     public static readonly string AppPath = Path.GetDirectoryName(System.AppContext.BaseDirectory)!;
-    public static readonly string AppVersion = "1.0.0";
     public static readonly string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     public static readonly string AppDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GCScript Benefits");
     public static readonly string TxtOrderFilePath = Path.Combine(DesktopPath, "ped.txt");
