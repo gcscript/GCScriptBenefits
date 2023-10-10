@@ -335,7 +335,7 @@
             tbp_Register.SetColumn(labelControl4, 1);
             tbp_Register.SetColumnSpan(labelControl4, 2);
             labelControl4.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl4.Location = new System.Drawing.Point(94, 165);
+            labelControl4.Location = new System.Drawing.Point(94, 166);
             labelControl4.Name = "labelControl4";
             tbp_Register.SetRow(labelControl4, 1);
             labelControl4.Size = new System.Drawing.Size(194, 20);
@@ -348,11 +348,11 @@
             tbp_Register.SetColumn(labelControl1, 1);
             tbp_Register.SetColumnSpan(labelControl1, 2);
             labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl1.Location = new System.Drawing.Point(92, 189);
+            labelControl1.Location = new System.Drawing.Point(92, 190);
             labelControl1.Margin = new System.Windows.Forms.Padding(1);
             labelControl1.Name = "labelControl1";
             tbp_Register.SetRow(labelControl1, 2);
-            labelControl1.Size = new System.Drawing.Size(198, 18);
+            labelControl1.Size = new System.Drawing.Size(198, 13);
             labelControl1.TabIndex = 0;
             labelControl1.Text = "Username";
             // 
@@ -362,7 +362,7 @@
             tbp_Register.SetColumnSpan(txt_RegisterUsername, 2);
             txt_RegisterUsername.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_RegisterUsername.EditValue = "";
-            txt_RegisterUsername.Location = new System.Drawing.Point(92, 209);
+            txt_RegisterUsername.Location = new System.Drawing.Point(92, 205);
             txt_RegisterUsername.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterUsername.Name = "txt_RegisterUsername";
             txt_RegisterUsername.Properties.Appearance.Options.UseFont = true;
@@ -378,11 +378,11 @@
             // 
             tbp_Register.SetColumn(btn_RegisterCancel, 1);
             btn_RegisterCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_RegisterCancel.Location = new System.Drawing.Point(92, 311);
+            btn_RegisterCancel.Location = new System.Drawing.Point(92, 303);
             btn_RegisterCancel.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             btn_RegisterCancel.Name = "btn_RegisterCancel";
             tbp_Register.SetRow(btn_RegisterCancel, 8);
-            btn_RegisterCancel.Size = new System.Drawing.Size(98, 16);
+            btn_RegisterCancel.Size = new System.Drawing.Size(98, 23);
             btn_RegisterCancel.TabIndex = 2;
             btn_RegisterCancel.Text = "Cancel";
             btn_RegisterCancel.Click += btn_RegisterCancel_Click;
@@ -392,7 +392,7 @@
             tbp_Register.SetColumn(txt_RegisterPassword, 1);
             tbp_Register.SetColumnSpan(txt_RegisterPassword, 2);
             txt_RegisterPassword.EditValue = "";
-            txt_RegisterPassword.Location = new System.Drawing.Point(92, 249);
+            txt_RegisterPassword.Location = new System.Drawing.Point(92, 242);
             txt_RegisterPassword.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterPassword.Name = "txt_RegisterPassword";
             txt_RegisterPassword.Properties.Appearance.Options.UseFont = true;
@@ -409,7 +409,7 @@
             labelControl2.Appearance.Options.UseFont = true;
             tbp_Register.SetColumn(labelControl2, 1);
             tbp_Register.SetColumnSpan(labelControl2, 2);
-            labelControl2.Location = new System.Drawing.Point(92, 231);
+            labelControl2.Location = new System.Drawing.Point(92, 227);
             labelControl2.Margin = new System.Windows.Forms.Padding(1);
             labelControl2.Name = "labelControl2";
             tbp_Register.SetRow(labelControl2, 4);
@@ -421,11 +421,11 @@
             // 
             tbp_Register.SetColumn(btn_Register, 2);
             btn_Register.Dock = System.Windows.Forms.DockStyle.Fill;
-            btn_Register.Location = new System.Drawing.Point(192, 311);
+            btn_Register.Location = new System.Drawing.Point(192, 303);
             btn_Register.Margin = new System.Windows.Forms.Padding(1, 3, 1, 1);
             btn_Register.Name = "btn_Register";
             tbp_Register.SetRow(btn_Register, 8);
-            btn_Register.Size = new System.Drawing.Size(98, 16);
+            btn_Register.Size = new System.Drawing.Size(98, 23);
             btn_Register.TabIndex = 2;
             btn_Register.Text = "Register";
             btn_Register.Click += btn_Register_Click;
@@ -436,11 +436,11 @@
             tbp_Register.SetColumn(labelControl5, 1);
             tbp_Register.SetColumnSpan(labelControl5, 2);
             labelControl5.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl5.Location = new System.Drawing.Point(92, 269);
+            labelControl5.Location = new System.Drawing.Point(92, 264);
             labelControl5.Margin = new System.Windows.Forms.Padding(1);
             labelControl5.Name = "labelControl5";
             tbp_Register.SetRow(labelControl5, 6);
-            labelControl5.Size = new System.Drawing.Size(198, 18);
+            labelControl5.Size = new System.Drawing.Size(198, 13);
             labelControl5.TabIndex = 5;
             labelControl5.Text = "Confirm Password";
             // 
@@ -450,7 +450,7 @@
             tbp_Register.SetColumnSpan(txt_RegisterConfirmPassword, 2);
             txt_RegisterConfirmPassword.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_RegisterConfirmPassword.EditValue = "";
-            txt_RegisterConfirmPassword.Location = new System.Drawing.Point(92, 289);
+            txt_RegisterConfirmPassword.Location = new System.Drawing.Point(92, 279);
             txt_RegisterConfirmPassword.Margin = new System.Windows.Forms.Padding(1);
             txt_RegisterConfirmPassword.Name = "txt_RegisterConfirmPassword";
             txt_RegisterConfirmPassword.Properties.Appearance.Options.UseFont = true;
