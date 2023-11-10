@@ -4,11 +4,6 @@ using System.Text.RegularExpressions;
 
 namespace GCScript.Shared;
 
-public enum ETextCase { None, ToLower, ToUpper, ToTitleCase }
-public enum ETextType { None, OnlyLetters, OnlyNumbers, OnlyLettersNumbers, OnlyLettersNumbersSpaces }
-public enum ETextTrim { None, Trim, TrimStart, TrimEnd }
-public enum ETextRemoveSpaces { None, Duplicate, All }
-
 public static class Tools
 {
     public static string? TreatCPF(string cpf, bool formatted = true)

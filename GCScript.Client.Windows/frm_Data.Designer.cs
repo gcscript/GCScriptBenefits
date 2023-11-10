@@ -85,9 +85,14 @@
             btn_Sheets_Saldo = new DevExpress.XtraBars.BarButtonItem();
             btn_Create_Unit = new DevExpress.XtraBars.BarButtonItem();
             btn_T1 = new DevExpress.XtraBars.BarButtonItem();
+            btn_Create_Company = new DevExpress.XtraBars.BarButtonItem();
+            btn_Create_Operator = new DevExpress.XtraBars.BarButtonItem();
+            btn_RiocardBalanceTools = new DevExpress.XtraBars.BarButtonItem();
+            barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            ribbonPageGroup4 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup3 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             nvf_Main = new DevExpress.XtraBars.Navigation.NavigationFrame();
@@ -111,8 +116,6 @@
             btn_Refresh = new DevExpress.XtraBars.BarButtonItem();
             btn_Return = new DevExpress.XtraBars.BarButtonItem();
             nvp_Tests = new DevExpress.XtraBars.Navigation.NavigationPage();
-            btn_Create_Company = new DevExpress.XtraBars.BarButtonItem();
-            btn_Create_Operator = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)gc_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)gv_Main).BeginInit();
             ((System.ComponentModel.ISupportInitialize)btn_LoadUnit).BeginInit();
@@ -813,9 +816,9 @@
             // rbbc_Main
             // 
             rbbc_Main.ExpandCollapseItem.Id = 0;
-            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1, btn_Create_Company, btn_Create_Operator });
+            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1, btn_Create_Company, btn_Create_Operator, btn_RiocardBalanceTools, barButtonItem2 });
             rbbc_Main.Location = new System.Drawing.Point(0, 0);
-            rbbc_Main.MaxItemId = 9;
+            rbbc_Main.MaxItemId = 11;
             rbbc_Main.Name = "rbbc_Main";
             rbbc_Main.OptionsExpandCollapseMenu.EnableExpandCollapseMenu = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.OptionsExpandCollapseMenu.ShowQuickAccessToolbarItem = DevExpress.Utils.DefaultBoolean.False;
@@ -864,11 +867,43 @@
             btn_T1.Id = 6;
             btn_T1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_T1.ImageOptions.SvgImage");
             btn_T1.Name = "btn_T1";
-            btn_T1.ItemClick += btn_T1_ItemClick_1;
+            btn_T1.ItemClick += btn_T1_ItemClick;
+            // 
+            // btn_Create_Company
+            // 
+            btn_Create_Company.Caption = "Empresa";
+            btn_Create_Company.Enabled = false;
+            btn_Create_Company.Id = 7;
+            btn_Create_Company.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Company.ImageOptions.SvgImage");
+            btn_Create_Company.Name = "btn_Create_Company";
+            // 
+            // btn_Create_Operator
+            // 
+            btn_Create_Operator.Caption = "Operadora";
+            btn_Create_Operator.Enabled = false;
+            btn_Create_Operator.Id = 8;
+            btn_Create_Operator.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Operator.ImageOptions.SvgImage");
+            btn_Create_Operator.Name = "btn_Create_Operator";
+            // 
+            // btn_RiocardBalanceTools
+            // 
+            btn_RiocardBalanceTools.Caption = "Riocard > SAT";
+            btn_RiocardBalanceTools.Id = 9;
+            btn_RiocardBalanceTools.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_RiocardBalanceTools.ImageOptions.SvgImage");
+            btn_RiocardBalanceTools.Name = "btn_RiocardBalanceTools";
+            btn_RiocardBalanceTools.ItemClick += btn_RiocardBalanceTools_ItemClick;
+            // 
+            // barButtonItem2
+            // 
+            barButtonItem2.Caption = "Juntar TXT";
+            barButtonItem2.Id = 10;
+            barButtonItem2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem2.ImageOptions.SvgImage");
+            barButtonItem2.Name = "barButtonItem2";
+            barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
             // 
             // ribbonPage1
             // 
-            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup3 });
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1, ribbonPageGroup2, ribbonPageGroup4, ribbonPageGroup3 });
             ribbonPage1.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ribbonPage1.ImageOptions.SvgImage");
             ribbonPage1.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
             ribbonPage1.Name = "ribbonPage1";
@@ -890,13 +925,18 @@
             ribbonPageGroup2.Name = "ribbonPageGroup2";
             ribbonPageGroup2.Text = "Planilhas";
             // 
+            // ribbonPageGroup4
+            // 
+            ribbonPageGroup4.ItemLinks.Add(barButtonItem2);
+            ribbonPageGroup4.ItemLinks.Add(btn_RiocardBalanceTools);
+            ribbonPageGroup4.Name = "ribbonPageGroup4";
+            ribbonPageGroup4.Text = "Ferramentas";
+            // 
             // ribbonPageGroup3
             // 
-            ribbonPageGroup3.Enabled = false;
             ribbonPageGroup3.ItemLinks.Add(btn_T1);
             ribbonPageGroup3.Name = "ribbonPageGroup3";
             ribbonPageGroup3.Text = "Tests";
-            ribbonPageGroup3.Visible = false;
             // 
             // simpleButton3
             // 
@@ -1207,22 +1247,6 @@
             nvp_Tests.Name = "nvp_Tests";
             nvp_Tests.Size = new System.Drawing.Size(844, 544);
             // 
-            // btn_Create_Company
-            // 
-            btn_Create_Company.Caption = "Empresa";
-            btn_Create_Company.Enabled = false;
-            btn_Create_Company.Id = 7;
-            btn_Create_Company.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Company.ImageOptions.SvgImage");
-            btn_Create_Company.Name = "btn_Create_Company";
-            // 
-            // btn_Create_Operator
-            // 
-            btn_Create_Operator.Caption = "Operadora";
-            btn_Create_Operator.Enabled = false;
-            btn_Create_Operator.Id = 8;
-            btn_Create_Operator.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_Create_Operator.ImageOptions.SvgImage");
-            btn_Create_Operator.Name = "btn_Create_Operator";
-            // 
             // frm_Data
             // 
             Appearance.Options.UseFont = true;
@@ -1363,5 +1387,8 @@
         private DevExpress.XtraEditors.LabelControl sdaasdasd;
         private DevExpress.XtraBars.BarButtonItem btn_Create_Company;
         private DevExpress.XtraBars.BarButtonItem btn_Create_Operator;
+        private DevExpress.XtraBars.BarButtonItem btn_RiocardBalanceTools;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem2;
     }
 }

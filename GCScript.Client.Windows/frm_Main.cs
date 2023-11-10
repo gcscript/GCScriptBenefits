@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraEditors;
 using GCScript.Database.MongoDB;
 using GCScript.Database.MongoDB.DataAccess;
+using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
@@ -20,14 +21,38 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
     {
         InitializeComponent();
         MainInstances.SvgShortcut = svg_Shortcut;
-        //btn_Management.Enabled = true;
-        //btn_Management.Visible = true;
+        btn_Management.Enabled = false;
+        btn_Management.Visible = false;
     }
 
-    private void btn_Management_Click(object sender, EventArgs e)
+    private async void btn_Management_Click(object sender, EventArgs e)
     {
-        frm_Management frm = new();
-        frm.ShowDialog();
+        new frm_RiocardBalanceTools().ShowDialog();
+        return;
+        SettingsDB.MongoDbUsername = "";
+        SettingsDB.MongoDbPassword = "";
+
+        OperatorDataAccess access = new OperatorDataAccess();
+        MOperator op = new()
+        {
+            Name = "TIL",
+            Uf = "PR",
+            Url = "https://max00574.itstransdata.com/TDMaxWebCommerce/",
+            CreatedBy = SettingsDB.MongoDbUsername
+        };
+
+        var teste = await access.InsertOneAsync(op);
+        if (teste)
+        {
+            XtraMessageBox.Show("Feito!");
+            return;
+
+        }
+
+
+
+        //frm_Management frm = new();
+        //frm.ShowDialog();
     }
 
     private async void btn_LogIn_Click(object sender, EventArgs e)

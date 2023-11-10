@@ -605,27 +605,7 @@ public partial class frm_Data : XtraForm
     private void btn_T1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
 
-    }
 
-    private void btn_T1_ItemClick_1(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
-    {
-        //CompanyDataAccess cc = new();
-        //MCompany company = new();
-        //company.Name = "BOY VINY";
-        //company.ResponsibleGVT = "ROSI";
-        //company.ResponsibleTI = "GUSTAVO";
-        //company.Margin = 3;
-
-        //var result = await cc.InsertOneAsync(company);
-
-        //if (result)
-        //{
-        //    XtraMessageBox.Show($"{company.Name} adicionado com sucesso!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
-        //}
-        //else
-        //{
-        //    XtraMessageBox.Show($"Erro ao adicionar {company.Name}!", "GCScript Benefits", System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Error);
-        //}
     }
 
     private void mmo_OperatorNotes_EditValueChanged(object sender, EventArgs e)
@@ -687,6 +667,11 @@ public partial class frm_Data : XtraForm
     private void tablePanel4_Paint(object sender, System.Windows.Forms.PaintEventArgs e)
     {
 
+    }
+
+    private void btn_RiocardBalanceTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new frm_RiocardBalanceTools().ShowDialog();
     }
 
 
