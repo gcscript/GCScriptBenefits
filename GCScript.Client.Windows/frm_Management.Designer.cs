@@ -115,6 +115,8 @@
             gcol_Balance_Status = new DevExpress.XtraGrid.Columns.GridColumn();
             gcol_Balance_StatusBU = new DevExpress.XtraGrid.Columns.GridColumn();
             gcol_Balance_CompraPIR = new DevExpress.XtraGrid.Columns.GridColumn();
+            ribbonPageGroup5 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
+            barButtonItem1 = new DevExpress.XtraBars.BarButtonItem();
             ((System.ComponentModel.ISupportInitialize)ribbonControl1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemRadioGroup1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)repositoryItemRadioGroup2).BeginInit();
@@ -133,9 +135,9 @@
             // ribbonControl1
             // 
             ribbonControl1.ExpandCollapseItem.Id = 0;
-            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, btn_ImportData, barCheckItem1, barCheckItem2, barCheckItem3, barCheckItem4, barCheckItem5, barCheckItem6, barCheckItem7, barCheckItem8, barCheckItem9, btn_T2, btn_T3, btn_T4, btn_T5, btn_T6, btn_T1, btn_ImportBalance, btn_ImportBalanceSAT, btn_ExportData });
+            ribbonControl1.Items.AddRange(new DevExpress.XtraBars.BarItem[] { ribbonControl1.ExpandCollapseItem, btn_ImportData, barCheckItem1, barCheckItem2, barCheckItem3, barCheckItem4, barCheckItem5, barCheckItem6, barCheckItem7, barCheckItem8, barCheckItem9, btn_T2, btn_T3, btn_T4, btn_T5, btn_T6, btn_T1, btn_ImportBalance, btn_ImportBalanceSAT, btn_ExportData, barButtonItem1 });
             ribbonControl1.Location = new System.Drawing.Point(0, 0);
-            ribbonControl1.MaxItemId = 30;
+            ribbonControl1.MaxItemId = 31;
             ribbonControl1.Name = "ribbonControl1";
             ribbonControl1.Pages.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPage[] { ribbonPage1, ribbonPage4, ribbonPage2, ribbonPage3 });
             ribbonControl1.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] { repositoryItemRadioGroup1, repositoryItemRadioGroup2 });
@@ -299,7 +301,7 @@
             // 
             // ribbonPage1
             // 
-            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1 });
+            ribbonPage1.Groups.AddRange(new DevExpress.XtraBars.Ribbon.RibbonPageGroup[] { ribbonPageGroup1, ribbonPageGroup5 });
             ribbonPage1.Name = "ribbonPage1";
             ribbonPage1.Text = "Home";
             // 
@@ -428,8 +430,8 @@
             gcol_ArquivoDeCompra.Caption = "AC";
             gcol_ArquivoDeCompra.FieldName = "ArquivoDeCompra";
             gcol_ArquivoDeCompra.Name = "gcol_ArquivoDeCompra";
-            gcol_ArquivoDeCompra.Visible = true;
             gcol_ArquivoDeCompra.OptionsColumn.AllowEdit = false;
+            gcol_ArquivoDeCompra.Visible = true;
             gcol_ArquivoDeCompra.VisibleIndex = 0;
             // 
             // gcol_CNPJ
@@ -437,8 +439,8 @@
             gcol_CNPJ.Caption = "CNPJ";
             gcol_CNPJ.FieldName = "CNPJ";
             gcol_CNPJ.Name = "gcol_CNPJ";
-            gcol_CNPJ.Visible = true;
             gcol_CNPJ.OptionsColumn.AllowEdit = false;
+            gcol_CNPJ.Visible = true;
             gcol_CNPJ.VisibleIndex = 1;
             // 
             // gcol_UF
@@ -446,8 +448,8 @@
             gcol_UF.Caption = "UF";
             gcol_UF.FieldName = "UF";
             gcol_UF.Name = "gcol_UF";
-            gcol_UF.Visible = true;
             gcol_UF.OptionsColumn.AllowEdit = false;
+            gcol_UF.Visible = true;
             gcol_UF.VisibleIndex = 2;
             // 
             // gcol_Operadora
@@ -455,8 +457,8 @@
             gcol_Operadora.Caption = "Operadora";
             gcol_Operadora.FieldName = "Operadora";
             gcol_Operadora.Name = "gcol_Operadora";
-            gcol_Operadora.Visible = true;
             gcol_Operadora.OptionsColumn.AllowEdit = false;
+            gcol_Operadora.Visible = true;
             gcol_Operadora.VisibleIndex = 3;
             // 
             // gcol_Empresa
@@ -464,8 +466,8 @@
             gcol_Empresa.Caption = "Empresa";
             gcol_Empresa.FieldName = "Empresa";
             gcol_Empresa.Name = "gcol_Empresa";
-            gcol_Empresa.Visible = true;
             gcol_Empresa.OptionsColumn.AllowEdit = false;
+            gcol_Empresa.Visible = true;
             gcol_Empresa.VisibleIndex = 4;
             // 
             // gcol_Unidade
@@ -473,8 +475,8 @@
             gcol_Unidade.Caption = "Unidade";
             gcol_Unidade.FieldName = "Unidade";
             gcol_Unidade.Name = "gcol_Unidade";
-            gcol_Unidade.Visible = true;
             gcol_Unidade.OptionsColumn.AllowEdit = false;
+            gcol_Unidade.Visible = true;
             gcol_Unidade.VisibleIndex = 5;
             // 
             // gcol_Departamento
@@ -490,8 +492,8 @@
             gcol_Escala.Caption = "Escala";
             gcol_Escala.FieldName = "Escala";
             gcol_Escala.Name = "gcol_Escala";
-            gcol_Escala.Visible = true;
             gcol_Escala.OptionsColumn.AllowEdit = false;
+            gcol_Escala.Visible = true;
             gcol_Escala.VisibleIndex = 7;
             // 
             // gcol_ID
@@ -499,8 +501,8 @@
             gcol_ID.Caption = "ID";
             gcol_ID.FieldName = "ID";
             gcol_ID.Name = "gcol_ID";
-            gcol_ID.Visible = true;
             gcol_ID.OptionsColumn.AllowEdit = false;
+            gcol_ID.Visible = true;
             gcol_ID.VisibleIndex = 8;
             // 
             // gcol_Matricula
@@ -508,8 +510,8 @@
             gcol_Matricula.Caption = "Mat";
             gcol_Matricula.FieldName = "Matricula";
             gcol_Matricula.Name = "gcol_Matricula";
-            gcol_Matricula.Visible = true;
             gcol_Matricula.OptionsColumn.AllowEdit = false;
+            gcol_Matricula.Visible = true;
             gcol_Matricula.VisibleIndex = 9;
             // 
             // gcol_MatriculaSite
@@ -921,6 +923,19 @@
             gcol_Balance_CompraPIR.Visible = true;
             gcol_Balance_CompraPIR.VisibleIndex = 14;
             // 
+            // ribbonPageGroup5
+            // 
+            ribbonPageGroup5.ItemLinks.Add(barButtonItem1);
+            ribbonPageGroup5.Name = "ribbonPageGroup5";
+            ribbonPageGroup5.Text = "ribbonPageGroup5";
+            // 
+            // barButtonItem1
+            // 
+            barButtonItem1.Caption = "barButtonItem1";
+            barButtonItem1.Id = 30;
+            barButtonItem1.Name = "barButtonItem1";
+            barButtonItem1.ItemClick += barButtonItem1_ItemClick;
+            // 
             // frm_Management
             // 
             Appearance.Options.UseFont = true;
@@ -1038,5 +1053,7 @@
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Balance_Status;
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Balance_StatusBU;
         private DevExpress.XtraGrid.Columns.GridColumn gcol_Balance_CompraPIR;
+        private DevExpress.XtraBars.BarButtonItem barButtonItem1;
+        private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup5;
     }
 }

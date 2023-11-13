@@ -66,6 +66,7 @@
             tablePanel1.SetColumn(btn_Save, 0);
             tablePanel1.SetColumnSpan(btn_Save, 2);
             btn_Save.Dock = System.Windows.Forms.DockStyle.Fill;
+            btn_Save.Enabled = false;
             btn_Save.Location = new System.Drawing.Point(13, 100);
             btn_Save.Name = "btn_Save";
             tablePanel1.SetRow(btn_Save, 4);
@@ -105,9 +106,12 @@
             txt_SatFilePath.EditValue = "";
             txt_SatFilePath.Location = new System.Drawing.Point(13, 73);
             txt_SatFilePath.Name = "txt_SatFilePath";
+            txt_SatFilePath.Properties.ReadOnly = true;
             tablePanel1.SetRow(txt_SatFilePath, 3);
             txt_SatFilePath.Size = new System.Drawing.Size(393, 20);
             txt_SatFilePath.TabIndex = 3;
+            txt_SatFilePath.TabStop = false;
+            txt_SatFilePath.EditValueChanged += txt_SatFilePath_EditValueChanged;
             // 
             // labelControl2
             // 
@@ -138,9 +142,12 @@
             txt_RiocardFilePath.EditValue = "";
             txt_RiocardFilePath.Location = new System.Drawing.Point(13, 29);
             txt_RiocardFilePath.Name = "txt_RiocardFilePath";
+            txt_RiocardFilePath.Properties.ReadOnly = true;
             tablePanel1.SetRow(txt_RiocardFilePath, 1);
             txt_RiocardFilePath.Size = new System.Drawing.Size(393, 20);
             txt_RiocardFilePath.TabIndex = 3;
+            txt_RiocardFilePath.TabStop = false;
+            txt_RiocardFilePath.EditValueChanged += txt_RiocardFilePath_EditValueChanged;
             // 
             // frm_RiocardBalanceTools
             // 
@@ -153,6 +160,7 @@
             Name = "frm_RiocardBalanceTools";
             StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             Text = "Riocard Balance Tools";
+            Load += frm_RiocardBalanceTools_Load;
             ((System.ComponentModel.ISupportInitialize)tablePanel1).EndInit();
             tablePanel1.ResumeLayout(false);
             tablePanel1.PerformLayout();

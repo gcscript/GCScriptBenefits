@@ -1,6 +1,7 @@
 ﻿using DevExpress.CodeParser.VB;
 using DevExpress.XtraEditors;
 using DevExpress.XtraGrid.Views.Grid;
+using GCScript.Core;
 using GCScript.Shared;
 using GCScript.Shared.Models.Management;
 using System;
@@ -373,5 +374,10 @@ public partial class frm_Management : DevExpress.XtraEditors.XtraForm
 
         XtraMessageBox.Show($"Arquivo de saldo importado com sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+    }
+
+    private void barButtonItem1_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        SpreadSheet.Read(@"D:\Empresas\Mex Beneficios\Teste\Dados CAPITAL.xlsx");
     }
 }

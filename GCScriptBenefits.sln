@@ -27,6 +27,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Core", "02 - Core", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GCScript.Core", "GCScript.Core\GCScript.Core.csproj", "{711B6ED2-D8CF-42D4-9D8A-457377BBBE46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GCScript.Client.Windows.Avalonia", "GCScript.Client.Windows.Avalonia\GCScript.Client.Windows.Avalonia.csproj", "{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{711B6ED2-D8CF-42D4-9D8A-457377BBBE46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{711B6ED2-D8CF-42D4-9D8A-457377BBBE46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{711B6ED2-D8CF-42D4-9D8A-457377BBBE46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 		{DB1C5933-CDCE-4BD0-BD98-D7A6FCFDB2C6} = {F0742297-B83E-4EA9-9E9E-6DE623761137}
 		{36453809-1F3D-49D8-8D9E-156323FEA1CC} = {D5274FCA-7E55-49EE-B5F4-765F3F06D77E}
 		{711B6ED2-D8CF-42D4-9D8A-457377BBBE46} = {B0E4A4D5-4FB1-48C0-9BB4-9057D8093086}
+		{C49CDDF2-8899-4C2E-AB33-6330FCF8F15B} = {995A3304-1E9B-42A7-A679-0697C544B2D2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F8D4D8CB-34A6-4C62-9041-2DB574CC46F6}

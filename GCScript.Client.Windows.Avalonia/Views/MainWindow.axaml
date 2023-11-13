@@ -1,0 +1,55 @@
+<Window
+    x:Class="GCScript.Client.Windows.Avalonia.Views.MainWindow"
+    xmlns="https://github.com/avaloniaui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:vm="using:GCScript.Client.Windows.Avalonia.ViewModels"
+    Title="GCScript.Client.Windows.Avalonia"
+    Width="800"
+    Height="500"
+    MinWidth="800"
+    MinHeight="500"
+    d:DesignHeight="500"
+    d:DesignWidth="800"
+    x:DataType="vm:MainWindowViewModel"
+    Icon="/Assets/avalonia-logo.ico"
+    mc:Ignorable="d">
+
+    <Design.DataContext>
+        <!--
+            This only sets the DataContext for the previewer in an IDE,
+            to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs)
+        -->
+        <vm:MainWindowViewModel />
+    </Design.DataContext>
+    <Grid RowDefinitions="Auto, *, Auto, Auto">
+        <DockPanel Grid.Row="0">
+            <Menu DockPanel.Dock="Top">
+                <MenuItem Header="_Início">
+                </MenuItem>
+                <MenuItem Header="_Ferramentas">
+                    <MenuItem Command="{Binding OpenUserControlCommand}"  CommandParameter="PurchaseGenerator" Header="Gerador de Compras" />
+                    <Separator />
+                    <MenuItem IsEnabled="False" Header="_Em Breve" />
+                </MenuItem>
+            </Menu>
+        </DockPanel>
+		<ContentControl/>
+		<Panel Grid.Row="1">
+			<ContentControl Content="{Binding CurrentUserControl}" />
+		</Panel>
+
+		<TextBlock
+            Grid.Row="2"
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Text="{Binding TextBlockName}" />
+        <Button
+            Grid.Row="3"
+            HorizontalAlignment="Center"
+            Command="{Binding ButtonOnClickCommand}">
+            CLICK ME
+        </Button>
+    </Grid>
+</Window>

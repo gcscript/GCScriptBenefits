@@ -6,4 +6,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.1" />
+    <PackageReference Include="Cpf.Cnpj" Version="1.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GCScript.Database.MongoDB\GCScript.Database.MongoDB.csproj" />
+    <ProjectReference Include="..\GCScript.Shared\GCScript.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

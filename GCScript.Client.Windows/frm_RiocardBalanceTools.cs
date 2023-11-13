@@ -1,31 +1,34 @@
-﻿using DevExpress.Charts.Native;
-using DevExpress.XtraEditors;
-using GCScript.Operator;
+﻿using DevExpress.XtraEditors;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GCScript.Client.Windows
 {
     public partial class frm_RiocardBalanceTools : DevExpress.XtraEditors.XtraForm
     {
+        public string RiocardFilePath { get; set; }
+        public string SatFilePath { get; set; }
+
         public frm_RiocardBalanceTools()
         {
             InitializeComponent();
         }
 
+        private void frm_RiocardBalanceTools_Load(object sender, EventArgs e)
+        {
+            btn_SelectRiocardFile.Select();
+        }
+
         private void btn_SelectRiocardFile_Click(object sender, EventArgs e)
         {
-            var dlg = new XtraOpenFileDialog()
+            var dlg = new OpenFileDialog()
             {
                 Title = "Selecione os Dados da Riocard",
                 Filter = "Arquivo de Texto|*.txt",
@@ -39,12 +42,13 @@ namespace GCScript.Client.Windows
                 return;
             }
 
-            txt_RiocardFilePath.Text = dlg.FileName;
+            RiocardFilePath = dlg.FileName;
+            txt_RiocardFilePath.Text = Path.GetFileName(RiocardFilePath);
         }
 
         private void btn_SelectSatFile_Click(object sender, EventArgs e)
         {
-            var dlg = new XtraOpenFileDialog()
+            var dlg = new OpenFileDialog()
             {
                 Title = "Selecione os Saldos da SAT",
                 Filter = "Arquivo CSV|*.csv",
@@ -58,7 +62,8 @@ namespace GCScript.Client.Windows
                 return;
             }
 
-            txt_SatFilePath.Text = dlg.FileName;
+            SatFilePath = dlg.FileName;
+            txt_SatFilePath.Text = Path.GetFileName(SatFilePath);
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
@@ -68,8 +73,8 @@ namespace GCScript.Client.Windows
                 var mrbList = new List<MRiocardBalance>();
                 var msbList = new List<MSatBalance>();
 
-                var riocardFileRows = File.ReadAllLines(txt_RiocardFilePath.Text);
-                var satFileRows = File.ReadAllLines(txt_SatFilePath.Text);
+                var riocardFileRows = File.ReadAllLines(RiocardFilePath);
+                var satFileRows = File.ReadAllLines(SatFilePath);
 
                 if (riocardFileRows.Length < 2) { return; }
 
@@ -173,6 +178,28 @@ namespace GCScript.Client.Windows
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txt_RiocardFilePath_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckFileExist();
+        }
+
+        private void txt_SatFilePath_EditValueChanged(object sender, EventArgs e)
+        {
+            CheckFileExist();
+        }
+
+        private void CheckFileExist()
+        {
+            if (!File.Exists(RiocardFilePath) || !File.Exists(SatFilePath))
+            {
+                btn_Save.Enabled = false;
+            }
+            else
+            {
+                btn_Save.Enabled = true;
             }
         }
     }

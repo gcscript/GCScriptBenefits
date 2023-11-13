@@ -1,11 +1,13 @@
 ﻿using DevExpress.XtraEditors;
+using GCScript.Core;
 using GCScript.Database.MongoDB;
 using GCScript.Database.MongoDB.DataAccess;
-using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,34 +27,35 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         btn_Management.Visible = false;
     }
 
-    private async void btn_Management_Click(object sender, EventArgs e)
+    private void btn_Management_Click(object sender, EventArgs e)
     {
-        new frm_RiocardBalanceTools().ShowDialog();
-        return;
         SettingsDB.MongoDbUsername = "";
         SettingsDB.MongoDbPassword = "";
-
-        OperatorDataAccess access = new OperatorDataAccess();
-        MOperator op = new()
-        {
-            Name = "TIL",
-            Uf = "PR",
-            Url = "https://max00574.itstransdata.com/TDMaxWebCommerce/",
-            CreatedBy = SettingsDB.MongoDbUsername
-        };
-
-        var teste = await access.InsertOneAsync(op);
-        if (teste)
-        {
-            XtraMessageBox.Show("Feito!");
-            return;
-
-        }
-
-
+        new frm_PurchaseGenerator().ShowDialog();
+        //new frm_RiocardBalanceTools().ShowDialog();
+        //return;
 
         //frm_Management frm = new();
         //frm.ShowDialog();
+
+        //SettingsDB.MongoDbUsername = "";
+        //SettingsDB.MongoDbPassword = "";
+
+        //OperatorDataAccess access = new OperatorDataAccess();
+        //MOperator op = new()
+        //{
+        //    Name = "TIL",
+        //    Uf = "PR",
+        //    Url = "https://max00574.itstransdata.com/TDMaxWebCommerce/",
+        //    CreatedBy = SettingsDB.MongoDbUsername
+        //};
+
+        //var teste = await access.InsertOneAsync(op);
+        //if (teste)
+        //{
+        //    XtraMessageBox.Show("Feito!");
+        //    return;
+        //}
     }
 
     private async void btn_LogIn_Click(object sender, EventArgs e)

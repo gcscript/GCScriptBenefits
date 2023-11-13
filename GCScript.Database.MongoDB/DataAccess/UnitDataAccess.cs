@@ -29,6 +29,17 @@ public class UnitDataAccess
         return await dbContext.UnitCollection.Find(filter).FirstOrDefaultAsync();
     }
 
+    public async Task<string> GetCnpjAsync(string uf, string @operator, string company, string unit)
+    {
+        var filter = Builders<MUnit>.Filter.And(Builders<MUnit>.Filter.Eq(x => x.Uf, uf),
+                                                Builders<MUnit>.Filter.Eq(x => x.Operator, @operator),
+                                                Builders<MUnit>.Filter.Eq(x => x.Company, company),
+                                                Builders<MUnit>.Filter.Eq(x => x.Name, unit));
+
+        var result = await dbContext.UnitCollection.Find(filter).FirstOrDefaultAsync();
+        return result != null ? result.Cnpj : "";
+    }
+
 
     public async Task<bool> UpdateAsync(MUnit unit)
     {
