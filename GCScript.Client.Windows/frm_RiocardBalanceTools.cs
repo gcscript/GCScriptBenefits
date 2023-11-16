@@ -1,4 +1,8 @@
-﻿using DevExpress.XtraEditors;
+﻿using Au.Types;
+using ClosedXML.Excel;
+using CpfCnpjLibrary;
+using DevExpress.XtraEditors;
+using GCScript.Core;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
@@ -13,172 +17,277 @@ namespace GCScript.Client.Windows
 {
     public partial class frm_RiocardBalanceTools : DevExpress.XtraEditors.XtraForm
     {
-        public string RiocardFilePath { get; set; }
-        public string SatFilePath { get; set; }
+        public string FilePath1 { get; set; }
+        public string FilePath2 { get; set; }
+        public int Mode { get; }
 
-        public frm_RiocardBalanceTools()
+        public frm_RiocardBalanceTools(int mode = 0)
         {
+            Mode = mode;
             InitializeComponent();
         }
 
         private void frm_RiocardBalanceTools_Load(object sender, EventArgs e)
         {
-            btn_SelectRiocardFile.Select();
+            switch (Mode)
+            {
+                case 0:
+                    lbl_Title1.Text = $"[TXT] Dados <EMPRESA> [{DateTime.Now:yyyy-MM-dd}].txt";
+                    lbl_Title2.Text = "[CSV] coletario_mex_##_retorno.csv";
+                    chk_1.Visible = false;
+                    break;
+                case 1:
+                    lbl_Title1.Text = $"[TXT] Dados <EMPRESA> [{DateTime.Now:yyyy-MM-dd}].txt";
+                    lbl_Title2.Text = $"[XLSX] Dados <EMPRESA> [{DateTime.Now.AddMonths(-1):yyyy-MM-dd}].xlsx (ÚLTIMA COMPRA)";
+                    chk_1.Text = "Somente quem teve desconto";
+                    break;
+                default:
+                    break;
+            }
+
+            btn_SelectFile1.Select();
         }
 
-        private void btn_SelectRiocardFile_Click(object sender, EventArgs e)
+        private void btn_SelectFile1_Click(object sender, EventArgs e)
         {
-            var dlg = new OpenFileDialog()
+            var dlg = new OpenFileDialog();
+            if (Mode == 0)
             {
-                Title = "Selecione os Dados da Riocard",
-                Filter = "Arquivo de Texto|*.txt",
-                Multiselect = false,
-                CheckFileExists = true,
-                CheckPathExists = true,
-            };
+                dlg.Title = "Selecione os Dados da Riocard";
+                dlg.Filter = "Arquivo de Texto|*.txt";
+            }
+            else if (Mode == 1)
+            {
+                dlg.Title = "Selecione os Dados da Riocard";
+                dlg.Filter = "Arquivo de Texto|*.txt";
+            }
+            dlg.Multiselect = false;
+            dlg.CheckFileExists = true;
+            dlg.CheckPathExists = true;
 
             if (dlg.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            RiocardFilePath = dlg.FileName;
-            txt_RiocardFilePath.Text = Path.GetFileName(RiocardFilePath);
+            FilePath1 = dlg.FileName;
+            txt_FilePath1.Text = Path.GetFileName(FilePath1);
         }
 
-        private void btn_SelectSatFile_Click(object sender, EventArgs e)
+        private void btn_SelectFile2_Click(object sender, EventArgs e)
         {
-            var dlg = new OpenFileDialog()
+            var dlg = new OpenFileDialog();
+            if (Mode == 0)
             {
-                Title = "Selecione os Saldos da SAT",
-                Filter = "Arquivo CSV|*.csv",
-                Multiselect = false,
-                CheckFileExists = true,
-                CheckPathExists = true,
-            };
+                dlg.Title = "Selecione os Saldos da SAT";
+                dlg.Filter = "Arquivo CSV|*.csv";
+            }
+            else if (Mode == 1)
+            {
+                dlg.Title = "Selecione a Planilha Dados da última compra";
+                dlg.Filter = "Arquivo XLSX|*.xlsx";
+            }
+            dlg.Multiselect = false;
+            dlg.CheckFileExists = true;
+            dlg.CheckPathExists = true;
 
             if (dlg.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
 
-            SatFilePath = dlg.FileName;
-            txt_SatFilePath.Text = Path.GetFileName(SatFilePath);
+            FilePath2 = dlg.FileName;
+            txt_FilePath2.Text = Path.GetFileName(FilePath2);
         }
 
         private void btn_Save_Click(object sender, EventArgs e)
         {
             try
             {
-                var mrbList = new List<MRiocardBalance>();
-                var msbList = new List<MSatBalance>();
-
-                var riocardFileRows = File.ReadAllLines(RiocardFilePath);
-                var satFileRows = File.ReadAllLines(SatFilePath);
-
-                if (riocardFileRows.Length < 2) { return; }
-
-                foreach (var satFileRow in satFileRows)
+                if (Mode == 0)
                 {
-                    var msb = new MSatBalance();
-                    string rowContent = satFileRow.Trim();
-                    if (string.IsNullOrWhiteSpace(rowContent) || rowContent.Contains("CPF") && rowContent.Contains("SALDO"))
-                    {
-                        continue;
-                    }
-
-                    var rowContentSplitted = rowContent.Split(',');
-                    if (rowContentSplitted.Length != 6)
-                    {
-                        continue;
-                    }
-                    string numeroDoCartao = rowContentSplitted[1].ProcessTextDefault();
-                    string saldo = rowContentSplitted[3].ProcessTextDefault().Replace(".", ",");
-                    string recargaPendente = rowContentSplitted[5].ProcessTextDefault().Replace(".", ",");
-
-                    if (string.IsNullOrWhiteSpace(numeroDoCartao) || string.IsNullOrWhiteSpace(saldo) || string.IsNullOrWhiteSpace(recargaPendente))
-                    {
-                        continue;
-                    }
-
-                    msb.NumeroDoCartao = numeroDoCartao.TreatRiocardCard();
-                    msb.Saldo = decimal.TryParse(saldo, out decimal saldoDecimal) ? saldoDecimal : 0;
-                    msb.RecargaPendente = decimal.TryParse(recargaPendente, out decimal recargaPendenteDecimal) ? recargaPendenteDecimal : 0;
-
-                    msbList.Add(msb);
-
+                    SaveMode0();
                 }
-
-                foreach (var riocardFileRow in riocardFileRows)
+                else if (Mode == 1)
                 {
-                    var mrb = new MRiocardBalance();
-                    string rowContent = riocardFileRow.Trim();
-                    if (string.IsNullOrWhiteSpace(rowContent) || rowContent.Contains("CNPJ") && rowContent.Contains("BUSCADOR"))
-                    {
-                        continue;
-                    }
-
-                    var rowContentSplitted = rowContent.Split('\t');
-                    if (rowContentSplitted.Length != 12)
-                    {
-                        continue;
-                    }
-
-                    string cnpj = rowContentSplitted[0].ProcessTextDefault();
-                    string empresa = rowContentSplitted[1].ProcessTextDefault();
-                    string buscador = rowContentSplitted[2].ProcessTextDefault();
-                    string numeroDoCartao = rowContentSplitted[3].ProcessTextDefault();
-                    string matricula = rowContentSplitted[4].ProcessTextDefault();
-                    string nome = rowContentSplitted[5].ProcessTextDefault();
-                    string cpf = rowContentSplitted[6].ProcessTextDefault();
-                    string status = rowContentSplitted[7].ProcessTextDefault();
-
-                    if (mrbList.Any(x => x.NumeroDoCartao == numeroDoCartao)) { continue; }
-
-                    mrb.Cnpj = cnpj;
-                    mrb.Empresa = empresa;
-                    mrb.Buscador = buscador;
-                    mrb.NumeroDoCartao = numeroDoCartao;
-                    mrb.Matricula = matricula;
-                    mrb.Nome = nome;
-                    mrb.Cpf = cpf;
-                    mrb.Status = status;
-                    mrb.Saldo = msbList.Where(x => x.NumeroDoCartao == numeroDoCartao).Select(x => x.Saldo).FirstOrDefault();
-                    mrb.RecargaPendente = msbList.Where(x => x.NumeroDoCartao == numeroDoCartao).Select(x => x.RecargaPendente).FirstOrDefault();
-                    mrb.AttSaldo = DateTime.Now;
-                    mrb.DataPagamentoRecargaPendente = DateTime.Now;
-
-                    mrbList.Add(mrb);
+                    SaveMode1();
                 }
-
-                var sfd = new XtraSaveFileDialog()
-                {
-                    Title = "Salvar Arquivo de Saldos",
-                    Filter = "Arquivo de Texto|*.txt",
-                    FileName = $"_RIOCARD [{DateTime.Now:yyyy-MM-dd}].txt",
-                };
-
-                if (sfd.ShowDialog() != DialogResult.OK)
-                {
-                    return;
-                }
-
-                var sb = new StringBuilder();
-                sb.Append("CNPJ\tEMPRESA\tBUSCADOR\tNR. DO CARTAO\tMAT\tNOME\tCPF\tSTATUS\tSALDO\tATT SALDO\tREC PEND\tDATA PGMT REC PEND");
-
-                foreach (var mrbItem in mrbList)
-                {
-                    sb.AppendLine();
-                    sb.Append($"{mrbItem.Cnpj}\t{mrbItem.Empresa}\t{mrbItem.Buscador}\t{mrbItem.NumeroDoCartao}\t{mrbItem.Matricula}\t{mrbItem.Nome}\t{mrbItem.Cpf}\t{mrbItem.Status}\t{mrbItem.Saldo.ToString("0.00")}\t{mrbItem.AttSaldo:dd/MM/yyyy}\t{mrbItem.RecargaPendente.ToString("0.00")}\t{mrbItem.DataPagamentoRecargaPendente:dd/MM/yyyy}");
-                }
-
-                File.WriteAllText(sfd.FileName, sb.ToString());
-                XtraMessageBox.Show("Arquivo de Saldos Gerado com Sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 XtraMessageBox.Show(ex.Message, "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void SaveMode0()
+        {
+            var mrbList = new List<MRiocardBalance>();
+            var msbList = new List<MSatBalance>();
+
+            var riocardFileRows = File.ReadAllLines(FilePath1);
+            var satFileRows = File.ReadAllLines(FilePath2);
+
+            if (riocardFileRows.Length < 2) { return; }
+
+            foreach (var satFileRow in satFileRows)
+            {
+                var msb = new MSatBalance();
+                string rowContent = satFileRow.Trim();
+                if (string.IsNullOrWhiteSpace(rowContent) || rowContent.Contains("CPF") && rowContent.Contains("SALDO"))
+                {
+                    continue;
+                }
+
+                var rowContentSplitted = rowContent.Split(',');
+                if (rowContentSplitted.Length != 6)
+                {
+                    continue;
+                }
+                string numeroDoCartao = rowContentSplitted[1].ProcessTextDefault();
+                string saldo = rowContentSplitted[3].ProcessTextDefault().Replace(".", ",");
+                string recargaPendente = rowContentSplitted[5].ProcessTextDefault().Replace(".", ",");
+
+                if (string.IsNullOrWhiteSpace(numeroDoCartao) || string.IsNullOrWhiteSpace(saldo) || string.IsNullOrWhiteSpace(recargaPendente))
+                {
+                    continue;
+                }
+
+                msb.NumeroDoCartao = numeroDoCartao.TreatRiocardCard();
+                msb.Saldo = decimal.TryParse(saldo, out decimal saldoDecimal) ? saldoDecimal : 0;
+                msb.RecargaPendente = decimal.TryParse(recargaPendente, out decimal recargaPendenteDecimal) ? recargaPendenteDecimal : 0;
+
+                msbList.Add(msb);
+
+            }
+
+            foreach (var riocardFileRow in riocardFileRows)
+            {
+                var mrb = new MRiocardBalance();
+                string rowContent = riocardFileRow.Trim();
+                if (string.IsNullOrWhiteSpace(rowContent) || rowContent.Contains("CNPJ") && rowContent.Contains("BUSCADOR"))
+                {
+                    continue;
+                }
+
+                var rowContentSplitted = rowContent.Split('\t');
+                if (rowContentSplitted.Length != 12)
+                {
+                    continue;
+                }
+
+                string cnpj = rowContentSplitted[0].ProcessTextDefault();
+                string empresa = rowContentSplitted[1].ProcessTextDefault();
+                string buscador = rowContentSplitted[2].ProcessTextDefault();
+                string numeroDoCartao = rowContentSplitted[3].ProcessTextDefault();
+                string matricula = rowContentSplitted[4].ProcessTextDefault();
+                string nome = rowContentSplitted[5].ProcessTextDefault();
+                string cpf = rowContentSplitted[6].ProcessTextDefault();
+                string status = rowContentSplitted[7].ProcessTextDefault();
+
+                if (mrbList.Any(x => x.NumeroDoCartao == numeroDoCartao)) { continue; }
+
+                mrb.Cnpj = cnpj;
+                mrb.Empresa = empresa;
+                mrb.Buscador = buscador;
+                mrb.NumeroDoCartao = numeroDoCartao;
+                mrb.Matricula = matricula;
+                mrb.Nome = nome;
+                mrb.Cpf = cpf;
+                mrb.Status = status;
+                mrb.Saldo = msbList.Where(x => x.NumeroDoCartao == numeroDoCartao).Select(x => x.Saldo).FirstOrDefault();
+                mrb.RecargaPendente = msbList.Where(x => x.NumeroDoCartao == numeroDoCartao).Select(x => x.RecargaPendente).FirstOrDefault();
+                mrb.AttSaldo = DateTime.Now;
+                mrb.DataPagamentoRecargaPendente = DateTime.Now;
+
+                mrbList.Add(mrb);
+            }
+
+            var sfd = new SaveFileDialog()
+            {
+                Title = "Salvar Arquivo de Saldos",
+                Filter = "Arquivo de Texto|*.txt",
+                FileName = $"_RIOCARD [{DateTime.Now:yyyy-MM-dd}].txt",
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.Append("CNPJ\tEMPRESA\tBUSCADOR\tNR. DO CARTAO\tMAT\tNOME\tCPF\tSTATUS\tSALDO\tATT SALDO\tREC PEND\tDATA PGMT REC PEND");
+
+            foreach (var mrbItem in mrbList)
+            {
+                sb.AppendLine();
+                sb.Append($"{mrbItem.Cnpj}\t{mrbItem.Empresa}\t{mrbItem.Buscador}\t{mrbItem.NumeroDoCartao}\t{mrbItem.Matricula}\t{mrbItem.Nome}\t{mrbItem.Cpf}\t{mrbItem.Status}\t{mrbItem.Saldo.ToString("0.00")}\t{mrbItem.AttSaldo:dd/MM/yyyy}\t{mrbItem.RecargaPendente.ToString("0.00")}\t{mrbItem.DataPagamentoRecargaPendente:dd/MM/yyyy}");
+            }
+
+            File.WriteAllText(sfd.FileName, sb.ToString());
+            XtraMessageBox.Show("Arquivo de Saldos Gerado com Sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void SaveMode1()
+        {
+            var mrbList = new List<MRiocardBalance>();
+
+            var riocardFileRows = File.ReadAllLines(FilePath1);
+            if (riocardFileRows.Length < 2) { return; }
+
+            var cpfList = SpreadSheet.GetCpf(FilePath2, false);
+            if (cpfList.Count == 0) { throw new Exception("Nenhum CPF encontrado na Planilha!"); }
+
+            foreach (var riocardFileRow in riocardFileRows)
+            {
+                var mrb = new MRiocardBalance();
+                string rowContent = riocardFileRow.Trim();
+                if (string.IsNullOrWhiteSpace(rowContent) || rowContent.Contains("CNPJ") && rowContent.Contains("BUSCADOR"))
+                {
+                    continue;
+                }
+
+                var rowContentSplitted = rowContent.Split('\t');
+                if (rowContentSplitted.Length != 12) { continue; }
+
+                string numeroDoCartao = rowContentSplitted[3].ProcessTextDefault().TreatCPF(false);
+                if (numeroDoCartao.StartsWith("0000") || numeroDoCartao.StartsWith("0001") || numeroDoCartao.Contains("ERROR")) { continue; }
+                if (mrbList.Any(x => x.NumeroDoCartao == numeroDoCartao)) { continue; }
+
+                string cpf = rowContentSplitted[6].ProcessTextDefault();
+                if (!Cpf.Validar(cpf)) { continue; }
+                cpf = Cpf.FormatarSemPontuacao(cpf);
+                if (!cpfList.Contains(cpf)) { continue; }
+
+                mrb.NumeroDoCartao = numeroDoCartao;
+                mrb.Cpf = cpf;
+                mrbList.Add(mrb);
+            }
+
+            var sfd = new SaveFileDialog()
+            {
+                Title = "Salvar Arquivo CPF-CARTAO SAT",
+                Filter = "Arquivo de Texto|*.txt",
+                FileName = $"SAT-EMPRESA.txt",
+            };
+
+            if (sfd.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.Append("CPF\tCARTAO\tEMPRESA");
+
+            string nomeDaEmpresa = Path.GetFileNameWithoutExtension(sfd.FileName);
+
+            foreach (var mrbItem in mrbList)
+            {
+                sb.AppendLine();
+                sb.Append($"{mrbItem.Cpf}\t{mrbItem.NumeroDoCartao}\t{nomeDaEmpresa}");
+            }
+
+            File.WriteAllText(sfd.FileName, sb.ToString());
+            XtraMessageBox.Show("Arquivo CPF-CARTAO Gerado com Sucesso!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void txt_RiocardFilePath_EditValueChanged(object sender, EventArgs e)
@@ -193,7 +302,7 @@ namespace GCScript.Client.Windows
 
         private void CheckFileExist()
         {
-            if (!File.Exists(RiocardFilePath) || !File.Exists(SatFilePath))
+            if (!File.Exists(FilePath1) || !File.Exists(FilePath2))
             {
                 btn_Save.Enabled = false;
             }

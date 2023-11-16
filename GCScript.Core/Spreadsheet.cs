@@ -59,7 +59,7 @@ namespace GCScript.Core
             cn.Temp4 = ws.FindColumn(ColumnName.Temp4);
             cn.Temp5 = ws.FindColumn(ColumnName.Temp5);
 
-            for (int i = 2; i < lastRowUsed; i++)
+            for (int i = 2; i <= lastRowUsed; i++)
             {
                 MColumn column = new();
                 column.Cnpj = ws.Cell(i, cn.Cnpj).Value.ToString().ProcessTextDefault();
@@ -82,6 +82,62 @@ namespace GCScript.Core
             }
 
             return columnList;
+        }
+
+        public static List<string> GetCpf(string path, bool onlyDiscounted)
+        {
+            List<string> cpfList = new();
+            var wb = new XLWorkbook(path);
+            IXLWorksheet? ws = wb.Worksheet("Dados");
+            if (ws == null) { throw new Exception("Planilha não encontrada."); }
+            if (!ws.RowsUsed().Any()) { throw new Exception("Não há dados na planilha."); }
+            if (ws.RowsUsed().Count() < 2) { throw new Exception("Não há dados na planilha."); }
+            var lastRowUsed = ws.LastRowUsed().RowNumber();
+
+            var cpfColumn = ws.FindColumn(ColumnName.Cpf);
+            if (cpfColumn == -1) { throw new Exception("Coluna 'CPF' não encontrada."); }
+            var descontoColumn = ws.FindColumn(ColumnName.Desconto);
+            if (descontoColumn == -1) { throw new Exception("Coluna 'DESCONTO' não encontrada."); }
+
+            for (int i = 2; i <= lastRowUsed; i++)
+            {
+                if (onlyDiscounted)
+                {
+                    decimal desconto = decimal.TryParse(ws.Cell(i, descontoColumn).Value.ToString(), out decimal dvt) ? dvt : 0;
+                    if (desconto > 0)
+                    {
+                        string cpf = ws.Cell(i, cpfColumn).Value.ToString().TreatCPF(false);
+                        if (Cpf.Validar(cpf))
+                        {
+                            cpfList.Add(cpf);
+                        }
+                        else
+                        {
+                            continue;
+                        }
+                    }
+                    else
+                    {
+                        continue;
+                    }
+
+
+                }
+                else
+                {
+                    string cpf = ws.Cell(i, cpfColumn).Value.ToString().TreatCPF(false);
+                    if (Cpf.Validar(cpf))
+                    {
+                        cpfList.Add(cpf);
+                    }
+                    else
+                    {
+                        continue;
+                    }
+                }
+            }
+
+            return cpfList;
         }
 
         public static async Task Treat(List<MColumn> data)

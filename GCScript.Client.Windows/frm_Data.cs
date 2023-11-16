@@ -671,7 +671,12 @@ public partial class frm_Data : XtraForm
 
     private void btn_RiocardBalanceTools_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
     {
-        new frm_RiocardBalanceTools().ShowDialog();
+        new frm_RiocardBalanceTools(0).ShowDialog();
+    }
+
+    private void btn_PedirSaldoCpfCartao_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
+    {
+        new frm_RiocardBalanceTools(1).ShowDialog();
     }
 
 

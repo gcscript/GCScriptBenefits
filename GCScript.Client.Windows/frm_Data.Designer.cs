@@ -89,6 +89,7 @@
             btn_Create_Operator = new DevExpress.XtraBars.BarButtonItem();
             btn_RiocardBalanceTools = new DevExpress.XtraBars.BarButtonItem();
             barButtonItem2 = new DevExpress.XtraBars.BarButtonItem();
+            btn_PedirSaldoCpfCartao = new DevExpress.XtraBars.BarButtonItem();
             ribbonPage1 = new DevExpress.XtraBars.Ribbon.RibbonPage();
             ribbonPageGroup1 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
             ribbonPageGroup2 = new DevExpress.XtraBars.Ribbon.RibbonPageGroup();
@@ -355,11 +356,11 @@
             ddbtn_CopyResume.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             ddbtn_CopyResume.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_CopyResume.ImageOptions.SvgImage");
             ddbtn_CopyResume.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_CopyResume.Location = new System.Drawing.Point(379, 185);
+            ddbtn_CopyResume.Location = new System.Drawing.Point(379, 191);
             ddbtn_CopyResume.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             ddbtn_CopyResume.Name = "ddbtn_CopyResume";
             tlp_UnitInfo.SetRow(ddbtn_CopyResume, 9);
-            ddbtn_CopyResume.Size = new System.Drawing.Size(59, 18);
+            ddbtn_CopyResume.Size = new System.Drawing.Size(59, 20);
             ddbtn_CopyResume.TabIndex = 13;
             ddbtn_CopyResume.Click += ddbtn_CopyResume_Click;
             // 
@@ -389,7 +390,7 @@
             lbl_Password.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(lbl_Password, 0);
             lbl_Password.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Password.Location = new System.Drawing.Point(3, 87);
+            lbl_Password.Location = new System.Drawing.Point(3, 89);
             lbl_Password.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             lbl_Password.Name = "lbl_Password";
             tlp_UnitInfo.SetRow(lbl_Password, 4);
@@ -402,7 +403,7 @@
             labelControl1.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(labelControl1, 0);
             labelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl1.Location = new System.Drawing.Point(3, 207);
+            labelControl1.Location = new System.Drawing.Point(3, 215);
             labelControl1.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl1.Name = "labelControl1";
             tlp_UnitInfo.SetRow(labelControl1, 10);
@@ -415,7 +416,7 @@
             labelControl2.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(labelControl2, 0);
             labelControl2.Dock = System.Windows.Forms.DockStyle.Fill;
-            labelControl2.Location = new System.Drawing.Point(3, 167);
+            labelControl2.Location = new System.Drawing.Point(3, 173);
             labelControl2.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             labelControl2.Name = "labelControl2";
             tlp_UnitInfo.SetRow(labelControl2, 8);
@@ -430,11 +431,11 @@
             btn_GoToUrl.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_GoToUrl.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_GoToUrl.ImageOptions.SvgImage");
             btn_GoToUrl.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_GoToUrl.Location = new System.Drawing.Point(379, 145);
+            btn_GoToUrl.Location = new System.Drawing.Point(379, 149);
             btn_GoToUrl.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_GoToUrl.Name = "btn_GoToUrl";
             tlp_UnitInfo.SetRow(btn_GoToUrl, 7);
-            btn_GoToUrl.Size = new System.Drawing.Size(29, 18);
+            btn_GoToUrl.Size = new System.Drawing.Size(29, 20);
             btn_GoToUrl.TabIndex = 0;
             btn_GoToUrl.Click += btn_Resume_GoToUrl_Click;
             // 
@@ -446,11 +447,11 @@
             btn_SavePassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_SavePassword.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_SavePassword.ImageOptions.SvgImage");
             btn_SavePassword.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_SavePassword.Location = new System.Drawing.Point(379, 105);
+            btn_SavePassword.Location = new System.Drawing.Point(379, 107);
             btn_SavePassword.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_SavePassword.Name = "btn_SavePassword";
             tlp_UnitInfo.SetRow(btn_SavePassword, 5);
-            btn_SavePassword.Size = new System.Drawing.Size(29, 18);
+            btn_SavePassword.Size = new System.Drawing.Size(29, 20);
             btn_SavePassword.TabIndex = 11;
             btn_SavePassword.Click += btn_Resume_SavePassword_Click;
             // 
@@ -465,7 +466,7 @@
             btn_CopyUsername.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyUsername.Name = "btn_CopyUsername";
             tlp_UnitInfo.SetRow(btn_CopyUsername, 3);
-            btn_CopyUsername.Size = new System.Drawing.Size(29, 18);
+            btn_CopyUsername.Size = new System.Drawing.Size(29, 20);
             btn_CopyUsername.TabIndex = 0;
             btn_CopyUsername.Click += btn_Resume_CopyUsername_Click;
             // 
@@ -476,11 +477,11 @@
             btn_CopyPassword.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_CopyPassword.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_CopyPassword.ImageOptions.SvgImage");
             btn_CopyPassword.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_CopyPassword.Location = new System.Drawing.Point(409, 105);
+            btn_CopyPassword.Location = new System.Drawing.Point(409, 107);
             btn_CopyPassword.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyPassword.Name = "btn_CopyPassword";
             tlp_UnitInfo.SetRow(btn_CopyPassword, 5);
-            btn_CopyPassword.Size = new System.Drawing.Size(29, 18);
+            btn_CopyPassword.Size = new System.Drawing.Size(29, 20);
             btn_CopyPassword.TabIndex = 0;
             btn_CopyPassword.Click += btn_Resume_CopyPassword_Click;
             // 
@@ -491,11 +492,11 @@
             btn_CopyUrl.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             btn_CopyUrl.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_CopyUrl.ImageOptions.SvgImage");
             btn_CopyUrl.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            btn_CopyUrl.Location = new System.Drawing.Point(409, 145);
+            btn_CopyUrl.Location = new System.Drawing.Point(409, 149);
             btn_CopyUrl.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             btn_CopyUrl.Name = "btn_CopyUrl";
             tlp_UnitInfo.SetRow(btn_CopyUrl, 7);
-            btn_CopyUrl.Size = new System.Drawing.Size(29, 18);
+            btn_CopyUrl.Size = new System.Drawing.Size(29, 20);
             btn_CopyUrl.TabIndex = 11;
             btn_CopyUrl.Click += btn_Resume_CopyUrl_Click;
             // 
@@ -517,7 +518,7 @@
             tlp_UnitInfo.SetColumn(txt_Password, 0);
             tlp_UnitInfo.SetColumnSpan(txt_Password, 2);
             txt_Password.Dock = System.Windows.Forms.DockStyle.Fill;
-            txt_Password.Location = new System.Drawing.Point(1, 105);
+            txt_Password.Location = new System.Drawing.Point(1, 107);
             txt_Password.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Password.Name = "txt_Password";
             tlp_UnitInfo.SetRow(txt_Password, 5);
@@ -582,7 +583,7 @@
             tlp_UnitInfo.SetColumnSpan(txt_Url, 2);
             txt_Url.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Url.Enabled = false;
-            txt_Url.Location = new System.Drawing.Point(1, 145);
+            txt_Url.Location = new System.Drawing.Point(1, 149);
             txt_Url.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Url.Name = "txt_Url";
             tlp_UnitInfo.SetRow(txt_Url, 7);
@@ -594,7 +595,7 @@
             lbl_Url.AutoSizeMode = DevExpress.XtraEditors.LabelAutoSizeMode.None;
             tlp_UnitInfo.SetColumn(lbl_Url, 0);
             lbl_Url.Dock = System.Windows.Forms.DockStyle.Fill;
-            lbl_Url.Location = new System.Drawing.Point(3, 127);
+            lbl_Url.Location = new System.Drawing.Point(3, 131);
             lbl_Url.Margin = new System.Windows.Forms.Padding(3, 3, 3, 0);
             lbl_Url.Name = "lbl_Url";
             tlp_UnitInfo.SetRow(lbl_Url, 6);
@@ -608,7 +609,7 @@
             tlp_UnitInfo.SetColumnSpan(txt_Resume, 2);
             txt_Resume.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_Resume.Enabled = false;
-            txt_Resume.Location = new System.Drawing.Point(1, 185);
+            txt_Resume.Location = new System.Drawing.Point(1, 191);
             txt_Resume.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_Resume.Name = "txt_Resume";
             tlp_UnitInfo.SetRow(txt_Resume, 9);
@@ -621,7 +622,7 @@
             tlp_UnitInfo.SetColumnSpan(txt_BankSlip, 2);
             txt_BankSlip.Dock = System.Windows.Forms.DockStyle.Fill;
             txt_BankSlip.Enabled = false;
-            txt_BankSlip.Location = new System.Drawing.Point(1, 225);
+            txt_BankSlip.Location = new System.Drawing.Point(1, 233);
             txt_BankSlip.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             txt_BankSlip.Name = "txt_BankSlip";
             tlp_UnitInfo.SetRow(txt_BankSlip, 11);
@@ -637,11 +638,11 @@
             ddbtn_CopyBankSlip.ImageOptions.Location = DevExpress.XtraEditors.ImageLocation.MiddleCenter;
             ddbtn_CopyBankSlip.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("ddbtn_CopyBankSlip.ImageOptions.SvgImage");
             ddbtn_CopyBankSlip.ImageOptions.SvgImageSize = new System.Drawing.Size(15, 15);
-            ddbtn_CopyBankSlip.Location = new System.Drawing.Point(379, 225);
+            ddbtn_CopyBankSlip.Location = new System.Drawing.Point(379, 233);
             ddbtn_CopyBankSlip.Margin = new System.Windows.Forms.Padding(1, 1, 0, 1);
             ddbtn_CopyBankSlip.Name = "ddbtn_CopyBankSlip";
             tlp_UnitInfo.SetRow(ddbtn_CopyBankSlip, 11);
-            ddbtn_CopyBankSlip.Size = new System.Drawing.Size(59, 18);
+            ddbtn_CopyBankSlip.Size = new System.Drawing.Size(59, 20);
             ddbtn_CopyBankSlip.TabIndex = 13;
             ddbtn_CopyBankSlip.Click += ddbtn_CopyBankSlip_Click;
             // 
@@ -800,7 +801,7 @@
             tp_Company.Padding = new System.Windows.Forms.Padding(3);
             tp_Company.PageEnabled = false;
             tp_Company.PageVisible = false;
-            tp_Company.Size = new System.Drawing.Size(836, 167);
+            tp_Company.Size = new System.Drawing.Size(836, 169);
             tp_Company.Text = "Empresa";
             // 
             // tp_Operator
@@ -810,15 +811,15 @@
             tp_Operator.Padding = new System.Windows.Forms.Padding(3);
             tp_Operator.PageEnabled = false;
             tp_Operator.PageVisible = false;
-            tp_Operator.Size = new System.Drawing.Size(836, 167);
+            tp_Operator.Size = new System.Drawing.Size(836, 169);
             tp_Operator.Text = "Operadora";
             // 
             // rbbc_Main
             // 
             rbbc_Main.ExpandCollapseItem.Id = 0;
-            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1, btn_Create_Company, btn_Create_Operator, btn_RiocardBalanceTools, barButtonItem2 });
+            rbbc_Main.Items.AddRange(new DevExpress.XtraBars.BarItem[] { rbbc_Main.ExpandCollapseItem, btn_Sheets_Dados, btn_Sheets_Escala, btn_Sheets_Saldo, btn_Create_Unit, btn_T1, btn_Create_Company, btn_Create_Operator, btn_RiocardBalanceTools, barButtonItem2, btn_PedirSaldoCpfCartao });
             rbbc_Main.Location = new System.Drawing.Point(0, 0);
-            rbbc_Main.MaxItemId = 11;
+            rbbc_Main.MaxItemId = 12;
             rbbc_Main.Name = "rbbc_Main";
             rbbc_Main.OptionsExpandCollapseMenu.EnableExpandCollapseMenu = DevExpress.Utils.DefaultBoolean.False;
             rbbc_Main.OptionsExpandCollapseMenu.ShowQuickAccessToolbarItem = DevExpress.Utils.DefaultBoolean.False;
@@ -887,7 +888,7 @@
             // 
             // btn_RiocardBalanceTools
             // 
-            btn_RiocardBalanceTools.Caption = "Riocard > SAT";
+            btn_RiocardBalanceTools.Caption = "2º Tratar Saldos";
             btn_RiocardBalanceTools.Id = 9;
             btn_RiocardBalanceTools.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_RiocardBalanceTools.ImageOptions.SvgImage");
             btn_RiocardBalanceTools.Name = "btn_RiocardBalanceTools";
@@ -900,6 +901,14 @@
             barButtonItem2.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("barButtonItem2.ImageOptions.SvgImage");
             barButtonItem2.Name = "barButtonItem2";
             barButtonItem2.Visibility = DevExpress.XtraBars.BarItemVisibility.Never;
+            // 
+            // btn_PedirSaldoCpfCartao
+            // 
+            btn_PedirSaldoCpfCartao.Caption = "1º Pedir Saldos";
+            btn_PedirSaldoCpfCartao.Id = 11;
+            btn_PedirSaldoCpfCartao.ImageOptions.SvgImage = (DevExpress.Utils.Svg.SvgImage)resources.GetObject("btn_PedirSaldoCpfCartao.ImageOptions.SvgImage");
+            btn_PedirSaldoCpfCartao.Name = "btn_PedirSaldoCpfCartao";
+            btn_PedirSaldoCpfCartao.ItemClick += btn_PedirSaldoCpfCartao_ItemClick;
             // 
             // ribbonPage1
             // 
@@ -928,6 +937,7 @@
             // ribbonPageGroup4
             // 
             ribbonPageGroup4.ItemLinks.Add(barButtonItem2);
+            ribbonPageGroup4.ItemLinks.Add(btn_PedirSaldoCpfCartao);
             ribbonPageGroup4.ItemLinks.Add(btn_RiocardBalanceTools);
             ribbonPageGroup4.Name = "ribbonPageGroup4";
             ribbonPageGroup4.Text = "Ferramentas";
@@ -1256,7 +1266,6 @@
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             ClientSize = new System.Drawing.Size(844, 544);
             Controls.Add(nvf_Main);
-            Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             MinimumSize = new System.Drawing.Size(744, 444);
             Name = "frm_Data";
@@ -1393,5 +1402,6 @@
         private DevExpress.XtraBars.BarButtonItem btn_RiocardBalanceTools;
         private DevExpress.XtraBars.Ribbon.RibbonPageGroup ribbonPageGroup4;
         private DevExpress.XtraBars.BarButtonItem barButtonItem2;
+        private DevExpress.XtraBars.BarButtonItem btn_PedirSaldoCpfCartao;
     }
 }
