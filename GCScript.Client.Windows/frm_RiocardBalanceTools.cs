@@ -72,6 +72,8 @@ namespace GCScript.Client.Windows
 
             FilePath1 = dlg.FileName;
             txt_FilePath1.Text = Path.GetFileName(FilePath1);
+            FilePath2 = "";
+            txt_FilePath2.Text = "";
         }
 
         private void btn_SelectFile2_Click(object sender, EventArgs e)
@@ -234,7 +236,8 @@ namespace GCScript.Client.Windows
             var riocardFileRows = File.ReadAllLines(FilePath1);
             if (riocardFileRows.Length < 2) { return; }
 
-            var cpfList = SpreadSheet.GetCpf(FilePath2, false);
+            var cpfList = SpreadSheet.GetCpf(FilePath2, chk_1.Checked);
+
             if (cpfList.Count == 0) { throw new Exception("Nenhum CPF encontrado na Planilha!"); }
 
             foreach (var riocardFileRow in riocardFileRows)
