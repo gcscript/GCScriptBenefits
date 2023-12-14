@@ -4,6 +4,7 @@ namespace GCScript.Shared;
 
 public static class Settings
 {
+    public static bool DarkMode = true;
     public static readonly string AppPath = Path.GetDirectoryName(System.AppContext.BaseDirectory)!;
     public static readonly string DesktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
     public static readonly string AppDataPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "GCScript Benefits");

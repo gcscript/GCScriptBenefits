@@ -1,0 +1,39 @@
+﻿@inherits LayoutComponentBase
+@using GCScript.Shared
+
+<MudThemeProvider IsDarkMode="@Settings.DarkMode" />
+<MudDialogProvider />
+<MudSnackbarProvider />
+
+<MudLayout>
+    <MudAppBar Elevation="0">
+        <MudIconButton Icon="@Icons.Material.Filled.Menu" Color="Color.Inherit" Edge="Edge.Start" OnClick="@((e) => DrawerToggle())" />
+        <MudSpacer />
+        @* <MudIconButton Icon="@Icons.Custom.Brands.Instagram" Color="Color.Inherit" Href="https://www.instagram.com/enlightenglobal/" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.YouTube" Color="Color.Inherit" Href="https://www.youtube.com/c/EnlightenBrasil" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.LinkedIn" Color="Color.Inherit" Href="https://www.linkedin.com/company/enlighten-do-brasil" Target="_blank" />
+        <MudIconButton Icon="@Icons.Custom.Brands.Facebook" Color="Color.Inherit" Href="https://web.facebook.com/enlightenglobal" Target="_blank" /> *@
+        <MudSwitch @bind-Checked="@Settings.DarkMode" Color="Color.Primary" ThumbIcon="@(@Settings.DarkMode==true ? Icons.Material.Filled.Brightness3 : Icons.Material.Filled.Brightness5)" />
+    </MudAppBar>
+    <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
+        <MudDrawerHeader Class="d-flex align-center justify-center" jus>
+            <MudImage Src="images/d_gcscript.svg" Width="100" Alt="GCScript Logo" />
+            @* <MudImage Class="mr-5" Src="images/logo.svg" Width="50" Height="50" Alt="GCScript Logo" /> *@
+        </MudDrawerHeader>
+        <NavMenu />
+    </MudDrawer>
+    <MudMainContent>
+        <MudContainer MaxWidth="MaxWidth.ExtraExtraLarge" Class="ma-0 pa-0 overflow-hidden" Style="height: calc(100vh - 4rem);">
+            @Body
+        </MudContainer>
+    </MudMainContent>
+</MudLayout>
+
+@code {
+    bool _drawerOpen = true;
+
+    void DrawerToggle()
+    {
+        _drawerOpen = !_drawerOpen;
+    }
+}

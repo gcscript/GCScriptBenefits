@@ -2,6 +2,7 @@
 using GCScript.Core;
 using GCScript.Database.MongoDB;
 using GCScript.Database.MongoDB.DataAccess;
+using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
@@ -27,26 +28,49 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         btn_Management.Visible = false;
     }
 
-    private void btn_Management_Click(object sender, EventArgs e)
+    private async void btn_Management_Click(object sender, EventArgs e)
     {
-        SettingsDB.MongoDbUsername = "";
-        SettingsDB.MongoDbPassword = "";
-        new frm_PurchaseGenerator().ShowDialog();
+        //SettingsDB.MongoDbUsername = "";
+        //SettingsDB.MongoDbPassword = "";
+        //new frm_PurchaseGenerator().ShowDialog();
         //new frm_RiocardBalanceTools().ShowDialog();
         //return;
 
         //frm_Management frm = new();
         //frm.ShowDialog();
 
+        #region CADASTRAR EMPRESA
+        //SettingsDB.MongoDbUsername = "";
+        //SettingsDB.MongoDbPassword = "";
+
+        //CompanyDataAccess access = new CompanyDataAccess();
+        //MCompany co = new()
+        //{
+        //    Name = "SOLUCAO AMBIENTAL",
+        //    ResponsibleGVT = "ROSI",
+        //    ResponsibleTI = "GUSTAVO",
+        //    Margin = 3,
+        //    CreatedBy = SettingsDB.MongoDbUsername
+        //};
+
+        //var teste = await access.InsertOneAsync(co);
+        //if (teste)
+        //{
+        //    XtraMessageBox.Show("Feito!");
+        //    return;
+        //}
+        #endregion
+
+        #region CADASTRAR OPERADORA
         //SettingsDB.MongoDbUsername = "";
         //SettingsDB.MongoDbPassword = "";
 
         //OperatorDataAccess access = new OperatorDataAccess();
         //MOperator op = new()
         //{
-        //    Name = "TIL",
-        //    Uf = "PR",
-        //    Url = "https://max00574.itstransdata.com/TDMaxWebCommerce/",
+        //    Name = "MOV MONTE MOR",
+        //    Uf = "SP",
+        //    Url = "http://189.44.98.122:8591/login/",
         //    CreatedBy = SettingsDB.MongoDbUsername
         //};
 
@@ -56,6 +80,7 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         //    XtraMessageBox.Show("Feito!");
         //    return;
         //}
+        #endregion
     }
 
     private async void btn_LogIn_Click(object sender, EventArgs e)

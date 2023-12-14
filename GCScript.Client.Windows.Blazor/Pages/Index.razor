@@ -1,0 +1,52 @@
+﻿@page "/"
+@inject NavigationManager NavigationManager
+
+@* Login Page *@
+<MudContainer Class="mt-15" Style="width:400px;">
+    <MudPaper Class="pa-10">
+        <MudStack>
+            @* <MudText Class="ma-0 pa-0" Typo="Typo.h6" Align="Align.Center" GutterBottom="true">LOGIN</MudText> *@
+            <div class="d-flex align-center justify-center">
+                <MudImage Src="images/d_gcscript.svg" Width="200" Height="100" Alt="GCScript Logo" />
+            </div>
+
+            @* <MudIcon Icon="fab fa-internet-explorer" Color="Color.Primary" /> *@
+            <MudTextField Adornment="Adornment.End"
+                          AdornmentColor="Color.Default"
+                          AdornmentIcon="fa-solid fa-user"
+                          Clearable="true"
+                          IconSize="Size.Small"
+                          InputType="InputType.Text"
+                          Label="Username"
+                          Margin="Margin.Dense"
+                          MaxLength="32"
+                          Variant="Variant.Outlined"
+                          @bind-Value="username" />
+            <MudTextField Adornment="Adornment.End"
+                          AdornmentColor="Color.Default"
+                          AdornmentIcon="fa-solid fa-lock"
+                          Clearable="true"
+                          IconSize="Size.Small"
+                          InputType="InputType.Password"
+                          Label="Password"
+                          Margin="Margin.Dense"
+                          MaxLength="32"
+                          Variant="Variant.Outlined"
+                          @bind-Value="password" />
+            <MudButton Variant="Variant.Filled" Color="Color.Primary" Style="height:3rem" @onclick="Login">Login</MudButton>
+        </MudStack>
+    </MudPaper>
+</MudContainer>
+
+
+@code {
+    string username;
+    string password;
+
+    void Login()
+    {
+        // Implemente a lógica de autenticação aqui
+        // Se a autenticação for bem-sucedida, redirecione para a página do painel
+        NavigationManager.NavigateTo("/dashboard");
+    }
+}
