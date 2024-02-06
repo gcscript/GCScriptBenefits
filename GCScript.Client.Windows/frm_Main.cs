@@ -68,9 +68,9 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         //OperatorDataAccess access = new OperatorDataAccess();
         //MOperator op = new()
         //{
-        //    Name = "MOV MONTE MOR",
+        //    Name = "MORATENSE",
         //    Uf = "SP",
-        //    Url = "http://189.44.98.122:8591/login/",
+        //    Url = "https://191.242.203.32:9961/wbc-st5/login.faces?uat=5",
         //    CreatedBy = SettingsDB.MongoDbUsername
         //};
 

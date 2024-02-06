@@ -34,7 +34,7 @@ public static class Tools
     {
         try
         {
-            var filenames = new string[] { "ped.txt", "ped.xml" };
+            var filenames = new string[] { "___ped.txt", "___ped.xml" };
             foreach (var filename in filenames)
             {
                 var filePath = Path.Combine(Settings.DesktopPath, filename);

@@ -208,7 +208,7 @@ namespace GCScript.Client.Windows
             {
                 Title = "Salvar Arquivo de Saldos",
                 Filter = "Arquivo de Texto|*.txt",
-                FileName = $"_RIOCARD [{DateTime.Now:yyyy-MM-dd}].txt",
+                FileName = $"___RIOCARD [{DateTime.Now:yyyy-MM-dd}].txt",
             };
 
             if (sfd.ShowDialog() != DialogResult.OK)

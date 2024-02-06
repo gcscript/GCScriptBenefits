@@ -1,0 +1,21 @@
+﻿.container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    grid-template-areas: "header" "main" "footer";
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr auto;
+    overflow: hidden;
+}
+.header {
+    grid-area: header;
+}
+
+.main {
+    grid-area: main;
+    overflow: auto;
+}
+
+.footer {
+    grid-area: footer;
+}

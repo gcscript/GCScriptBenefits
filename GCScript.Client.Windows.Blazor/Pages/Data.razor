@@ -1,2 +1,59 @@
 ﻿@page "/data"
 
+
+<div class="container">
+    <div class="header">
+        <MudPaper Elevation="25">
+            <MudToolBar>
+                <MudMenu StartIcon="@Icons.Material.Filled.Add" EndIcon="@Icons.Material.Filled.KeyboardArrowDown" Label="Cadastro" Color="Color.Primary">
+                    <MudMenuItem>Operadora</MudMenuItem>
+                    <MudMenuItem>Empresa</MudMenuItem>
+                    <MudMenuItem>Unidade</MudMenuItem>
+                </MudMenu>
+                <MudSpacer />
+                <MudIconButton Icon="@Icons.Material.Outlined.Settings" Color="Color.Inherit" />
+            </MudToolBar>
+        </MudPaper>
+    </div>
+    <div class="main">
+        <MudTable Items="@Elements" FixedHeader="true" FixedFooter="true" Dense="true" Hover="true" Bordered="true" Filter="new Func<Element,bool>(FilterFunc1)" @bind-SelectedItem="selectedItem1">
+            <ToolBarContent>
+                <MudSelect T="string"
+                           Label="Empresas"
+                           Class="mt-0"
+                           @bind-Text="mudSelect_Companies_Text"
+                           Margin="Margin.Dense"
+                           Dense="true">
+                    @foreach (var item in mudSelect_Companies_List)
+                    {
+                        <MudSelectItem Value="@item" />
+                    }
+                </MudSelect>
+                <MudIconButton Class="ma-0 ml-1 mb-1" Icon="@Icons.Material.Filled.Search" Color="Color.Default" Edge="Edge.End" @onclick="LoadCompanyData" />
+                @* <MudText Typo="Typo.h6">Periodic Elements</MudText> *@
+                <MudSpacer />
+                <MudTextField @bind-Value="searchString1" Placeholder="Search" Adornment="Adornment.Start" Margin="Margin.Dense" AdornmentIcon="@Icons.Material.Filled.Search" Class="mt-0" IconSize="Size.Medium" />
+            </ToolBarContent>
+            <HeaderContent>
+                <MudTh Style="width:10px">UF</MudTh>
+                <MudTh>Operadora</MudTh>
+                <MudTh>Empresa</MudTh>
+                <MudTh>Unidade</MudTh>
+                <MudTh Style="width:50px" />
+            </HeaderContent>
+            <RowTemplate>
+                <MudTd DataLabel="UF">@context.Sign</MudTd>
+                    <MudTd DataLabel="Operadora">@context.Name</MudTd>
+                    <MudTd DataLabel="Empresa">@context.Position</MudTd>
+                    <MudTd DataLabel="Unidade">@context.Molar</MudTd>
+                    <MudTd><MudIconButton Icon="@Icons.Material.Outlined.Search" Size="Size.Small" Class="ma-0 pa-0" Color="Color.Inherit" /></MudTd>
+                    @* <MudTd/> *@
+                </RowTemplate>
+                <PagerContent>
+                    <MudTablePager />
+                </PagerContent>
+            </MudTable>
+        </div>
+        <div class="footer">
+        </div>
+    </div>
