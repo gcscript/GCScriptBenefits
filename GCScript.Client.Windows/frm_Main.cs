@@ -24,14 +24,14 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
     {
         InitializeComponent();
         MainInstances.SvgShortcut = svg_Shortcut;
-        btn_Management.Enabled = false;
-        btn_Management.Visible = false;
+        btn_Management.Enabled = true;
+        btn_Management.Visible = true;
     }
 
     private async void btn_Management_Click(object sender, EventArgs e)
     {
-        //SettingsDB.MongoDbUsername = "";
-        //SettingsDB.MongoDbPassword = "";
+        SettingsDB.MongoDbUsername = Secrets.Users.Administrator.Username;
+        SettingsDB.MongoDbPassword = Secrets.Users.Administrator.Password;
         //new frm_PurchaseGenerator().ShowDialog();
         //new frm_RiocardBalanceTools().ShowDialog();
         //return;
@@ -40,44 +40,38 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         //frm.ShowDialog();
 
         #region CADASTRAR EMPRESA
-        //SettingsDB.MongoDbUsername = "";
-        //SettingsDB.MongoDbPassword = "";
-
         //CompanyDataAccess access = new CompanyDataAccess();
         //MCompany co = new()
         //{
-        //    Name = "SOLUCAO AMBIENTAL",
-        //    ResponsibleGVT = "ROSI",
+        //    Name = "MERCADO MIX CERTO",
+        //    ResponsibleGVT = "TANIA",
         //    ResponsibleTI = "GUSTAVO",
         //    Margin = 3,
         //    CreatedBy = SettingsDB.MongoDbUsername
         //};
 
-        //var teste = await access.InsertOneAsync(co);
-        //if (teste)
+        //var result = await access.InsertOneAsync(co);
+        //if (result)
         //{
-        //    XtraMessageBox.Show("Feito!");
+        //    XtraMessageBox.Show("Company successfully registered!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
         //    return;
         //}
         #endregion
 
         #region CADASTRAR OPERADORA
-        //SettingsDB.MongoDbUsername = "";
-        //SettingsDB.MongoDbPassword = "";
-
         //OperatorDataAccess access = new OperatorDataAccess();
         //MOperator op = new()
         //{
-        //    Name = "MORATENSE",
+        //    Name = "FENIX FACIL",
         //    Uf = "SP",
-        //    Url = "https://191.242.203.32:9961/wbc-st5/login.faces?uat=5",
+        //    Url = "https://max00489.itstransdata.com/TDMaxWebCommerce/",
         //    CreatedBy = SettingsDB.MongoDbUsername
         //};
 
-        //var teste = await access.InsertOneAsync(op);
-        //if (teste)
+        //var result = await access.InsertOneAsync(op);
+        //if (result)
         //{
-        //    XtraMessageBox.Show("Feito!");
+        //    XtraMessageBox.Show("Operator successfully registered!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
         //    return;
         //}
         #endregion

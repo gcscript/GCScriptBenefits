@@ -15,16 +15,15 @@ using System.Threading;
 using System.Windows;
 using GCScript.Database.MongoDB.Models;
 using GCScript.Database.MongoDB.DataAccess;
-using DevExpress.XtraGrid;
 using System.Collections.Generic;
 using GCScript.Database.MongoDB.ViewModels;
 using DevExpress.Utils;
 using DevExpress.XtraGrid.Views.Grid;
 using DevExpress.XtraGrid.Views.Grid.ViewInfo;
 using Au;
-using System.Net.Http;
 using GCScript.Shared.Models;
 using GCScript.Database.MongoDB;
+using System.Windows.Forms;
 
 namespace GCScript.Client.Windows;
 
@@ -442,7 +441,7 @@ public partial class frm_Data : XtraForm
                     System.Windows.Forms.MessageBoxButtons.YesNo,
                     System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, Clipboard.GetText());
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, System.Windows.Forms.Clipboard.GetText());
                 File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
             else if (id == "6518bffd8427d5df54abffe4") // RIOCARD - PRA VOCE
@@ -453,7 +452,7 @@ public partial class frm_Data : XtraForm
                     System.Windows.Forms.MessageBoxButtons.YesNo,
                     System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, Clipboard.GetText());
+                var go = new OperatorRJRiocard().GenerateOrder(CurrentUnit.Cnpj, System.Windows.Forms.Clipboard.GetText());
                 File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
             else if (id == "6518bffd8427d5df54abffe5") // RJ - SETRANSOL
@@ -464,7 +463,7 @@ public partial class frm_Data : XtraForm
                     System.Windows.Forms.MessageBoxButtons.YesNo,
                     System.Windows.Forms.MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.No) { return; }
 
-                var go = new OperatorRJSetransol().GenerateOrder(Clipboard.GetText());
+                var go = new OperatorRJSetransol().GenerateOrder(System.Windows.Forms.Clipboard.GetText());
                 File.WriteAllText(Settings.TxtOrderFilePath, go);
             }
             else
