@@ -1,35 +1,28 @@
 ﻿using DevExpress.XtraEditors;
-using GCScript.Core;
 using GCScript.Database.MongoDB;
 using GCScript.Database.MongoDB.DataAccess;
-using GCScript.Database.MongoDB.Models;
 using GCScript.Shared;
 using GCScript.Shared.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text.Json;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace GCScript.Client.Windows;
 
-public partial class frm_Main : DevExpress.XtraEditors.XtraForm
-{
+public partial class frm_Main : DevExpress.XtraEditors.XtraForm {
 
     private XtraForm openForm;
     private enum EForms { Data = 0, Management = 1 };
 
-    public frm_Main()
-    {
+    public frm_Main() {
         InitializeComponent();
         MainInstances.SvgShortcut = svg_Shortcut;
         btn_Management.Enabled = true;
         btn_Management.Visible = true;
     }
 
-    private async void btn_Management_Click(object sender, EventArgs e)
-    {
+    private async void btn_Management_Click(object sender, EventArgs e) {
         SettingsDB.MongoDbUsername = Secrets.Users.Administrator.Username;
         SettingsDB.MongoDbPassword = Secrets.Users.Administrator.Password;
         //new frm_PurchaseGenerator().ShowDialog();
@@ -77,33 +70,27 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         #endregion
     }
 
-    private async void btn_LogIn_Click(object sender, EventArgs e)
-    {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(txt_Username.Text))
-            {
+    private async void btn_LogIn_Click(object sender, EventArgs e) {
+        try {
+            if (string.IsNullOrWhiteSpace(txt_Username.Text)) {
                 XtraMessageBox.Show($"O Usuário não pode ser vazio!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt_Username.Select();
                 return;
             }
 
-            if (string.IsNullOrWhiteSpace(txt_Password.Text))
-            {
+            if (string.IsNullOrWhiteSpace(txt_Password.Text)) {
                 XtraMessageBox.Show($"A Senha não pode ser vazia!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt_Password.Select();
                 return;
             }
 
-            if (txt_Username.Text.Length < 4)
-            {
+            if (txt_Username.Text.Length < 4) {
                 XtraMessageBox.Show($"O Usuário precisa ter 4 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt_Username.Select();
                 return;
             }
 
-            if (txt_Password.Text.Length < 4)
-            {
+            if (txt_Password.Text.Length < 4) {
                 XtraMessageBox.Show($"A Senha precisa ter 4 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txt_Password.Select();
                 return;
@@ -116,8 +103,7 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
             SettingsDB.MongoDbPassword = txt_Password.Text;
             UserDataAccess ac = new();
             var result = await ac.Login();
-            if (result.User == null)
-            {
+            if (result.User == null) {
                 pnl_Login.Enabled = true;
                 try { ssm_Main.CloseWaitForm(); } catch { }
                 txt_Username.Text = "";
@@ -131,14 +117,12 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
             SaveUsername(SettingsDB.MongoDbUsername);
             lbl_LoggedInUser.Text = result.User.Name;
         }
-        catch (Exception ex)
-        {
+        catch (Exception ex) {
             pnl_Login.Enabled = true;
             XtraMessageBox.Show($"{ex.Message}", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
             return;
         }
-        finally
-        {
+        finally {
             try { ssm_Main.CloseWaitForm(); } catch { }
         }
 
@@ -147,47 +131,39 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         HideLoginPanel();
     }
 
-    private void frm_Main_Load(object sender, EventArgs e)
-    {
+    private void frm_Main_Load(object sender, EventArgs e) {
         ShowLoginPanel();
         var username = LoadUsername();
-        if (!string.IsNullOrWhiteSpace(username))
-        {
+        if (!string.IsNullOrWhiteSpace(username)) {
             txt_Username.Text = username;
             txt_Password.Select();
         }
-        else
-        {
+        else {
             txt_Username.Select();
 
         }
     }
 
-    private void ShowLoginPanel()
-    {
+    private void ShowLoginPanel() {
         pnl_Login.BringToFront();
         pnl_Login.Dock = DockStyle.Fill;
         pnl_Login.Visible = true;
         pnl_Login.Enabled = true;
     }
 
-    private void HideLoginPanel()
-    {
+    private void HideLoginPanel() {
         pnl_Login.Visible = false;
         pnl_Login.Enabled = false;
         pnl_Login.SendToBack();
         pnl_Login.Dock = DockStyle.None;
     }
 
-    private void OpenSubForm(EForms form)
-    {
-        if (openForm is not null)
-        {
+    private void OpenSubForm(EForms form) {
+        if (openForm is not null) {
             openForm.Close();
         }
 
-        switch (form)
-        {
+        switch (form) {
             case EForms.Data:
                 openForm = new frm_Data(ssm_Main);
                 break;
@@ -212,36 +188,28 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         openForm.Show();
     }
 
-    private void acce_Home_Click(object sender, EventArgs e)
-    {
+    private void acce_Home_Click(object sender, EventArgs e) {
     }
 
-    private void acce_Data_Click(object sender, EventArgs e)
-    {
+    private void acce_Data_Click(object sender, EventArgs e) {
         OpenSubForm(EForms.Data);
     }
 
-    private void acce_Management_Click(object sender, EventArgs e)
-    {
+    private void acce_Management_Click(object sender, EventArgs e) {
         OpenSubForm(EForms.Management);
     }
 
-    private void txt_Username_KeyPress(object sender, KeyPressEventArgs e)
-    {
+    private void txt_Username_KeyPress(object sender, KeyPressEventArgs e) {
         if (e.KeyChar == (char)Keys.Enter) { btn_LogIn_Click(sender, e); }
     }
 
-    private void txt_Password_KeyPress(object sender, KeyPressEventArgs e)
-    {
+    private void txt_Password_KeyPress(object sender, KeyPressEventArgs e) {
         if (e.KeyChar == (char)Keys.Enter) { btn_LogIn_Click(sender, e); }
     }
 
-    private void SaveUsername(string Username)
-    {
-        try
-        {
-            if (!Directory.Exists(Settings.AppDataPath))
-            {
+    private void SaveUsername(string Username) {
+        try {
+            if (!Directory.Exists(Settings.AppDataPath)) {
                 Directory.CreateDirectory(Settings.AppDataPath);
             }
             var filePath = Path.Combine(Settings.AppDataPath, "username.txt");
@@ -250,13 +218,10 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         catch { }
     }
 
-    private string LoadUsername()
-    {
-        try
-        {
+    private string LoadUsername() {
+        try {
             var filePath = Path.Combine(Settings.AppDataPath, "username.txt");
-            if (File.Exists(filePath))
-            {
+            if (File.Exists(filePath)) {
                 return File.ReadAllText(filePath).Trim();
             }
         }
@@ -264,68 +229,57 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         return "";
     }
 
-    private void btn_RegisterCancel_Click(object sender, EventArgs e)
-    {
+    private void btn_RegisterCancel_Click(object sender, EventArgs e) {
         nvf_Login.SelectedPage = nvp_Login;
         txt_RegisterUsername.Text = "";
         txt_RegisterPassword.Text = "";
         txt_RegisterConfirmPassword.Text = "";
 
-        if (!string.IsNullOrWhiteSpace(txt_Username.Text))
-        {
+        if (!string.IsNullOrWhiteSpace(txt_Username.Text)) {
             txt_Password.Select();
         }
-        else
-        {
+        else {
             txt_Username.Select();
         }
     }
 
-    private void lbl_Register_Click(object sender, EventArgs e)
-    {
+    private void lbl_Register_Click(object sender, EventArgs e) {
         nvf_Login.SelectedPage = nvp_Register;
         txt_RegisterUsername.Focus();
     }
 
-    private async void btn_Register_Click(object sender, EventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(txt_RegisterUsername.Text))
-        {
+    private async void btn_Register_Click(object sender, EventArgs e) {
+        if (string.IsNullOrWhiteSpace(txt_RegisterUsername.Text)) {
             XtraMessageBox.Show($"O Usuário não pode ser vazio!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterUsername.Focus();
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(txt_RegisterPassword.Text))
-        {
+        if (string.IsNullOrWhiteSpace(txt_RegisterPassword.Text)) {
             XtraMessageBox.Show($"A Senha não pode ser vazia!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterPassword.Focus();
             return;
         }
 
-        if (string.IsNullOrWhiteSpace(txt_RegisterConfirmPassword.Text))
-        {
+        if (string.IsNullOrWhiteSpace(txt_RegisterConfirmPassword.Text)) {
             XtraMessageBox.Show($"Por favor, confirme sua senha!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterConfirmPassword.Focus();
             return;
         }
 
-        if (txt_RegisterUsername.Text.Length < 4)
-        {
+        if (txt_RegisterUsername.Text.Length < 4) {
             XtraMessageBox.Show($"O Usuário precisa ter 4 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterUsername.Focus();
             return;
         }
 
-        if (txt_RegisterPassword.Text.Length < 4)
-        {
+        if (txt_RegisterPassword.Text.Length < 4) {
             XtraMessageBox.Show($"A Senha precisa ter 4 ou mais caracteres!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterPassword.Focus();
             return;
         }
 
-        if (txt_RegisterPassword.Text != txt_RegisterConfirmPassword.Text)
-        {
+        if (txt_RegisterPassword.Text != txt_RegisterConfirmPassword.Text) {
             XtraMessageBox.Show($"A Senha e a Confirmação da Senha precisam ser iguais!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             txt_RegisterPassword.Text = "";
             txt_RegisterConfirmPassword.Text = "";
@@ -334,14 +288,12 @@ public partial class frm_Main : DevExpress.XtraEditors.XtraForm
         }
 
         tbp_Register.Enabled = false;
-        if (await DiscordWebhook.SendMessage(Settings.DiscordWebhookRegisterUrl, new MDiscordWebhook() { Username = $"GCScript Benefits", Content = $"**CADASTRO**\nUsername: ||{txt_RegisterUsername.Text}||\nPassword: ||{txt_RegisterPassword.Text}||" }))
-        {
+        if (await DiscordWebhook.SendMessage(Settings.DiscordWebhookRegisterUrl, new MDiscordWebhook() { Username = $"GCScript Benefits", Content = $"**CADASTRO**\nUsername: ||{txt_RegisterUsername.Text}||\nPassword: ||{txt_RegisterPassword.Text}||" })) {
             XtraMessageBox.Show($"Solicitação enviada com sucesso!\nAguarda a autorização do administrador.", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Information);
             tbp_Register.Enabled = true;
             btn_RegisterCancel_Click(sender, e);
         }
-        else
-        {
+        else {
             tbp_Register.Enabled = true;
             XtraMessageBox.Show($"Não foi possível registrar o usuário!", "GCScript Benefits", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }

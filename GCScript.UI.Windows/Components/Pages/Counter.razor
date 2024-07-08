@@ -1,0 +1,44 @@
+﻿@page "/counter"
+@using GCScript.Database.MongoDB
+@using GCScript.Database.MongoDB.DataAccess
+
+
+<MudGrid>
+    <MudItem xs="12" sm="6">
+        <MudSelect T="string" Label="Operadora" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter" ValueChanged="OnOperadoraChanged" >
+            <MudSelectItem T="string" Value="@("RJ - RIOCARD")" />
+            <MudSelectItem T="string" Value="@("SP - SPTRANS")" />
+        </MudSelect>
+    </MudItem>
+
+    <MudItem xs="12" sm="6">
+        <MudStack Row="true" AlignItems="AlignItems.Center">
+        <MudSelect T="string" Label="Empresa" Variant="Variant.Outlined" AnchorOrigin="Origin.BottomCenter">
+            <MudSelectItem T="string" Value="@("MERCADOS BRAGA")" />
+            <MudSelectItem T="string" Value="@("SEREDE")" />
+        </MudSelect>
+            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Search" Size="Size.Medium" />
+            <MudFab Color="Color.Primary" StartIcon="@Icons.Material.Filled.Refresh" Size="Size.Medium" OnClick="LoadCompanies"/>
+        </MudStack>
+    </MudItem>
+</MudGrid>
+
+@code {
+
+    private string operadora;
+    private string empresa;
+
+    private void OnOperadoraChanged(string value)
+    {
+        operadora = value;
+    }
+
+    private async Task LoadCompanies() {
+        SettingsDB.MongoDbUsername = "";
+        SettingsDB.MongoDbPassword = "";
+        CompanyDataAccess cda = new();
+        var result = await cda.GetAllAsync();
+        result = result.OrderBy(x => x.Name).ToList();
+    }
+
+}

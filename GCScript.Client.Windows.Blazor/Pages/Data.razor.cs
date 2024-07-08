@@ -1,18 +1,11 @@
-﻿using DocumentFormat.OpenXml.Wordprocessing;
-using GCScript.Database.MongoDB;
+﻿using GCScript.Database.MongoDB;
 using GCScript.Database.MongoDB.DataAccess;
 using GCScript.Database.MongoDB.Models;
-using GCScript.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GCScript.Client.Windows.Blazor.Pages;
 
-public partial class Data
-{   private string searchString1 = "";
+public partial class Data {
+    private string searchString1 = "";
     private string mudSelect_Companies_Text;
     private List<string> mudSelect_Companies_List = new();
     private Element selectedItem1 = null;
@@ -20,10 +13,9 @@ public partial class Data
 
     private IEnumerable<Element> Elements = new List<Element>();
 
-    protected override async Task OnInitializedAsync()
-    {
-        SettingsDB.MongoDbUsername = "gcs5stars";
-        SettingsDB.MongoDbPassword = "157131413";
+    protected override async Task OnInitializedAsync() {
+        SettingsDB.MongoDbUsername = "";
+        SettingsDB.MongoDbPassword = "";
         await LoadCompanies();
         //foreach (var comp in companies)
         //{
@@ -49,16 +41,14 @@ public partial class Data
         };
     }
 
-    private async Task LoadCompanies()
-    {
+    private async Task LoadCompanies() {
         CompanyDataAccess cda = new();
         var result = await cda.GetAllAsync();
         result = result.OrderBy(x => x.Name).ToList();
         mudSelect_Companies_List = result.Select(x => x.Name).ToList();
     }
 
-    private async Task<List<MCompany>> LoadCompaniesAsync()
-    {
+    private async Task<List<MCompany>> LoadCompaniesAsync() {
         CompanyDataAccess cda = new();
         var companies = await cda.GetAllAsync();
         return [.. companies.OrderBy(x => x.Name)];
@@ -66,8 +56,7 @@ public partial class Data
 
     private bool FilterFunc1(Element element) => FilterFunc(element, searchString1);
 
-    private bool FilterFunc(Element element, string searchString)
-    {
+    private bool FilterFunc(Element element, string searchString) {
         if (string.IsNullOrWhiteSpace(searchString))
             return true;
         if (element.Sign.Contains(searchString, StringComparison.OrdinalIgnoreCase))
@@ -79,16 +68,14 @@ public partial class Data
         return false;
     }
 
-    private class Element
-    {
+    private class Element {
         public int Number { get; set; }
         public string Sign { get; set; }
         public string Name { get; set; }
         public string Position { get; set; }
         public string Molar { get; set; }
     }
-    private Task LoadCompanyData()
-    {
+    private Task LoadCompanyData() {
         throw new NotImplementedException();
     }
 }
